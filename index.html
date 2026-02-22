@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Sudarshan – Nainital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --pine: #2c3e2d;
+      --pine-mid: #3d5c3f;
+      --sage: #7a9e6e;
+      --mist: #c8d8c4;
+      --cream: #f7f3ec;
+      --sand: #e8dece;
+      --gold: #c9a84c;
+      --gold-lt: #e8c97a;
+      --dark: #1a2218;
+      --text: #3a3a2e;
+      --text-lt: #6b6b5a;
+      --white: #ffffff;
+      --radius: 4px;
+      --transition: 0.35s ease;
+    }
+
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== Typography ===== */
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.15; }
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); }
+    .section-sub { font-size: 1rem; color: var(--text-lt); line-height: 1.8; margin-top: 0.75rem; max-width: 60ch; }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.25rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
+    .btn-pine { background: var(--pine); color: var(--cream); }
+    .btn-pine:hover { background: var(--pine-mid); transform: translateY(-2px); }
+
+    /* ===== Divider ===== */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.25rem 0;
+    }
+    .divider-center { margin: 1.25rem auto; }
+
+    /* ===== Nav ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(26,34,24,0.97);
+      padding: 0.9rem 5%;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn { padding: 0.6rem 1.5rem; font-size: 0.72rem; }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 25px; height: 2px; background: var(--white); transition: var(--transition); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 5%;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      background: none; border: none;
+    }
+
+    /* ===== Hero ===== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=80') center/cover no-repeat;
+      transform: scale(1.05);
+      animation: heroZoom 12s ease forwards;
+    }
+    @keyframes heroZoom { to { transform: scale(1); } }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(20,32,18,0.55) 0%, rgba(20,32,18,0.75) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      padding: 0 1rem;
+      animation: fadeUp 1s 0.4s both;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero-title strong { font-weight: 600; display: block; }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.5);
+      animation: lineGrow 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+    @keyframes lineGrow { 0%{height:0} 100%{height:40px} }
+
+    /* ===== Section Wrapper ===== */
+    .section { padding: 6rem 5%; }
+    .section-center { text-align: center; }
+    .section-center .section-label { display: block; }
+    .section-center .divider { margin: 1.25rem auto; }
+    .section-center .section-sub { margin: 0.75rem auto 0; }
+
+    /* ===== About Nainital ===== */
+    #nainital { background: var(--cream); }
+    .nainital-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+    .nainital-img-wrap {
+      position: relative;
+    }
+    .nainital-img-wrap img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+    .nainital-img-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 55%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 5px solid var(--cream);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .nainital-text p {
+      color: var(--text-lt);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      font-size: 0.97rem;
+    }
+    .nainital-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--pine); line-height: 1; }
+    .stat-lbl { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lt); margin-top: 0.2rem; }
+
+    /* ===== About Hotel ===== */
+    #about { background: var(--pine); color: var(--white); }
+    #about .section-title { color: var(--white); }
+    #about .section-sub { color: rgba(255,255,255,0.75); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .about-feat {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .feat-text h4 { font-size: 0.95rem; font-family: 'Jost', sans-serif; font-weight: 500; color: var(--white); }
+    .feat-text p { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem; }
+    .about-img {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0.75rem;
+      height: 480px;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+    .about-img img:first-child { grid-row: span 2; }
+
+    /* ===== Rooms ===== */
+    #rooms { background: var(--sand); }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .room-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .room-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .room-img { position: relative; overflow: hidden; }
+    .room-img img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.6s ease; }
+    .room-card:hover .room-img img { transform: scale(1.06); }
+    .room-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+    }
+    .room-body { padding: 1.75rem; }
+    .room-body h3 { font-size: 1.5rem; color: var(--pine); margin-bottom: 0.5rem; }
+    .room-body p { font-size: 0.875rem; color: var(--text-lt); line-height: 1.75; margin-bottom: 1.25rem; }
+    .room-amenities { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .amenity-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      background: var(--mist);
+      color: var(--pine);
+      padding: 0.35rem 0.7rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .room-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--sand);
+      padding-top: 1.25rem;
+    }
+    .room-price .price { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--pine); }
+    .room-price .price-per { font-size: 0.72rem; color: var(--text-lt); letter-spacing: 0.05em; }
+
+    /* ===== Amenities ===== */
+    #amenities { background: var(--cream); }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .amenity-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .amenity-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+    .amenity-ico {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .amenity-card h3 { font-size: 1.2rem; color: var(--pine); margin-bottom: 0.5rem; }
+    .amenity-card p { font-size: 0.84rem; color: var(--text-lt); line-height: 1.7; }
+
+    /* ===== Gallery ===== */
+    #gallery { background: var(--pine); }
+    #gallery .section-title { color: var(--white); }
+    #gallery .section-label { color: var(--gold); }
+    #gallery .divider { background: var(--gold); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 0.75rem;
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: var(--radius);
+      position: relative;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* ===== FAQ ===== */
+    #faq { background: var(--sand); }
+    .faq-wrap { max-width: 760px; margin: 3.5rem auto 0; }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 0;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--pine);
+      user-select: none;
+      gap: 1rem;
+    }
+    .faq-q .faq-icon {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--dark); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.25rem; }
+    .faq-a p { font-size: 0.9rem; color: var(--text-lt); line-height: 1.8; }
+
+    /* ===== Contact ===== */
+    #contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      margin-top: 3.5rem;
+    }
+    .contact-info h3 { font-size: 1.5rem; color: var(--pine); margin-bottom: 1.5rem; }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .contact-ico {
+      width: 42px;
+      height: 42px;
+      background: var(--mist);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item h4 { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); margin-bottom: 0.3rem; }
+    .contact-item p, .contact-item a { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--pine); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 3.5rem 5% 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.6rem; display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.75; }
+    .footer-col h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a { font-size: 0.87rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .social-links { display: flex; gap: 0.85rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .social-link:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+    .footer-bottom a { transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .rooms-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-item:first-child { grid-column: span 1; grid-row: span 1; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .nainital-img-accent { display: none; }
+      .rooms-grid, .amenities-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 180px); }
+      .gallery-item:first-child { grid-column: span 2; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .about-features { grid-template-columns: 1fr; }
+      .about-img { height: 300px; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 4rem 5%; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-column: span 1; }
+      .gallery-item { height: 200px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">HOTEL <span>SUDARSHAN</span></a>
+  <div class="nav-links">
+    <a href="#nainital">Nainital</a>
+    <a href="#about">About</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#rooms" class="btn btn-gold">Book Now</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a href="#nainital" class="mobile-link">Nainital</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#rooms" class="mobile-link">Rooms</a>
+  <a href="#amenities" class="mobile-link">Amenities</a>
+  <a href="#gallery" class="mobile-link">Gallery</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#rooms" class="btn btn-gold mobile-link">Book Now</a>
+</div>
+
+
+<!-- ===== HERO SECTION ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">✦ Welcome to ✦</p>
+    <h1 class="hero-title serif">
+      Hotel<br>
+      <strong>Sudarshan</strong>
+    </h1>
+    <p class="hero-tagline">"Experience Comfort in the Heart of Nainital"</p>
+    <a href="#rooms" class="btn btn-gold">Book Your Stay</a>
+    &nbsp;&nbsp;
+    <a href="#about" class="btn btn-outline">Explore Hotel</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+
+<!-- ===== ABOUT NAINITAL SECTION ===== -->
+<section id="nainital" class="section">
+  <div class="nainital-grid">
+    <div class="nainital-img-wrap">
+      <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80" alt="Naini Lake Nainital" loading="lazy" />
+      <img class="nainital-img-accent" src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=500&q=80" alt="Mall Road Nainital" loading="lazy" />
+    </div>
+    <div class="nainital-text">
+      <p class="section-label">Discover</p>
+      <h2 class="section-title">The Jewel of Kumaon</h2>
+      <div class="divider"></div>
+      <p>Nestled at an elevation of 2,084 metres in the Kumaon Himalayas of Uttarakhand, Nainital is one of India's most enchanting hill stations — a landscape of emerald hills, dense oak forests, and a sparkling pear-shaped lake that mirrors the sky.</p>
+      <p>The legendary <strong>Naini Lake</strong> is the city's beating heart, perfect for a serene boat ride at dawn. Stroll along the beloved <strong>Mall Road</strong> lined with colonial-era architecture, vibrant markets, and charming cafés. Trek up to Tiffin Top for panoramic Himalayan vistas, or visit the revered Naina Devi Temple perched beside the lakeside ghats.</p>
+      <p>With its cool mountain breeze year-round, colourful festivals, cable-car rides over the valleys, and star-lit skies — Nainital promises an experience that stays with you long after you leave.</p>
+      <div class="nainital-stats">
+        <div class="stat"><div class="stat-num">2,084m</div><div class="stat-lbl">Altitude</div></div>
+        <div class="stat"><div class="stat-num">1.5km</div><div class="stat-lbl">Naini Lake Length</div></div>
+        <div class="stat"><div class="stat-num">300+</div><div class="stat-lbl">Sunny Days / Year</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ABOUT HOTEL SUDARSHAN SECTION ===== -->
+<section id="about" class="section">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title" style="color:var(--white)">Where Every Stay Becomes a Memory</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Hotel Sudarshan is a beloved retreat perched above the hills of Nainital, designed for guests who seek comfort, warmth, and an authentic mountain experience. Our hotel blends the timeless charm of the Kumaon hills with thoughtfully curated modern amenities.</p>
+      <p class="section-sub" style="margin-top:1rem">From breathtaking mountain-view rooms to our vibrant in-house restaurant serving Kumaoni and continental cuisine, every corner of Hotel Sudarshan is crafted to make you feel at home — yet worlds away.</p>
+      <a href="#rooms" class="btn btn-gold" style="margin-top:2rem">Explore Rooms</a>
+      <div class="about-features">
+        <div class="about-feat"><div class="feat-icon">🌿</div><div class="feat-text"><h4>Mountain View Rooms</h4><p>Waking up to the Himalayas</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🍽️</div><div class="feat-text"><h4>In-house Restaurant</h4><p>Local & global cuisine</p></div></div>
+        <div class="about-feat"><div class="feat-icon">📶</div><div class="feat-text"><h4>Free High-Speed WiFi</h4><p>Stay connected anywhere</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🚗</div><div class="feat-text"><h4>Secure Parking</h4><p>Complimentary for guests</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🛎️</div><div class="feat-text"><h4>24/7 Room Service</h4><p>Around-the-clock care</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🗺️</div><div class="feat-text"><h4>Travel Assistance</h4><p>Tours & local guidance</p></div></div>
+      </div>
+    </div>
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Hotel Lobby" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&q=80" alt="Hotel Room" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Hotel Restaurant" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ROOMS & PRICING SECTION ===== -->
+<section id="rooms" class="section section-center">
+  <p class="section-label">Accommodations</p>
+  <h2 class="section-title">Rooms & Suites</h2>
+  <div class="divider divider-center"></div>
+  <p class="section-sub">Each room is thoughtfully appointed with premium linens, cosy furnishings, and curated touches that reflect the beauty of Nainital. Choose the stay that suits you best.</p>
+
+  <div class="rooms-grid">
+
+    <!-- Deluxe Room -->
+    <div class="room-card">
+      <div class="room-img">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Deluxe Room" loading="lazy" />
+        <span class="room-badge">Deluxe</span>
+      </div>
+      <div class="room-body">
+        <h3>Deluxe Room</h3>
+        <p>A well-appointed comfortable room with warm décor, garden views, and all essentials for a relaxing mountain escape.</p>
+        <div class="room-amenities">
+          <span class="amenity-tag">📶 Free WiFi</span>
+          <span class="amenity-tag">📺 Smart TV</span>
+          <span class="amenity-tag">❄️ Air Conditioning</span>
+          <span class="amenity-tag">🛁 Attached Bath</span>
+          <span class="amenity-tag">🍵 Tea Maker</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price">₹2,999</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <a href="#contact" class="btn btn-pine">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Super Deluxe Room -->
+    <div class="room-card">
+      <div class="room-img">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Super Deluxe Room" loading="lazy" />
+        <span class="room-badge">Super Deluxe</span>
+      </div>
+      <div class="room-body">
+        <h3>Super Deluxe Room</h3>
+        <p>Spacious rooms featuring panoramic mountain or lake views, premium bedding, and enhanced furnishings for a luxurious stay.</p>
+        <div class="room-amenities">
+          <span class="amenity-tag">🏔️ Mountain View</span>
+          <span class="amenity-tag">📶 Free WiFi</span>
+          <span class="amenity-tag">📺 Smart TV</span>
+          <span class="amenity-tag">🛁 Jacuzzi Bath</span>
+          <span class="amenity-tag">☕ Coffee Machine</span>
+          <span class="amenity-tag">🍵 Mini Bar</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price">₹4,499</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <a href="#contact" class="btn btn-pine">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Family Suite -->
+    <div class="room-card">
+      <div class="room-img">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Family Suite" loading="lazy" />
+        <span class="room-badge">Family Suite</span>
+      </div>
+      <div class="room-body">
+        <h3>Family Suite</h3>
+        <p>Our grandest offering — a multi-room suite with a private living area, full lake-facing balcony, and premium amenities for families.</p>
+        <div class="room-amenities">
+          <span class="amenity-tag">🏠 Living Room</span>
+          <span class="amenity-tag">🏔️ Lake View</span>
+          <span class="amenity-tag">🛁 Premium Bath</span>
+          <span class="amenity-tag">📶 High-speed WiFi</span>
+          <span class="amenity-tag">🍽️ Kitchenette</span>
+          <span class="amenity-tag">👨‍👩‍👧 4 Guests</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price">₹6,999</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <a href="#contact" class="btn btn-pine">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== AMENITIES SECTION ===== -->
+<section id="amenities" class="section section-center">
+  <p class="section-label">Facilities</p>
+  <h2 class="section-title">Hotel Amenities</h2>
+  <div class="divider divider-center"></div>
+  <p class="section-sub">Everything you need for a seamless, comfortable stay — thoughtfully provided by our attentive team.</p>
+
+  <div class="amenities-grid">
+    <div class="amenity-card">
+      <span class="amenity-ico">📶</span>
+      <h3>Free High-Speed WiFi</h3>
+      <p>Complimentary high-speed internet access throughout the hotel — in rooms, lobby, and the restaurant.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-ico">🛎️</span>
+      <h3>24/7 Room Service</h3>
+      <p>Order food, beverages, or request housekeeping assistance anytime of the day or night.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-ico">🍽️</span>
+      <h3>In-house Restaurant</h3>
+      <p>Our multi-cuisine restaurant serves freshly prepared Kumaoni, Indian, and continental dishes with warm hospitality.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-ico">🚗</span>
+      <h3>Free Parking</h3>
+      <p>Secure, complimentary parking space for all registered hotel guests within our premises.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-ico">🏔️</span>
+      <h3>Mountain / Lake Views</h3>
+      <p>Wake up to breathtaking views of the Naini Lake or the forested Himalayan hills from your window.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-ico">🗺️</span>
+      <h3>Travel Assistance</h3>
+      <p>Our concierge team helps plan local tours, sightseeing, trekking, and arranges private taxis at best rates.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== GALLERY SECTION ===== -->
+<section id="gallery" class="section section-center">
+  <p class="section-label">Visual Tour</p>
+  <h2 class="section-title">A Glimpse of Sudarshan</h2>
+  <div class="divider divider-center"></div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Hotel Exterior" loading="lazy" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=500&q=80" alt="Nainital Hills" loading="lazy" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80" alt="Hotel Room" loading="lazy" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Restaurant" loading="lazy" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=500&q=80" alt="Naini Lake" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FAQ SECTION ===== -->
+<section id="faq" class="section section-center">
+  <p class="section-label">FAQ</p>
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="divider divider-center"></div>
+
+  <div class="faq-wrap">
+
+    <div class="faq-item">
+      <div class="faq-q">
+        What are the check-in and check-out times?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Check-in time is <strong>12:00 noon</strong> and check-out time is <strong>11:00 AM</strong>. Early check-in and late check-out are subject to room availability and may be arranged on request (additional charges may apply). Luggage storage is complimentary.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Is parking available at the hotel?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes, we offer <strong>complimentary secure parking</strong> for all registered guests within our premises. The parking area is monitored by CCTV. Please inform us in advance if you are arriving with a larger vehicle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Is breakfast included in the room rate?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Breakfast inclusion varies by package. Our <strong>Super Deluxe</strong> and <strong>Family Suite</strong> bookings on the MAP (Modified American Plan) include complimentary breakfast. For Deluxe rooms, breakfast can be added for ₹350 per person per day. Please check your booking details or contact us to confirm.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Is the hotel close to Mall Road and Naini Lake?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Absolutely! Hotel Sudarshan is ideally located on <strong>Mall Road</strong>, the heart of Nainital — just a short walk from the Naini Lake boating ghats, the Naina Devi Temple, local markets, and popular restaurants. Guests can explore all major attractions on foot.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        What is the cancellation policy?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Cancellations made <strong>48 hours or more</strong> before check-in are fully refunded. Cancellations within 48 hours of check-in are subject to a one-night charge. During peak season (May–June and December), a 72-hour cancellation policy applies. No-shows will be charged the full booking amount.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you offer travel or tour packages?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes! Our concierge team offers curated day trips, trekking arrangements, boat ride bookings on Naini Lake, and guided tours to nearby attractions like Bhimtal, Mukteshwar, and Corbett National Park. Ask our front desk for current packages and rates.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== CONTACT SECTION ===== -->
+<section id="contact" class="section">
+  <div class="section-center" style="margin-bottom:0">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Contact & Reservations</h2>
+    <div class="divider divider-center"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>We'd love to host you</h3>
+      <div class="contact-item">
+        <div class="contact-ico">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>Hotel Sudarshan, Mall Road,<br>Nainital – 263001,<br>Uttarakhand, India</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-ico">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <a href="tel:+915942236789">+91 59422 36789</a><br>
+          <a href="tel:+919876543210">+91 98765 43210</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-ico">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:reservations@hotelsudarshan.in">reservations@hotelsudarshan.in</a><br>
+          <a href="mailto:info@hotelsudarshan.in">info@hotelsudarshan.in</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-ico">🕐</div>
+        <div>
+          <h4>Reception Hours</h4>
+          <p>Open 24 hours, 7 days a week</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Rajiv" required />
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Sharma" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 9800000000" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="checkin">Check-in Date</label>
+          <input type="date" id="checkin" />
+        </div>
+        <div class="form-group">
+          <label for="checkout">Check-out Date</label>
+          <input type="date" id="checkout" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="room">Room Type</label>
+        <select id="room">
+          <option value="">-- Select Room Type --</option>
+          <option>Deluxe Room – ₹2,999/night</option>
+          <option>Super Deluxe Room – ₹4,499/night</option>
+          <option>Family Suite – ₹6,999/night</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Special Requests or Message</label>
+        <textarea id="message" placeholder="Tell us anything — early check-in, dietary needs, special occasion..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold" style="align-self:flex-start">Send Enquiry →</button>
+      <p id="formSuccess" style="display:none;color:var(--pine);font-size:0.9rem;margin-top:0.5rem">✅ Thank you! We'll get back to you within 24 hours.</p>
+    </form>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">HOTEL <span>SUDARSHAN</span></span>
+      <p>A beloved mountain retreat on Mall Road, Nainital — where Himalayan charm meets heartfelt hospitality. Your perfect escape into the hills.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook">f</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#nainital">About Nainital</a></li>
+        <li><a href="#about">About Hotel</a></li>
+        <li><a href="#rooms">Rooms & Pricing</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Rooms</h4>
+      <ul>
+        <li><a href="#rooms">Deluxe Room</a></li>
+        <li><a href="#rooms">Super Deluxe Room</a></li>
+        <li><a href="#rooms">Family Suite</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#faq">Cancellation Policy</a></li>
+        <li><a href="#faq">Check-in / Check-out</a></li>
+        <li><a href="#faq">Breakfast Info</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Hotel Sudarshan, Nainital. All Rights Reserved.</p>
+    <p>Designed with ❤️ for the Hills of Uttarakhand</p>
+  </div>
+</footer>
+
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  // --- Navbar scroll effect ---
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // --- Mobile Nav ---
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileNav.classList.remove('open'));
+  });
+
+  // --- FAQ Accordion ---
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // --- Contact Form ---
+  function handleSubmit(e) {
+    e.preventDefault();
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { success.style.display = 'none'; }, 6000);
+  }
+
+  // --- Scroll-triggered fade-in animations ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.room-card, .amenity-card, .gallery-item, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
