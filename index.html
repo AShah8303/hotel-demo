@@ -107,13 +107,16 @@
       box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
     }
-    .nav-logo span { color: var(--gold); }
+    .nav-logo svg {
+      height: 52px;
+      width: auto;
+    }
+    #navbar.scrolled .nav-logo svg { opacity: 0.95; }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
       color: rgba(255,255,255,0.85);
@@ -191,6 +194,12 @@
       animation: fadeUp 1s 0.4s both;
     }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-logo-svg {
+      display: block;
+      margin: 0 auto 1rem;
+      width: min(520px, 90vw);
+      height: auto;
+    }
     .hero-label {
       font-family: 'Jost', sans-serif;
       font-size: 0.72rem;
@@ -350,8 +359,8 @@
     #rooms { background: var(--sand); }
     .rooms-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
       margin-top: 3.5rem;
     }
     .room-card {
@@ -563,7 +572,8 @@
       gap: 3rem;
       margin-bottom: 3rem;
     }
-    .footer-brand .nav-logo { font-size: 1.6rem; display: block; margin-bottom: 1rem; }
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+    .footer-brand .nav-logo svg { height: 70px; width: auto; }
     .footer-brand p { font-size: 0.85rem; line-height: 1.75; }
     .footer-col h4 {
       font-family: 'Jost', sans-serif;
@@ -605,8 +615,7 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 1024px) {
-      .rooms-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .rooms-grid { grid-template-columns: 1fr 1fr; }      .footer-grid { grid-template-columns: 1fr 1fr; }
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
       .gallery-item:first-child { grid-column: span 1; grid-row: span 1; }
     }
@@ -630,6 +639,437 @@
       .gallery-item { height: 200px; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
+
+    /* ===== Room Modal ===== */
+    .room-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,32,18,0.85);
+      z-index: 2000;
+      overflow-y: auto;
+      padding: 2rem 1rem;
+      backdrop-filter: blur(4px);
+    }
+    .room-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .room-modal {
+      background: var(--cream);
+      max-width: 900px;
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      margin: auto;
+      animation: modalSlideUp 0.4s ease both;
+    }
+    @keyframes modalSlideUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    .modal-close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 10;
+      width: 38px; height: 38px;
+      background: rgba(26,34,24,0.7);
+      border: none; border-radius: 50%;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close-btn:hover { background: var(--gold); color: var(--dark); }
+    .modal-photo-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #000;
+    }
+    .modal-photo-slider img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .modal-photo-slider img.active { opacity: 1; }
+    .slider-nav {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 5;
+    }
+    .slider-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+    }
+    .slider-dot.active { background: var(--gold); }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(26,34,24,0.6);
+      border: none;
+      color: #fff;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 5;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .slider-arrow:hover { background: var(--gold); color: var(--dark); }
+    .slider-prev { left: 1rem; }
+    .slider-next { right: 1rem; }
+    .modal-badge-overlay {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 2px;
+      z-index: 5;
+    }
+    .modal-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .modal-info {
+      padding: 2.5rem;
+      border-right: 1px solid var(--sand);
+    }
+    .modal-info h2 {
+      font-size: 2rem;
+      color: var(--pine);
+      margin-bottom: 0.5rem;
+    }
+    .modal-info .modal-tagline {
+      font-style: italic;
+      color: var(--text-lt);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .modal-info .modal-desc {
+      font-size: 0.9rem;
+      color: var(--text-lt);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .modal-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .modal-highlight {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text);
+      background: var(--mist);
+      padding: 0.5rem 0.75rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .modal-price-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--sand);
+    }
+    .modal-price-row .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--pine);
+    }
+    .modal-price-row .price-per {
+      font-size: 0.72rem;
+      color: var(--text-lt);
+    }
+    .modal-booking {
+      padding: 2.5rem;
+      background: var(--white);
+    }
+    .modal-booking h3 {
+      font-size: 1.2rem;
+      color: var(--pine);
+      margin-bottom: 0.25rem;
+    }
+    .modal-booking p.sub {
+      font-size: 0.8rem;
+      color: var(--text-lt);
+      margin-bottom: 1.5rem;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: 1rem; }
+    .modal-form .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .modal-form label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); }
+    .modal-form input, .modal-form select, .modal-form textarea {
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .modal-form input:focus, .modal-form select:focus, .modal-form textarea:focus { border-color: var(--pine); }
+    .modal-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .modal-success {
+      display: none;
+      background: var(--mist);
+      color: var(--pine);
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-info { border-right: none; border-bottom: 1px solid var(--sand); padding: 1.75rem; }
+      .modal-booking { padding: 1.75rem; }
+      .modal-photo-slider { aspect-ratio: 4 / 3; }
+      .modal-highlights { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Payment Gateway Styles ===== */
+    .payment-gateway { overflow-y: auto; max-height: 560px; padding-right: 2px; }
+    .pg-step { display: none; }
+    .pg-step.active { display: block; }
+    .pg-progress {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 1.5rem;
+    }
+    .pg-step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--sand);
+      border: 2px solid var(--mist);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--text-lt);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .pg-step-dot.done { background: var(--pine); border-color: var(--pine); color: white; }
+    .pg-step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+    .pg-step-line { flex: 1; height: 2px; background: var(--mist); }
+    .pg-step-line.done { background: var(--pine); }
+    .pg-step-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      text-align: center;
+      margin-top: 0.3rem;
+    }
+    .pg-progress-wrap { margin-bottom: 1.5rem; }
+    .pg-progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.35rem;
+    }
+    .pg-step-label-item { font-size: 0.6rem; color: var(--text-lt); text-transform: uppercase; letter-spacing: 0.07em; }
+    .pg-step-label-item.active { color: var(--gold); font-weight: 600; }
+
+    .pg-section-title {
+      font-size: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--pine);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    /* Booking summary box */
+    .pg-summary-box {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.82rem;
+    }
+    .pg-summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem 0;
+      color: var(--text-lt);
+    }
+    .pg-summary-row.total {
+      font-weight: 700;
+      color: var(--pine);
+      font-size: 1rem;
+      border-top: 1px solid var(--sand);
+      padding-top: 0.6rem;
+      margin-top: 0.3rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .pg-nights-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+    }
+
+    /* Payment method tabs */
+    .pg-pay-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .pg-pay-tab {
+      flex: 1;
+      min-width: 70px;
+      padding: 0.6rem 0.5rem;
+      border: 1.5px solid var(--mist);
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      color: var(--text-lt);
+      background: white;
+      transition: all 0.2s;
+    }
+    .pg-pay-tab.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
+    .pg-pay-tab .tab-icon { display: block; font-size: 1.1rem; margin-bottom: 0.15rem; }
+    .pg-pay-method { display: none; }
+    .pg-pay-method.active { display: block; }
+
+    /* Card inputs */
+    .card-row { display: flex; gap: 0.75rem; }
+    .card-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .card-input-wrap input {
+      padding-right: 3rem;
+    }
+    .card-brand-icon {
+      position: absolute;
+      right: 0.75rem;
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    .upi-apps {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .upi-app-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid var(--mist);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.65rem;
+      color: var(--text-lt);
+      font-family: 'Jost', sans-serif;
+      transition: all 0.2s;
+    }
+    .upi-app-btn:hover, .upi-app-btn.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
+    .upi-app-btn .upi-icon { font-size: 1.4rem; }
+
+    /* Net banking select */
+    .nb-banks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; }
+    .nb-bank {
+      padding: 0.6rem;
+      border: 1.5px solid var(--mist);
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      background: white;
+      transition: all 0.2s;
+    }
+    .nb-bank:hover, .nb-bank.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
+
+    .pg-secure-note {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      margin-top: 0.75rem;
+    }
+
+    /* Success screen */
+    .pg-success-screen {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .pg-success-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--pine), var(--sage));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 2rem;
+    }
+    .pg-success-screen h3 {
+      font-size: 1.5rem;
+      color: var(--pine);
+      margin-bottom: 0.5rem;
+    }
+    .pg-success-screen p {
+      color: var(--text-lt);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .pg-booking-id {
+      display: inline-block;
+      background: var(--mist);
+      color: var(--pine);
+      font-family: monospace;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      margin: 0.75rem 0;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    .pg-btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+    .pg-btn-row button { flex: 1; }
     /* ===== Horizontal Scroll Gallery ===== */
 .gallery-scroll {
   display: flex;
@@ -640,10 +1080,14 @@
 }
 
 .gallery-scroll img {
-  height: 300px;
+  height: 260px;
+  width: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .gallery-scroll img:hover {
@@ -811,12 +1255,41 @@
 
 <!-- ===== NAVIGATION ===== -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">HOTEL <span>SUDARSHAN</span></a>
+  <a href="#hero" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="52">
+      <g transform="translate(130,19)">
+        <circle r="10" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
+        <circle r="3.5" fill="#0a1628" stroke="#c9a84c" stroke-width="1"/>
+        <circle r="14.5" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
+        <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#c9a84c" stroke-width="0.9"/>
+        <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#c9a84c" stroke-width="0.9"/>
+        <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
+        <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
+        <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#c9a84c"/>
+        <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#c9a84c"/>
+        <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#c9a84c"/>
+        <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#c9a84c"/>
+        <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#c9a84c"/>
+        <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#c9a84c"/>
+        <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#c9a84c"/>
+        <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#c9a84c"/>
+      </g>
+      <line x1="12" y1="34" x2="111" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
+      <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
+      <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
+      <text x="130" y="59" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+      <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
+      <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
+      <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
+      <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+    </svg>
+  </a>
   <div class="nav-links">
     <a href="#nainital">Nainital</a>
     <a href="#about">About</a>
     <a href="#rooms">Rooms</a>
-    <a href="#amenities">Amenities</a>
+    <a href="#reviews">Reviews</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
     <a href="#rooms" class="btn btn-gold">Book Now</a>
@@ -844,11 +1317,54 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-label">✦ Welcome to ✦</p>
-    <h1 class="hero-title serif">
-      Hotel<br>
-      <strong>Sudarshan</strong>
-    </h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 165" class="hero-logo-svg">
+      <!-- Wheel -->
+      <g transform="translate(250,32)">
+        <circle r="16" fill="none" stroke="#c9a84c" stroke-width="1.8"/>
+        <circle r="5.5" fill="#0a1628" stroke="#c9a84c" stroke-width="1.4"/>
+        <circle r="23" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+        <line x1="0" y1="-15" x2="0" y2="15" stroke="#c9a84c" stroke-width="1.2"/>
+        <line x1="-15" y1="0" x2="15" y2="0" stroke="#c9a84c" stroke-width="1.2"/>
+        <line x1="-10.6" y1="-10.6" x2="10.6" y2="10.6" stroke="#c9a84c" stroke-width="1.2"/>
+        <line x1="10.6" y1="-10.6" x2="-10.6" y2="10.6" stroke="#c9a84c" stroke-width="1.2"/>
+        <line x1="0" y1="-23" x2="0" y2="-16" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="0" y1="23" x2="0" y2="16" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="-23" y1="0" x2="-16" y2="0" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="23" y1="0" x2="16" y2="0" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="-16.3" y1="-16.3" x2="-11.3" y2="-11.3" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="16.3" y1="-16.3" x2="11.3" y2="-11.3" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="-16.3" y1="16.3" x2="-11.3" y2="11.3" stroke="#c9a84c" stroke-width="1.1"/>
+        <line x1="16.3" y1="16.3" x2="11.3" y2="11.3" stroke="#c9a84c" stroke-width="1.1"/>
+        <polygon points="0,-27 3.2,-21 -3.2,-21" fill="#c9a84c"/>
+        <polygon points="0,27 3.2,21 -3.2,21" fill="#c9a84c"/>
+        <polygon points="-27,0 -21,3.2 -21,-3.2" fill="#c9a84c"/>
+        <polygon points="27,0 21,3.2 21,-3.2" fill="#c9a84c"/>
+        <polygon points="-19.1,-19.1 -15.3,-14.6 -14.6,-15.3" fill="#c9a84c"/>
+        <polygon points="19.1,-19.1 15.3,-14.6 14.6,-15.3" fill="#c9a84c"/>
+        <polygon points="-19.1,19.1 -15.3,14.6 -14.6,15.3" fill="#c9a84c"/>
+        <polygon points="19.1,19.1 15.3,14.6 14.6,15.3" fill="#c9a84c"/>
+        <circle cx="0" cy="-16" r="1.5" fill="#c9a84c"/>
+        <circle cx="0" cy="16" r="1.5" fill="#c9a84c"/>
+        <circle cx="-16" cy="0" r="1.5" fill="#c9a84c"/>
+        <circle cx="16" cy="0" r="1.5" fill="#c9a84c"/>
+        <circle cx="-11.3" cy="-11.3" r="1.5" fill="#c9a84c"/>
+        <circle cx="11.3" cy="-11.3" r="1.5" fill="#c9a84c"/>
+        <circle cx="-11.3" cy="11.3" r="1.5" fill="#c9a84c"/>
+        <circle cx="11.3" cy="11.3" r="1.5" fill="#c9a84c"/>
+      </g>
+      <!-- Top double lines -->
+      <line x1="20" y1="57" x2="220" y2="57" stroke="#c9a84c" stroke-width="1.6"/>
+      <line x1="280" y1="57" x2="480" y2="57" stroke="#c9a84c" stroke-width="1.6"/>
+      <line x1="20" y1="59.5" x2="220" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
+      <line x1="280" y1="59.5" x2="480" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
+      <!-- Main text — larger font, wider viewBox means no clipping -->
+      <text x="250" y="102" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="44" font-weight="700" fill="#c9a84c" letter-spacing="5">HOTEL SUDARSHAN</text>
+      <!-- Bottom double lines + arc -->
+      <line x1="20" y1="114" x2="165" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
+      <line x1="335" y1="114" x2="480" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
+      <path d="M 165,114 Q 250,160 335,114" fill="none" stroke="#c9a84c" stroke-width="1.6"/>
+      <path d="M 174,114 Q 250,150 326,114" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+    </svg>
     <p class="hero-tagline">"Experience Comfort in the Heart of Nainital"</p>
     <a href="#rooms" class="btn btn-gold">Book Your Stay</a>
     &nbsp;&nbsp;
@@ -919,6 +1435,32 @@
 
   <div class="rooms-grid">
 
+    <!-- Standard Room -->
+    <div class="room-card">
+      <div class="room-img">
+        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&q=80" alt="Standard Room" loading="lazy" />
+        <span class="room-badge">Standard</span>
+      </div>
+      <div class="room-body">
+        <h3>Standard Room</h3>
+        <p>A cosy, well-maintained room ideal for solo travellers or couples on a budget — offering all the essentials for a comfortable mountain stay.</p>
+        <div class="room-amenities">
+          <span class="amenity-tag">📶 Free WiFi</span>
+          <span class="amenity-tag">📺 TV</span>
+          <span class="amenity-tag">🛁 Attached Bath</span>
+          <span class="amenity-tag">🌿 Garden View</span>
+          <span class="amenity-tag">🛏️ Double Bed</span>
+        </div>
+        <div class="room-footer">
+          <div class="room-price">
+            <div class="price">₹1,799</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <button onclick="openRoomModal('standard')" class="btn btn-pine">Book Now</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Deluxe Room -->
     <div class="room-card">
       <div class="room-img">
@@ -940,19 +1482,19 @@
             <div class="price">₹2,999</div>
             <div class="price-per">per night + taxes</div>
           </div>
-          <a href="#contact" class="btn btn-pine">Book Now</a>
+          <button onclick="openRoomModal('deluxe')" class="btn btn-pine">Book Now</button>
         </div>
       </div>
     </div>
 
-    <!-- Super Deluxe Room -->
+    <!-- Family Deluxe Room -->
     <div class="room-card">
       <div class="room-img">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Super Deluxe Room" loading="lazy" />
-        <span class="room-badge">Super Deluxe</span>
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Family Deluxe Room" loading="lazy" />
+        <span class="room-badge">Family Deluxe</span>
       </div>
       <div class="room-body">
-        <h3>Super Deluxe Room</h3>
+        <h3>Family Deluxe Room</h3>
         <p>Spacious rooms featuring panoramic mountain or lake views, premium bedding, and enhanced furnishings for a luxurious stay.</p>
         <div class="room-amenities">
           <span class="amenity-tag">🏔️ Mountain View</span>
@@ -967,7 +1509,7 @@
             <div class="price">₹4,499</div>
             <div class="price-per">per night + taxes</div>
           </div>
-          <a href="#contact" class="btn btn-pine">Book Now</a>
+          <button onclick="openRoomModal('Family Deluxe')" class="btn btn-pine">Book Now</button>
         </div>
       </div>
     </div>
@@ -994,7 +1536,7 @@
             <div class="price">₹6,999</div>
             <div class="price-per">per night + taxes</div>
           </div>
-          <a href="#contact" class="btn btn-pine">Book Now</a>
+          <button onclick="openRoomModal('familysuite')" class="btn btn-pine">Book Now</button>
         </div>
       </div>
     </div>
@@ -1122,7 +1664,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Breakfast inclusion varies by package. Our <strong>Super Deluxe</strong> and <strong>Family Suite</strong> bookings on the MAP (Modified American Plan) include complimentary breakfast. For Deluxe rooms, breakfast can be added for ₹350 per person per day. Please check your booking details or contact us to confirm.</p>
+        <p>Breakfast inclusion varies by package. Our <strong>Family Deluxe</strong> and <strong>Family Suite</strong> bookings on the MAP (Modified American Plan) include complimentary breakfast. For Deluxe rooms, breakfast can be added for ₹350 per person per day. Please check your booking details or contact us to confirm.</p>
       </div>
     </div>
 
@@ -1181,16 +1723,17 @@
         <div class="contact-ico">📞</div>
         <div>
           <h4>Phone</h4>
-          <a href="tel:+915942236789">+91 59422 36789</a><br>
-          <a href="tel:+919876543210">+91 98765 43210</a>
+          <a href="tel:+917895354272">+91 78953 54272</a><br>
+          <a href="tel:+915942235574">+91 59422 35574</a>
+          
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-ico">✉️</div>
         <div>
           <h4>Email</h4>
-          <a href="mailto:reservations@hotelsudarshan.in">reservations@hotelsudarshan.in</a><br>
-          <a href="mailto:info@hotelsudarshan.in">info@hotelsudarshan.in</a>
+          <a href="/cdn-cgi/l/email-protection#6e1c0b1d0b1c180f1a0701001d2e06011a0b021d1b0a0f1c1d060f00400700"><span class="__cf_email__" data-cfemail="c1b3a4b2a4b3b7a0b5a8aeafb281a9aeb5a4adb2b4a5a0b3b2a9a0afefa8af">[email&#160;protected]</span></a><br>
+          <a href="/cdn-cgi/l/email-protection#b6dfd8d0d9f6ded9c2d3dac5c3d2d7c4c5ded7d898dfd8"><span class="__cf_email__" data-cfemail="2b42454d446b43445f4e47585e4f4a5958434a45054245">[email&#160;protected]</span></a>
         </div>
       </div>
       <div class="contact-item">
@@ -1238,7 +1781,7 @@
         <select id="room">
           <option value="">-- Select Room Type --</option>
           <option>Deluxe Room – ₹2,999/night</option>
-          <option>Super Deluxe Room – ₹4,499/night</option>
+          <option>Family Deluxe Room – ₹4,499/night</option>
           <option>Family Suite – ₹6,999/night</option>
         </select>
       </div>
@@ -1257,7 +1800,36 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="nav-logo">HOTEL <span>SUDARSHAN</span></span>
+      <span class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="70">
+          <g transform="translate(130,19)">
+            <circle r="10" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
+            <circle r="3.5" fill="#1a2218" stroke="#c9a84c" stroke-width="1"/>
+            <circle r="14.5" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
+            <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#c9a84c" stroke-width="0.9"/>
+            <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#c9a84c" stroke-width="0.9"/>
+            <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
+            <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
+            <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#c9a84c"/>
+            <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#c9a84c"/>
+            <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#c9a84c"/>
+            <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#c9a84c"/>
+            <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#c9a84c"/>
+            <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#c9a84c"/>
+            <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#c9a84c"/>
+            <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#c9a84c"/>
+          </g>
+          <line x1="12" y1="34" x2="111" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
+          <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
+          <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
+          <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
+          <text x="130" y="59" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+          <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
+          <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
+          <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
+          <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+        </svg>
+      </span>
       <p>A beloved mountain retreat on Mall Road, Nainital — where Himalayan charm meets heartfelt hospitality. Your perfect escape into the hills.</p>
       <div class="social-links">
         <a href="#" class="social-link" aria-label="Facebook">f</a>
@@ -1281,7 +1853,7 @@
       <h4>Our Rooms</h4>
       <ul>
         <li><a href="#rooms">Deluxe Room</a></li>
-        <li><a href="#rooms">Super Deluxe Room</a></li>
+        <li><a href="#rooms">Family Deluxe Room</a></li>
         <li><a href="#rooms">Family Suite</a></li>
       </ul>
     </div>
@@ -1303,8 +1875,620 @@
 </footer>
 
 
+<!-- ===== ROOM MODALS ===== -->
+
+<!-- Standard Room Modal -->
+<div class="room-modal-overlay" id="modal-standard">
+  <div class="room-modal">
+    <button class="modal-close-btn" onclick="closeRoomModal('standard')">✕</button>
+    <div class="modal-photo-slider" id="slider-standard">
+      <span class="modal-badge-overlay">Standard</span>
+      <img src="https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room" class="active" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--hcgcK_BM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/c4f9a58946db6b0dbd264d3328313be2aaf45af3?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room Interior" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--XQwrRieS--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/3807f9e8e9558a0bab77519bf875f555bd99c4c6?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room View" />
+      <button class="slider-arrow slider-prev" onclick="slidePhoto('standard',-1)">&#8249;</button>
+      <button class="slider-arrow slider-next" onclick="slidePhoto('standard',1)">&#8250;</button>
+      <div class="slider-nav" id="dots-standard"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <h2>Standard Room</h2>
+        <p class="modal-tagline">"Everything you need, nothing you don't"</p>
+        <p class="modal-desc">A cosy, well-maintained room ideal for solo travellers or couples looking for a comfortable and affordable mountain getaway. Clean, quiet, and thoughtfully arranged with all the essentials — perfectly suited for those who want a peaceful retreat in the hills of Nainital without compromise.</p>
+        <div class="modal-highlights">
+          <span class="modal-highlight">📶 Free WiFi</span>
+          <span class="modal-highlight">📺 Television</span>
+          <span class="modal-highlight">🛁 Attached Bath</span>
+          <span class="modal-highlight">🌿 Garden View</span>
+          <span class="modal-highlight">🛏️ Double Bed</span>
+          <span class="modal-highlight">📞 24/7 Room Service</span>
+          <span class="modal-highlight">🧴 Toiletries</span>
+          <span class="modal-highlight">🚗 Free Parking</span>
+        </div>
+        <div class="modal-price-row">
+          <div>
+            <div class="price">₹1,799</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-lt);line-height:1.6;">
+            Check-in: 12:00 PM<br>Check-out: 11:00 AM<br>Max: 2 Guests
+          </div>
+        </div>
+      </div>
+      <div class="modal-booking">
+        <div class="pg-progress-wrap">
+          <div class="pg-progress">
+            <div class="pg-step-dot active" id="dot-standard-1">1</div>
+            <div class="pg-step-line" id="line-standard-1"></div>
+            <div class="pg-step-dot" id="dot-standard-2">2</div>
+            <div class="pg-step-line" id="line-standard-2"></div>
+            <div class="pg-step-dot" id="dot-standard-3">3</div>
+          </div>
+          <div class="pg-progress-labels">
+            <span class="pg-step-label-item active" id="lbl-standard-1">Details</span>
+            <span class="pg-step-label-item" id="lbl-standard-2">Review</span>
+            <span class="pg-step-label-item" id="lbl-standard-3">Payment</span>
+          </div>
+        </div>
+        <div class="pg-step active" id="pg-standard-step1">
+          <div class="pg-section-title">Guest Information</div>
+          <div class="modal-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" id="standard-fname" placeholder="Rajiv" required /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" id="standard-lname" placeholder="Sharma" required /></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="standard-email" placeholder="you@example.com" required /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="standard-phone" placeholder="+91 9800000000" required /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Check-in Date</label><input type="date" id="standard-checkin" required /></div>
+              <div class="form-group"><label>Check-out Date</label><input type="date" id="standard-checkout" required /></div>
+            </div>
+            <div class="form-group"><label>No. of Guests</label><select id="standard-guests"><option>1 Guest</option><option>2 Guests</option></select></div>
+            <div class="form-group"><label>Special Requests</label><input type="text" id="standard-requests" placeholder="Early check-in, dietary needs…" /></div>
+            <button class="btn btn-gold" style="width:100%" onclick="pgNext('standard',1,1799)">Continue to Review →</button>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-standard-step2">
+          <div class="pg-section-title">Booking Summary</div>
+          <div class="pg-summary-box" id="summary-standard"></div>
+          <div class="modal-form">
+            <div class="pg-btn-row">
+              <button class="btn btn-outline" onclick="pgBack('standard',1)">← Back</button>
+              <button class="btn btn-gold" onclick="pgNext('standard',2,1799)">Proceed to Pay →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-standard-step3">
+          <div class="pg-section-title">Secure Payment</div>
+          <div class="payment-gateway">
+            <div class="pg-pay-tabs">
+              <div class="pg-pay-tab active" onclick="switchPayTab('standard','card',this)"><span class="tab-icon">💳</span>Card</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('standard','upi',this)"><span class="tab-icon">📱</span>UPI</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('standard','nb',this)"><span class="tab-icon">🏦</span>Net Banking</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('standard','wallet',this)"><span class="tab-icon">👛</span>Wallet</div>
+            </div>
+            <div class="pg-pay-method active modal-form" id="pay-standard-card">
+              <div class="form-group"><label>Card Number</label><div class="card-input-wrap"><input type="text" placeholder="1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)" style="width:100%" /><span class="card-brand-icon">💳</span></div></div>
+              <div class="form-row">
+                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" /></div>
+                <div class="form-group"><label>CVV</label><input type="password" placeholder="•••" maxlength="4" /></div>
+              </div>
+              <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="Name on card" /></div>
+            </div>
+            <div class="pg-pay-method modal-form" id="pay-standard-upi">
+              <div class="upi-apps">
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟢</span>PhonePe</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔵</span>GPay</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟣</span>Paytm</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔶</span>BHIM</button>
+              </div>
+              <div class="form-group"><label>Or Enter UPI ID</label><input type="text" placeholder="yourname@upi" /></div>
+            </div>
+            <div class="pg-pay-method" id="pay-standard-nb">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 SBI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 HDFC</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 ICICI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Axis</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Kotak</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 PNB</div>
+              </div>
+            </div>
+            <div class="pg-pay-method" id="pay-standard-wallet">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Paytm</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Amazon Pay</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Mobikwik</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Freecharge</div>
+              </div>
+            </div>
+            <div class="pg-secure-note">🔒 256-bit SSL Encrypted · Secured by Razorpay</div>
+            <div class="pg-btn-row" style="margin-top:1rem">
+              <button class="btn btn-outline" onclick="pgBack('standard',2)">← Back</button>
+              <button class="btn btn-gold" onclick="processPayment('standard',1799)">Pay ₹<span id="pay-amount-standard">1,799</span> →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-standard-step4">
+          <div class="pg-success-screen">
+            <div class="pg-success-icon">✅</div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your Standard Room has been successfully booked. A confirmation has been sent to your email.</p>
+            <div class="pg-booking-id" id="bookingid-standard">HS-XXXXXXXX</div>
+            <p style="font-size:0.78rem">Our team will reach out within 2 hours to confirm your arrival details.</p>
+            <button class="btn btn-gold" style="margin-top:1rem;width:100%" onclick="closeRoomModal('standard')">Done →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Deluxe Room Modal -->
+<div class="room-modal-overlay" id="modal-deluxe">
+  <div class="room-modal">
+    <button class="modal-close-btn" onclick="closeRoomModal('deluxe')">✕</button>
+    <div class="modal-photo-slider" id="slider-deluxe">
+      <span class="modal-badge-overlay">Deluxe</span>
+      <img src="https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room" class="active" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--8jYCq6Z0--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567482/7955a8b699be7390898139f94d19ec837de91548?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room Bath" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--Fz2lUO0C--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567482/13697cc7cb39f7d991781c3be1506eef9fd66014?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room View" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--UNghUT2I--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/c75e651c3f68548745eff3279f94d6ec5eb3b251?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room Amenities" />
+      <button class="slider-arrow slider-prev" onclick="slidePhoto('deluxe',-1)">&#8249;</button>
+      <button class="slider-arrow slider-next" onclick="slidePhoto('deluxe',1)">&#8250;</button>
+      <div class="slider-nav" id="dots-deluxe"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <h2>Deluxe Room</h2>
+        <p class="modal-tagline">"Your cosy sanctuary in the mountains"</p>
+        <p class="modal-desc">A well-appointed comfortable room with warm décor, garden views, and all essentials for a relaxing mountain escape. Perfect for solo travellers and couples seeking peace amidst the Kumaon hills. Enjoy the gentle morning light, crisp mountain air, and all modern comforts right at your fingertips.</p>
+        <div class="modal-highlights">
+          <span class="modal-highlight">📶 Free WiFi</span>
+          <span class="modal-highlight">📺 Smart TV</span>
+          <span class="modal-highlight">❄️ Air Conditioning</span>
+          <span class="modal-highlight">🛁 Attached Bath</span>
+          <span class="modal-highlight">🍵 Tea Maker</span>
+          <span class="modal-highlight">🌿 Garden View</span>
+          <span class="modal-highlight">🛏️ King Bed</span>
+          <span class="modal-highlight">📞 24/7 Room Service</span>
+        </div>
+        <div class="modal-price-row">
+          <div>
+            <div class="price">₹2,999</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-lt);line-height:1.6;">
+            Check-in: 12:00 PM<br>Check-out: 11:00 AM<br>Max: 2 Guests
+          </div>
+        </div>
+      </div>
+      <div class="modal-booking">
+        <div class="pg-progress-wrap">
+          <div class="pg-progress" id="pg-progress-deluxe">
+            <div class="pg-step-dot active" id="dot-deluxe-1">1</div>
+            <div class="pg-step-line" id="line-deluxe-1"></div>
+            <div class="pg-step-dot" id="dot-deluxe-2">2</div>
+            <div class="pg-step-line" id="line-deluxe-2"></div>
+            <div class="pg-step-dot" id="dot-deluxe-3">3</div>
+          </div>
+          <div class="pg-progress-labels">
+            <span class="pg-step-label-item active" id="lbl-deluxe-1">Details</span>
+            <span class="pg-step-label-item" id="lbl-deluxe-2">Review</span>
+            <span class="pg-step-label-item" id="lbl-deluxe-3">Payment</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Guest Details -->
+        <div class="pg-step active" id="pg-deluxe-step1">
+          <div class="pg-section-title">Guest Information</div>
+          <div class="modal-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" id="d-fname" placeholder="Rajiv" required /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" id="d-lname" placeholder="Sharma" required /></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="d-email" placeholder="you@example.com" required /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="d-phone" placeholder="+91 9800000000" required /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Check-in Date</label><input type="date" id="d-checkin" required /></div>
+              <div class="form-group"><label>Check-out Date</label><input type="date" id="d-checkout" required /></div>
+            </div>
+            <div class="form-group"><label>No. of Guests</label><select id="d-guests"><option>1 Guest</option><option>2 Guests</option></select></div>
+            <div class="form-group"><label>Special Requests</label><input type="text" id="d-requests" placeholder="Early check-in, dietary needs…" /></div>
+            <button class="btn btn-gold" style="width:100%" onclick="pgNext('deluxe',1,2999)">Continue to Review →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Booking Review -->
+        <div class="pg-step" id="pg-deluxe-step2">
+          <div class="pg-section-title">Booking Summary</div>
+          <div class="pg-summary-box" id="summary-deluxe"></div>
+          <div class="modal-form">
+            <div class="pg-btn-row">
+              <button class="btn btn-outline" onclick="pgBack('deluxe',1)">← Back</button>
+              <button class="btn btn-gold" onclick="pgNext('deluxe',2,2999)">Proceed to Pay →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Payment -->
+        <div class="pg-step" id="pg-deluxe-step3">
+          <div class="pg-section-title">Secure Payment</div>
+          <div class="payment-gateway">
+            <div class="pg-pay-tabs">
+              <div class="pg-pay-tab active" onclick="switchPayTab('deluxe','card',this)"><span class="tab-icon">💳</span>Card</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('deluxe','upi',this)"><span class="tab-icon">📱</span>UPI</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('deluxe','nb',this)"><span class="tab-icon">🏦</span>Net Banking</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('deluxe','wallet',this)"><span class="tab-icon">👛</span>Wallet</div>
+            </div>
+            <!-- Card -->
+            <div class="pg-pay-method active modal-form" id="pay-deluxe-card">
+              <div class="form-group">
+                <label>Card Number</label>
+                <div class="card-input-wrap">
+                  <input type="text" placeholder="1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)" style="width:100%" />
+                  <span class="card-brand-icon" id="card-brand-deluxe">💳</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" /></div>
+                <div class="form-group"><label>CVV</label><input type="password" placeholder="•••" maxlength="4" /></div>
+              </div>
+              <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="Name on card" /></div>
+            </div>
+            <!-- UPI -->
+            <div class="pg-pay-method modal-form" id="pay-deluxe-upi">
+              <div class="upi-apps">
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟢</span>PhonePe</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔵</span>GPay</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟣</span>Paytm</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔶</span>BHIM</button>
+              </div>
+              <div class="form-group"><label>Or Enter UPI ID</label><input type="text" placeholder="yourname@upi" /></div>
+            </div>
+            <!-- Net Banking -->
+            <div class="pg-pay-method" id="pay-deluxe-nb">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 SBI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 HDFC</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 ICICI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Axis</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Kotak</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 PNB</div>
+              </div>
+              <div class="form-group modal-form"><label>Or Search Bank</label><input type="text" placeholder="Search your bank…" /></div>
+            </div>
+            <!-- Wallet -->
+            <div class="pg-pay-method" id="pay-deluxe-wallet">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Paytm</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Amazon Pay</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Mobikwik</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Freecharge</div>
+              </div>
+            </div>
+            <div class="pg-secure-note">🔒 256-bit SSL Encrypted · Secured by Razorpay</div>
+            <div class="pg-btn-row" style="margin-top:1rem">
+              <button class="btn btn-outline" onclick="pgBack('deluxe',2)">← Back</button>
+              <button class="btn btn-gold" id="pay-btn-deluxe" onclick="processPayment('deluxe',2999)">Pay ₹<span id="pay-amount-deluxe">2,999</span> →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="pg-step" id="pg-deluxe-step4">
+          <div class="pg-success-screen">
+            <div class="pg-success-icon">✅</div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your Deluxe Room has been successfully booked. A confirmation has been sent to your email.</p>
+            <div class="pg-booking-id" id="bookingid-deluxe">HS-XXXXXXXX</div>
+            <p style="font-size:0.78rem">Our team will reach out within 2 hours to confirm your arrival details.</p>
+            <button class="btn btn-gold" style="margin-top:1rem;width:100%" onclick="closeRoomModal('deluxe')">Done →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Family Deluxe Room Modal -->
+<div class="room-modal-overlay" id="modal-Family Deluxe">
+  <div class="room-modal">
+    <button class="modal-close-btn" onclick="closeRoomModal('Family Deluxe')">✕</button>
+    <div class="modal-photo-slider" id="slider-Family Deluxe">
+      <span class="modal-badge-overlay">Family Deluxe</span>
+      <img src="https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Room" class="active" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--CYvdU_Sa--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1742834629/55e29fe48a7f5ccb143c3503665d3dd489ba10aa?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe View" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--53blkpNq--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/898f157b2936bd2d6d4d7a01c6235911b0540f4c?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Bath" />
+      <img src="https://images.getaroom-cdn.com/image/upload/s--TdZN-wkc--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/178d88d81b321b04485581a9cb769b1cc5ab2e64?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Balcony" />
+      <button class="slider-arrow slider-prev" onclick="slidePhoto('Family Deluxe',-1)">&#8249;</button>
+      <button class="slider-arrow slider-next" onclick="slidePhoto('Family Deluxe',1)">&#8250;</button>
+      <div class="slider-nav" id="dots-Family Deluxe"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <h2>Family Deluxe Room</h2>
+        <p class="modal-tagline">"Wake up to Himalayan skies every morning"</p>
+        <p class="modal-desc">Spacious rooms featuring panoramic mountain or lake views, premium bedding, and enhanced furnishings for a truly luxurious stay. Immerse yourself in the grandeur of Nainital from your private perch — with a Jacuzzi bath, in-room coffee machine, and thoughtfully curated mountain-inspired decor to make every moment feel special.</p>
+        <div class="modal-highlights">
+          <span class="modal-highlight">🏔️ Mountain/Lake View</span>
+          <span class="modal-highlight">📶 Free WiFi</span>
+          <span class="modal-highlight">📺 Smart TV</span>
+          <span class="modal-highlight">🛁 Jacuzzi Bath</span>
+          <span class="modal-highlight">☕ Coffee Machine</span>
+          <span class="modal-highlight">🍸 Mini Bar</span>
+          <span class="modal-highlight">🛏️ King Bed</span>
+          <span class="modal-highlight">🌅 Private Balcony</span>
+        </div>
+        <div class="modal-price-row">
+          <div>
+            <div class="price">₹4,499</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-lt);line-height:1.6;">
+            Check-in: 12:00 PM<br>Check-out: 11:00 AM<br>Max: 2 Guests
+          </div>
+        </div>
+      </div>
+      <div class="modal-booking">
+        <div class="pg-progress-wrap">
+          <div class="pg-progress">
+            <div class="pg-step-dot active" id="dot-fd-1">1</div>
+            <div class="pg-step-line" id="line-fd-1"></div>
+            <div class="pg-step-dot" id="dot-fd-2">2</div>
+            <div class="pg-step-line" id="line-fd-2"></div>
+            <div class="pg-step-dot" id="dot-fd-3">3</div>
+          </div>
+          <div class="pg-progress-labels">
+            <span class="pg-step-label-item active" id="lbl-fd-1">Details</span>
+            <span class="pg-step-label-item" id="lbl-fd-2">Review</span>
+            <span class="pg-step-label-item" id="lbl-fd-3">Payment</span>
+          </div>
+        </div>
+        <div class="pg-step active" id="pg-fd-step1">
+          <div class="pg-section-title">Guest Information</div>
+          <div class="modal-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" id="fd-fname" placeholder="Rajiv" required /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" id="fd-lname" placeholder="Sharma" required /></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="fd-email" placeholder="you@example.com" required /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="fd-phone" placeholder="+91 9800000000" required /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Check-in Date</label><input type="date" id="fd-checkin" required /></div>
+              <div class="form-group"><label>Check-out Date</label><input type="date" id="fd-checkout" required /></div>
+            </div>
+            <div class="form-group"><label>No. of Guests</label><select id="fd-guests"><option>1 Guest</option><option>2 Guests</option></select></div>
+            <div class="form-group"><label>Special Requests</label><input type="text" id="fd-requests" placeholder="Balcony preference, dietary needs…" /></div>
+            <button class="btn btn-gold" style="width:100%" onclick="pgNext('fd',1,4499)">Continue to Review →</button>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fd-step2">
+          <div class="pg-section-title">Booking Summary</div>
+          <div class="pg-summary-box" id="summary-fd"></div>
+          <div class="modal-form">
+            <div class="pg-btn-row">
+              <button class="btn btn-outline" onclick="pgBack('fd',1)">← Back</button>
+              <button class="btn btn-gold" onclick="pgNext('fd',2,4499)">Proceed to Pay →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fd-step3">
+          <div class="pg-section-title">Secure Payment</div>
+          <div class="payment-gateway">
+            <div class="pg-pay-tabs">
+              <div class="pg-pay-tab active" onclick="switchPayTab('fd','card',this)"><span class="tab-icon">💳</span>Card</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fd','upi',this)"><span class="tab-icon">📱</span>UPI</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fd','nb',this)"><span class="tab-icon">🏦</span>Net Banking</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fd','wallet',this)"><span class="tab-icon">👛</span>Wallet</div>
+            </div>
+            <div class="pg-pay-method active modal-form" id="pay-fd-card">
+              <div class="form-group"><label>Card Number</label><div class="card-input-wrap"><input type="text" placeholder="1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)" style="width:100%" /><span class="card-brand-icon">💳</span></div></div>
+              <div class="form-row">
+                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" /></div>
+                <div class="form-group"><label>CVV</label><input type="password" placeholder="•••" maxlength="4" /></div>
+              </div>
+              <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="Name on card" /></div>
+            </div>
+            <div class="pg-pay-method modal-form" id="pay-fd-upi">
+              <div class="upi-apps">
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟢</span>PhonePe</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔵</span>GPay</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟣</span>Paytm</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔶</span>BHIM</button>
+              </div>
+              <div class="form-group"><label>Or Enter UPI ID</label><input type="text" placeholder="yourname@upi" /></div>
+            </div>
+            <div class="pg-pay-method" id="pay-fd-nb">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 SBI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 HDFC</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 ICICI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Axis</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Kotak</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 PNB</div>
+              </div>
+            </div>
+            <div class="pg-pay-method" id="pay-fd-wallet">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Paytm</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Amazon Pay</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Mobikwik</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Freecharge</div>
+              </div>
+            </div>
+            <div class="pg-secure-note">🔒 256-bit SSL Encrypted · Secured by Razorpay</div>
+            <div class="pg-btn-row" style="margin-top:1rem">
+              <button class="btn btn-outline" onclick="pgBack('fd',2)">← Back</button>
+              <button class="btn btn-gold" onclick="processPayment('fd',4499)">Pay ₹<span id="pay-amount-fd">4,499</span> →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fd-step4">
+          <div class="pg-success-screen">
+            <div class="pg-success-icon">✅</div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your Family Deluxe Room has been successfully booked. A confirmation has been sent to your email.</p>
+            <div class="pg-booking-id" id="bookingid-fd">HS-XXXXXXXX</div>
+            <p style="font-size:0.78rem">Our team will reach out within 2 hours to confirm your arrival details.</p>
+            <button class="btn btn-gold" style="margin-top:1rem;width:100%" onclick="closeRoomModal('Family Deluxe')">Done →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Family Suite Modal -->
+<div class="room-modal-overlay" id="modal-familysuite">
+  <div class="room-modal">
+    <button class="modal-close-btn" onclick="closeRoomModal('familysuite')">✕</button>
+    <div class="modal-photo-slider" id="slider-familysuite">
+      <span class="modal-badge-overlay">Family Suite</span>
+      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=85" alt="Family Suite" class="active" />
+      <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=900&q=85" alt="Family Suite Living" />
+      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=900&q=85" alt="Family Suite Bath" />
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=900&q=85" alt="Family Suite Lake View" />
+      <button class="slider-arrow slider-prev" onclick="slidePhoto('familysuite',-1)">&#8249;</button>
+      <button class="slider-arrow slider-next" onclick="slidePhoto('familysuite',1)">&#8250;</button>
+      <div class="slider-nav" id="dots-familysuite"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <h2>Family Suite</h2>
+        <p class="modal-tagline">"Space, luxury and memories for the whole family"</p>
+        <p class="modal-desc">Our grandest offering — a multi-room suite with a private living area, a full lake-facing balcony, and premium amenities designed for families who want it all. The kitchenette keeps mealtimes flexible, the premium bath is an indulgence in itself, and the sprawling layout gives everyone the breathing room they deserve on a memorable mountain holiday.</p>
+        <div class="modal-highlights">
+          <span class="modal-highlight">🏠 Separate Living Room</span>
+          <span class="modal-highlight">🏔️ Full Lake View</span>
+          <span class="modal-highlight">🛁 Premium Bath</span>
+          <span class="modal-highlight">📶 High-speed WiFi</span>
+          <span class="modal-highlight">🍽️ Kitchenette</span>
+          <span class="modal-highlight">👨‍👩‍👧 Up to 4 Guests</span>
+          <span class="modal-highlight">🛏️ 2 Bedrooms</span>
+          <span class="modal-highlight">🌅 Lake-facing Balcony</span>
+        </div>
+        <div class="modal-price-row">
+          <div>
+            <div class="price">₹6,999</div>
+            <div class="price-per">per night + taxes</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-lt);line-height:1.6;">
+            Check-in: 12:00 PM<br>Check-out: 11:00 AM<br>Max: 4 Guests
+          </div>
+        </div>
+      </div>
+      <div class="modal-booking">
+        <div class="pg-progress-wrap">
+          <div class="pg-progress">
+            <div class="pg-step-dot active" id="dot-fs-1">1</div>
+            <div class="pg-step-line" id="line-fs-1"></div>
+            <div class="pg-step-dot" id="dot-fs-2">2</div>
+            <div class="pg-step-line" id="line-fs-2"></div>
+            <div class="pg-step-dot" id="dot-fs-3">3</div>
+          </div>
+          <div class="pg-progress-labels">
+            <span class="pg-step-label-item active" id="lbl-fs-1">Details</span>
+            <span class="pg-step-label-item" id="lbl-fs-2">Review</span>
+            <span class="pg-step-label-item" id="lbl-fs-3">Payment</span>
+          </div>
+        </div>
+        <div class="pg-step active" id="pg-fs-step1">
+          <div class="pg-section-title">Guest Information</div>
+          <div class="modal-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" id="fs-fname" placeholder="Rajiv" required /></div>
+              <div class="form-group"><label>Last Name</label><input type="text" id="fs-lname" placeholder="Sharma" required /></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="fs-email" placeholder="you@example.com" required /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="fs-phone" placeholder="+91 9800000000" required /></div>
+            <div class="form-row">
+              <div class="form-group"><label>Check-in Date</label><input type="date" id="fs-checkin" required /></div>
+              <div class="form-group"><label>Check-out Date</label><input type="date" id="fs-checkout" required /></div>
+            </div>
+            <div class="form-group"><label>No. of Guests</label><select id="fs-guests"><option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option></select></div>
+            <div class="form-group"><label>Special Requests</label><input type="text" id="fs-requests" placeholder="Anniversary, special occasion…" /></div>
+            <button class="btn btn-gold" style="width:100%" onclick="pgNext('fs',1,6999)">Continue to Review →</button>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fs-step2">
+          <div class="pg-section-title">Booking Summary</div>
+          <div class="pg-summary-box" id="summary-fs"></div>
+          <div class="modal-form">
+            <div class="pg-btn-row">
+              <button class="btn btn-outline" onclick="pgBack('fs',1)">← Back</button>
+              <button class="btn btn-gold" onclick="pgNext('fs',2,6999)">Proceed to Pay →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fs-step3">
+          <div class="pg-section-title">Secure Payment</div>
+          <div class="payment-gateway">
+            <div class="pg-pay-tabs">
+              <div class="pg-pay-tab active" onclick="switchPayTab('fs','card',this)"><span class="tab-icon">💳</span>Card</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fs','upi',this)"><span class="tab-icon">📱</span>UPI</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fs','nb',this)"><span class="tab-icon">🏦</span>Net Banking</div>
+              <div class="pg-pay-tab" onclick="switchPayTab('fs','wallet',this)"><span class="tab-icon">👛</span>Wallet</div>
+            </div>
+            <div class="pg-pay-method active modal-form" id="pay-fs-card">
+              <div class="form-group"><label>Card Number</label><div class="card-input-wrap"><input type="text" placeholder="1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)" style="width:100%" /><span class="card-brand-icon">💳</span></div></div>
+              <div class="form-row">
+                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" /></div>
+                <div class="form-group"><label>CVV</label><input type="password" placeholder="•••" maxlength="4" /></div>
+              </div>
+              <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="Name on card" /></div>
+            </div>
+            <div class="pg-pay-method modal-form" id="pay-fs-upi">
+              <div class="upi-apps">
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟢</span>PhonePe</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔵</span>GPay</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🟣</span>Paytm</button>
+                <button class="upi-app-btn" onclick="this.classList.toggle('active')"><span class="upi-icon">🔶</span>BHIM</button>
+              </div>
+              <div class="form-group"><label>Or Enter UPI ID</label><input type="text" placeholder="yourname@upi" /></div>
+            </div>
+            <div class="pg-pay-method" id="pay-fs-nb">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 SBI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 HDFC</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 ICICI</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Axis</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 Kotak</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">🏦 PNB</div>
+              </div>
+            </div>
+            <div class="pg-pay-method" id="pay-fs-wallet">
+              <div class="nb-banks">
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Paytm</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Amazon Pay</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Mobikwik</div>
+                <div class="nb-bank" onclick="this.classList.toggle('active')">👛 Freecharge</div>
+              </div>
+            </div>
+            <div class="pg-secure-note">🔒 256-bit SSL Encrypted · Secured by Razorpay</div>
+            <div class="pg-btn-row" style="margin-top:1rem">
+              <button class="btn btn-outline" onclick="pgBack('fs',2)">← Back</button>
+              <button class="btn btn-gold" onclick="processPayment('fs',6999)">Pay ₹<span id="pay-amount-fs">6,999</span> →</button>
+            </div>
+          </div>
+        </div>
+        <div class="pg-step" id="pg-fs-step4">
+          <div class="pg-success-screen">
+            <div class="pg-success-icon">✅</div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your Family Suite has been successfully booked. A confirmation has been sent to your email.</p>
+            <div class="pg-booking-id" id="bookingid-fs">HS-XXXXXXXX</div>
+            <p style="font-size:0.78rem">Our team will reach out within 2 hours to confirm your arrival details.</p>
+            <button class="btn btn-gold" style="margin-top:1rem;width:100%" onclick="closeRoomModal('familysuite')">Done →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== JAVASCRIPT ===== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // --- Navbar scroll effect ---
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1380,16 +2564,184 @@ function changeSlide(direction) {
 
   if (currentIndex < 0) currentIndex = images.length - 1;
   if (currentIndex >= images.length) currentIndex = 0;
-
   lightboxImg.src = images[currentIndex].src;
 }
+
+// ===== Room Modal Functionality =====
+const sliderState = {};
+
+function initSlider(roomId) {
+  const slider = document.getElementById('slider-' + roomId);
+  const imgs = slider.querySelectorAll('img');
+  const dotsContainer = document.getElementById('dots-' + roomId);
+  dotsContainer.innerHTML = '';
+  imgs.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(roomId, i);
+    dotsContainer.appendChild(dot);
+  });
+  sliderState[roomId] = { current: 0, total: imgs.length };
+}
+
+function goToSlide(roomId, idx) {
+  const slider = document.getElementById('slider-' + roomId);
+  const imgs = slider.querySelectorAll('img');
+  const dots = document.getElementById('dots-' + roomId).querySelectorAll('.slider-dot');
+  imgs.forEach(img => img.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  imgs[idx].classList.add('active');
+  dots[idx].classList.add('active');
+  sliderState[roomId].current = idx;
+}
+
+function slidePhoto(roomId, dir) {
+  const state = sliderState[roomId];
+  let next = state.current + dir;
+  if (next < 0) next = state.total - 1;
+  if (next >= state.total) next = 0;
+  goToSlide(roomId, next);
+}
+
+function openRoomModal(roomId) {
+  const overlay = document.getElementById('modal-' + roomId);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  initSlider(roomId);
+}
+
+function closeRoomModal(roomId) {
+  const overlay = document.getElementById('modal-' + roomId);
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.room-modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// Close modals on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.room-modal-overlay.open').forEach(overlay => {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+function handleModalSubmit(e, roomId) {
+  e.preventDefault();
+  const success = document.getElementById('success-' + roomId);
+  success.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { success.style.display = 'none'; }, 7000);
+}
+
+// ===== Payment Gateway Functions =====
+const pgPrices = {};
+
+function pgSetStep(prefix, step) {
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById(`pg-${prefix}-step${i}`);
+    if (el) el.classList.toggle('active', i === step);
+    const dot = document.getElementById(`dot-${prefix}-${i}`);
+    const lbl = document.getElementById(`lbl-${prefix}-${i}`);
+    if (dot) {
+      dot.classList.toggle('active', i === step);
+      dot.classList.toggle('done', i < step);
+    }
+    if (lbl) {
+      lbl.classList.toggle('active', i === step);
+    }
+    const line = document.getElementById(`line-${prefix}-${i}`);
+    if (line) line.classList.toggle('done', i < step);
+  }
+}
+
+function pgNext(prefix, fromStep, ratePerNight) {
+  pgPrices[prefix] = ratePerNight;
+  if (fromStep === 1) {
+    const checkin = document.getElementById(`${prefix}-checkin`).value;
+    const checkout = document.getElementById(`${prefix}-checkout`).value;
+    const fname = document.getElementById(`${prefix}-fname`).value;
+    const email = document.getElementById(`${prefix}-email`).value;
+    const phone = document.getElementById(`${prefix}-phone`).value;
+    if (!fname || !email || !phone || !checkin || !checkout) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    const cin = new Date(checkin);
+    const cout = new Date(checkout);
+    if (cout <= cin) { alert('Check-out must be after check-in.'); return; }
+    const nights = Math.ceil((cout - cin) / (1000 * 60 * 60 * 24));
+    const subtotal = nights * ratePerNight;
+    const gst = Math.round(subtotal * 0.12);
+    const total = subtotal + gst;
+    const guests = document.getElementById(`${prefix}-guests`).value;
+    const box = document.getElementById(`summary-${prefix}`);
+    box.innerHTML = `
+      <div class="pg-summary-row"><span>Guest</span><span>${fname} ${document.getElementById(`${prefix}-lname`).value}</span></div>
+      <div class="pg-summary-row"><span>Check-in</span><span>${cin.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</span></div>
+      <div class="pg-summary-row"><span>Check-out</span><span>${cout.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</span></div>
+      <div class="pg-summary-row"><span>Duration</span><span>${nights} Night${nights>1?'s':''}</span></div>
+      <div class="pg-summary-row"><span>Guests</span><span>${guests}</span></div>
+      <div class="pg-summary-row"><span>Room Rate</span><span>₹${ratePerNight.toLocaleString('en-IN')} × ${nights}</span></div>
+      <div class="pg-summary-row"><span>GST (12%)</span><span>₹${gst.toLocaleString('en-IN')}</span></div>
+      <div class="pg-summary-row total"><span>Total Payable</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    `;
+    // Update pay button amounts
+    const nights2 = nights;
+    const total2 = total;
+    const amtEl = document.getElementById(`pay-amount-${prefix}`);
+    if (amtEl) amtEl.textContent = total2.toLocaleString('en-IN');
+    pgPrices[prefix + '_total'] = total;
+  }
+  pgSetStep(prefix, fromStep + 1);
+}
+
+function pgBack(prefix, toStep) {
+  pgSetStep(prefix, toStep);
+}
+
+function switchPayTab(prefix, method, el) {
+  // Deactivate all tabs and methods
+  el.closest('.pg-pay-tabs').querySelectorAll('.pg-pay-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['card','upi','nb','wallet'].forEach(m => {
+    const el2 = document.getElementById(`pay-${prefix}-${m}`);
+    if (el2) el2.classList.toggle('active', m === method);
+  });
+}
+
+function formatCard(input) {
+  let v = input.value.replace(/\D/g,'').substring(0,16);
+  input.value = v.replace(/(.{4})/g,'$1  ').trim();
+}
+
+function formatExpiry(input) {
+  let v = input.value.replace(/\D/g,'').substring(0,4);
+  if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
+  input.value = v;
+}
+
+function processPayment(prefix, rate) {
+  const btn = event.target.closest('button');
+  btn.textContent = '⏳ Processing…';
+  btn.disabled = true;
+  setTimeout(() => {
+    const id = 'HS-' + Math.random().toString(36).substring(2,10).toUpperCase();
+    const bookingEl = document.getElementById(`bookingid-${prefix}`);
+    if (bookingEl) bookingEl.textContent = id;
+    pgSetStep(prefix, 4);
+  }, 2200);
+}
 </script>
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close" onclick="closeLightbox()">×</span>
-  <button class="prev" onclick="changeSlide(-1)">❮</button>
-  <img id="lightbox-img">
-  <button class="next" onclick="changeSlide(1)">❯</button>
-</div>
 </body>
 </html>
