@@ -173,7 +173,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=80') center/cover no-repeat;
+      background: url('https://images.pexels.com/photos/34792711/pexels-photo-34792711.jpeg') center/cover no-repeat;
       transform: scale(1.05);
       animation: heroZoom 12s ease forwards;
     }
@@ -630,6 +630,181 @@
       .gallery-item { height: 200px; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
+    /* ===== Horizontal Scroll Gallery ===== */
+.gallery-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.gallery-scroll img {
+  height: 300px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-scroll img:hover {
+  transform: scale(1.05);
+}
+
+/* Hide scrollbar */
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 5000;
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  margin-top: 5%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.prev { left: 40px; }
+.next { right: 40px; }
+/* ===== DARK PINE GOOGLE REVIEWS SECTION ===== */
+
+.reviews-dark {
+  position: relative;
+  background: linear-gradient(180deg, #1a2218 0%, #2c3e2d 100%);
+  padding: 100px 5%;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+.reviews-dark .section-title {
+  color: white;
+}
+
+.google-rating {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.google-rating img {
+  height: 20px;
+}
+
+.rating-score {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.rating-stars {
+  color: #e8c97a;
+  letter-spacing: 3px;
+}
+
+.rating-count {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+/* Carousel */
+.reviews-carousel {
+  overflow: hidden;
+  margin-top: 60px;
+  position: relative;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scrollReviews 30s linear infinite;
+}
+
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.review-card-dark {
+  min-width: 320px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  transition: 0.4s ease;
+}
+
+.review-card-dark:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-8px);
+}
+
+.review-card-dark p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.review-card-dark span {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+@keyframes scrollReviews {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Floating Parallax Clouds */
+.clouds {
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/clouds.png');
+  opacity: 0.08;
+  animation: moveClouds 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moveClouds {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 0; }
+}
   </style>
 </head>
 <body>
@@ -687,8 +862,8 @@
 <section id="nainital" class="section">
   <div class="nainital-grid">
     <div class="nainital-img-wrap">
-      <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80" alt="Naini Lake Nainital" loading="lazy" />
-      <img class="nainital-img-accent" src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=500&q=80" alt="Mall Road Nainital" loading="lazy" />
+      <img src="https://www.swantour.com/blogs/wp-content/uploads/2018/12/Nainital-Lake.jpg" alt="Naini Lake Nainital" loading="lazy" />
+      <img class="nainital-img-accent" src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from hotel" loading="lazy" />
     </div>
     <div class="nainital-text">
       <p class="section-label">Discover</p>
@@ -727,9 +902,9 @@
       </div>
     </div>
     <div class="about-img">
-      <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Hotel Lobby" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&q=80" alt="Hotel Room" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Hotel Restaurant" loading="lazy" />
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2NNJAD1TtdQucTESBk40ylr0gK6YO_9T36XPjSyH1eJMamj7Um3GD2E5pgjjxOWbjYNinfk7J9X4s-y1OwMK1sVE1uJkcLo57gK_kI3lgNyIdASTMnYG2T2xndNE4WaGsdTDgXU3dBF9F=s1360-w1360-h1020-rw" alt="Hotel Lobby" loading="lazy" />
+      <img src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw" alt="Hotel Room" loading="lazy" />
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepQP_H9WMltN0f7XLy6SunrPJa7yKfGVy33jnzWBSEDj6q8yYX-yFdYWsODclT8MVl-S2d9xKuSs9k1Syg1cMNKFRzCvya-y9oGpqUIcT28ZIXY9B6h_VtSRjzL4O8rJYtzCMk=s1360-w1360-h1020-rw" alt="Hotel Restaurant" loading="lazy" />
     </div>
   </div>
 </section>
@@ -829,44 +1004,68 @@
 
 
 <!-- ===== AMENITIES SECTION ===== -->
-<section id="amenities" class="section section-center">
-  <p class="section-label">Facilities</p>
-  <h2 class="section-title">Hotel Amenities</h2>
-  <div class="divider divider-center"></div>
-  <p class="section-sub">Everything you need for a seamless, comfortable stay — thoughtfully provided by our attentive team.</p>
+<section id="reviews" class="reviews-dark">
 
-  <div class="amenities-grid">
-    <div class="amenity-card">
-      <span class="amenity-ico">📶</span>
-      <h3>Free High-Speed WiFi</h3>
-      <p>Complimentary high-speed internet access throughout the hotel — in rooms, lobby, and the restaurant.</p>
-    </div>
-    <div class="amenity-card">
-      <span class="amenity-ico">🛎️</span>
-      <h3>24/7 Room Service</h3>
-      <p>Order food, beverages, or request housekeeping assistance anytime of the day or night.</p>
-    </div>
-    <div class="amenity-card">
-      <span class="amenity-ico">🍽️</span>
-      <h3>In-house Restaurant</h3>
-      <p>Our multi-cuisine restaurant serves freshly prepared Kumaoni, Indian, and continental dishes with warm hospitality.</p>
-    </div>
-    <div class="amenity-card">
-      <span class="amenity-ico">🚗</span>
-      <h3>Free Parking</h3>
-      <p>Secure, complimentary parking space for all registered hotel guests within our premises.</p>
-    </div>
-    <div class="amenity-card">
-      <span class="amenity-ico">🏔️</span>
-      <h3>Mountain / Lake Views</h3>
-      <p>Wake up to breathtaking views of the Naini Lake or the forested Himalayan hills from your window.</p>
-    </div>
-    <div class="amenity-card">
-      <span class="amenity-ico">🗺️</span>
-      <h3>Travel Assistance</h3>
-      <p>Our concierge team helps plan local tours, sightseeing, trekking, and arranges private taxis at best rates.</p>
+  <div class="reviews-header">
+    <p class="section-label">Guest Reviews</p>
+    <h2 class="section-title">What Guests Say About Us</h2>
+    <div class="divider divider-center"></div>
+
+    <div class="google-rating">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+      <span class="rating-score">4.8</span>
+      <span class="rating-stars">★★★★★</span>
+      <span class="rating-count">(500+ Reviews)</span>
     </div>
   </div>
+
+  <div class="reviews-carousel">
+    <div class="reviews-track">
+
+      <div class="review-card-dark">
+        <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
+        <span>— Rahul Sharma</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Luxury rooms, amazing food, and perfect location.”</p>
+        <span>— Priya Mehta</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
+        <span>— Amit Verma</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
+        <span>— Sneha Kapoor</span>
+      </div>
+      <div class="review-card-dark">
+        <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
+        <span>— Rahul Sharma</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Luxury rooms, amazing food, and perfect Mall Road location.”</p>
+        <span>— Priya Mehta</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
+        <span>— Amit Verma</span>
+      </div>
+
+      <div class="review-card-dark">
+        <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
+        <span>— Sneha Kapoor</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="clouds"></div>
+
 </section>
 
 
@@ -876,23 +1075,16 @@
   <h2 class="section-title">A Glimpse of Sudarshan</h2>
   <div class="divider divider-center"></div>
 
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Hotel Exterior" loading="lazy" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=500&q=80" alt="Nainital Hills" loading="lazy" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80" alt="Hotel Room" loading="lazy" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Restaurant" loading="lazy" />
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=500&q=80" alt="Naini Lake" loading="lazy" />
-    </div>
-  </div>
+  <div class="gallery-scroll">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from window">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw" alt="view from room">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw" alt="another view from room">
+  <img src="https://lh3.googleusercontent.com/p/AF1QipPaDhCe33tvdhq9eJTyCeHnZkNiBA_d0Zwi-NKs=s1360-w1360-h1020-rw" alt="cloudy">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_tyY5pWcpV5idzjtolt8TeT018brALGJDcuJ3dsaD38fuOV-HpYPm6bCLN3CuVBUXMpPExAQV7Tebcsuo7mSP6_aE_h_9T6Uc_7lUijSSz3cDDpkU4qgrWv1Uv8J7192UOUCJZw=s1360-w1360-h1020-rw" alt="main entrance">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0k1Q_H-ivVPF_zkoJOWWViqq3Mg_YFR5tbx9gs8czWWGSY17E2veqoWzN5lyTEE7X6OGQXIYTGc9mRXQGE27OzG3_JNtzBvOv7Pge5NNBpc0PWpuDNpIKnbd3OEW0sdZUoo5N=s1360-w1360-h1020-rw" alt="outside photo">
+  <img src="https://lh3.googleusercontent.com/p/AF1QipNRx1WOhQywB-KyzPtRyqGdFttTbYMDtaU0_4Fq=s1360-w1360-h1020-rw" alt="outside lightview">
+  <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="balcony">
+</div>
 </section>
 
 
@@ -982,7 +1174,7 @@
         <div class="contact-ico">📍</div>
         <div>
           <h4>Address</h4>
-          <p>Hotel Sudarshan, Mall Road,<br>Nainital – 263001,<br>Uttarakhand, India</p>
+          <p>Hotel sudarshan,Zoo Rd,Tallital,<br>Nainital – 263001,<br>Uttarakhand, India</p>
         </div>
       </div>
       <div class="contact-item">
@@ -1165,7 +1357,39 @@
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
-</script>
+  // ===== Lightbox Functionality =====
+let currentIndex = 0;
+const images = document.querySelectorAll(".gallery-scroll img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
+images.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    currentIndex = index;
+    lightbox.style.display = "block";
+    lightboxImg.src = images[currentIndex].src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+}
+
+function changeSlide(direction) {
+  currentIndex += direction;
+
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  if (currentIndex >= images.length) currentIndex = 0;
+
+  lightboxImg.src = images[currentIndex].src;
+}
+</script>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <button class="prev" onclick="changeSlide(-1)">❮</button>
+  <img id="lightbox-img">
+  <button class="next" onclick="changeSlide(1)">❯</button>
+</div>
 </body>
 </html>
