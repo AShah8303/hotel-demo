@@ -154,13 +154,25 @@
     }
     .mobile-nav a:hover { color: var(--gold); }
     .mobile-close {
-      position: absolute;
-      top: 1.5rem; right: 5%;
+      position: fixed;
+      top: 1.2rem;
+      right: 5%;
       color: var(--white);
-      font-size: 2rem;
+      font-size: 1.4rem;
+      line-height: 1;
       cursor: pointer;
-      background: none; border: none;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      transition: background 0.2s, border-color 0.2s;
     }
+    .mobile-close:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
 
     /* ===== Hero ===== */
     #hero {
@@ -270,6 +282,8 @@
     }
     .nainital-img-wrap {
       position: relative;
+      padding-bottom: 2.5rem;
+      padding-right: 2.5rem;
     }
     .nainital-img-wrap img {
       width: 100%;
@@ -279,8 +293,8 @@
     }
     .nainital-img-accent {
       position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
+      bottom: 0;
+      right: 0;
       width: 55%;
       height: 200px;
       object-fit: cover;
@@ -623,8 +637,18 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .nainital-img-accent { display: none; }
-      .nainital-img-wrap img { height: 280px; }
+      .nainital-img-wrap { padding-bottom: 0; padding-right: 0; }
+      .nainital-img-wrap img { height: 260px; }
+      .nainital-img-accent {
+        display: block;
+        position: relative;
+        bottom: auto; right: auto;
+        width: 100%;
+        height: 180px;
+        margin-top: 0.75rem;
+        border: none;
+        box-shadow: none;
+      }
       .rooms-grid { grid-template-columns: 1fr; }
       .amenities-grid { grid-template-columns: 1fr 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 180px); }
