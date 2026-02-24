@@ -637,15 +637,20 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .nainital-img-wrap { padding-bottom: 0; padding-right: 0; }
-      .nainital-img-wrap img { height: 260px; }
+      .nainital-img-wrap {
+        padding-bottom: 0;
+        padding-right: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .nainital-img-wrap img { height: 190px; }
       .nainital-img-accent {
         display: block;
         position: relative;
         bottom: auto; right: auto;
         width: 100%;
-        height: 180px;
-        margin-top: 0.75rem;
+        height: 190px;
         border: none;
         box-shadow: none;
       }
