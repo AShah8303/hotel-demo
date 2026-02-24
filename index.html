@@ -624,20 +624,29 @@
       .hamburger { display: flex; }
       .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .nainital-img-accent { display: none; }
-      .rooms-grid, .amenities-grid { grid-template-columns: 1fr; }
+      .nainital-img-wrap img { height: 280px; }
+      .rooms-grid { grid-template-columns: 1fr; }
+      .amenities-grid { grid-template-columns: 1fr 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 180px); }
       .gallery-item:first-child { grid-column: span 2; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .form-row { grid-template-columns: 1fr; }
       .about-features { grid-template-columns: 1fr; }
       .about-img { height: 300px; }
+      .section { padding: 4rem 4%; }
+      .modal-highlights { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
-      .section { padding: 4rem 5%; }
+      .section { padding: 3.5rem 4%; }
+      .amenities-grid { grid-template-columns: 1fr; }
+      .modal-highlights { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .gallery-item:first-child { grid-column: span 1; }
       .gallery-item { height: 200px; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-title { font-size: 2.4rem; }
+      .nainital-stats { gap: 1.2rem; }
+      .stat-num { font-size: 1.6rem; }
     }
 
     /* ===== Room Modal ===== */
@@ -848,10 +857,22 @@
     }
     @media (max-width: 700px) {
       .modal-body { grid-template-columns: 1fr; }
-      .modal-info { border-right: none; border-bottom: 1px solid var(--sand); padding: 1.75rem; }
-      .modal-booking { padding: 1.75rem; }
+      .modal-info { border-right: none; border-bottom: 1px solid var(--sand); padding: 1.25rem; }
+      .modal-booking { padding: 1.25rem; }
       .modal-photo-slider { aspect-ratio: 4 / 3; }
       .modal-highlights { grid-template-columns: 1fr; }
+      .modal-info h2 { font-size: 1.6rem; }
+      .modal-info .modal-desc { font-size: 0.85rem; word-break: break-word; overflow-wrap: break-word; }
+      .modal-highlight { font-size: 0.78rem; }
+      .modal-price-row { flex-wrap: wrap; gap: 0.75rem; }
+      .room-modal-overlay { padding: 0.5rem; }
+      .room-modal { border-radius: 4px; }
+      .payment-gateway { max-height: none; }
+      .modal-form .form-row { grid-template-columns: 1fr; }
+      .pg-btn-row { flex-direction: column; }
+      .card-row { flex-direction: column; }
+      .pg-pay-tab { min-width: 60px; font-size: 0.65rem; padding: 0.5rem 0.3rem; }
+      .modal-booking h3 { font-size: 1rem; }
     }
 
     /* ===== Payment Gateway Styles ===== */
