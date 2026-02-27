@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotel Sudarshan – Nainital</title>
+  <title>Hotel Sudarshan Nainital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     /* ===== CSS Variables ===== */
@@ -39,19 +39,18 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* ===== Typography ===== */
     .serif { font-family: 'Cormorant Garamond', serif; }
     h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.15; }
     .section-label {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.75rem;
     }
-    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.04em; }
     .section-sub { font-size: 1rem; color: var(--text-lt); line-height: 1.8; margin-top: 0.75rem; max-width: 60ch; }
 
     /* ===== Buttons ===== */
@@ -282,25 +281,34 @@
     }
     .nainital-img-wrap {
       position: relative;
-      padding-bottom: 2.5rem;
-      padding-right: 2.5rem;
+      width: 100%;
+      height: 520px;
     }
     .nainital-img-wrap img {
-      width: 100%;
-      height: 480px;
+      width: 75%;
+      height: 420px;
       object-fit: cover;
       border-radius: var(--radius);
+      position: absolute;
+      border: 4px solid var(--gold);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .nainital-img-wrap img:first-child {
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
     .nainital-img-accent {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 55%;
-      height: 200px;
+      width: 62% !important;
+      height: 280px !important;
       object-fit: cover;
       border-radius: var(--radius);
-      border: 5px solid var(--cream);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      border: 4px solid var(--gold) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+      z-index: 2;
     }
     .nainital-text p {
       color: var(--text-lt);
@@ -315,7 +323,7 @@
       flex-wrap: wrap;
     }
     .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--pine); line-height: 1; }
+    .stat-num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); line-height: 1; }
     .stat-lbl { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lt); margin-top: 0.2rem; }
 
     /* ===== About Hotel ===== */
@@ -332,28 +340,37 @@
     .about-features {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 2rem 1.75rem;
       margin-top: 2.5rem;
     }
     .about-feat {
       display: flex;
-      gap: 0.85rem;
+      gap: 1rem;
       align-items: flex-start;
     }
     .feat-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.3);
+      border: 1px solid rgba(201,168,76,0.35);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.05rem;
       flex-shrink: 0;
+      margin-top: 0.1rem;
     }
-    .feat-text h4 { font-size: 0.95rem; font-family: 'Jost', sans-serif; font-weight: 500; color: var(--white); }
-    .feat-text p { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem; }
+    .feat-text h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold-lt);
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .feat-text p { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; line-height: 1.55; }
     .about-img {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -401,9 +418,9 @@
       border-radius: 2px;
     }
     .room-body { padding: 1.75rem; }
-    .room-body h3 { font-size: 1.5rem; color: var(--pine); margin-bottom: 0.5rem; }
+    .room-body h3 { font-size: 1.4rem; color: var(--pine); margin-bottom: 0.5rem; font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 0.03em; }
     .room-body p { font-size: 0.875rem; color: var(--text-lt); line-height: 1.75; margin-bottom: 1.25rem; }
-    .room-amenities { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .room-rooms { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
     .amenity-tag {
       display: flex;
       align-items: center;
@@ -422,12 +439,12 @@
       border-top: 1px solid var(--sand);
       padding-top: 1.25rem;
     }
-    .room-price .price { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--pine); }
-    .room-price .price-per { font-size: 0.72rem; color: var(--text-lt); letter-spacing: 0.05em; }
+    .room-price .price { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); letter-spacing: 0.04em; }
+    .room-price .price-per { font-size: 0.72rem; color: var(--text-lt); letter-spacing: 0.05em; font-family: 'Jost', sans-serif; }
 
-    /* ===== Amenities ===== */
-    #amenities { background: var(--cream); }
-    .amenities-grid {
+    /* ===== rooms ===== */
+    #rooms { background: var(--cream); }
+    .rooms-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
@@ -637,25 +654,14 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .nainital-img-wrap {
-        padding-bottom: 0;
-        padding-right: 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-      }
-      .nainital-img-wrap img { height: 190px; }
+      .nainital-img-wrap { height: 340px; }
+      .nainital-img-wrap img { height: 260px; }
       .nainital-img-accent {
-        display: block;
-        position: relative;
-        bottom: auto; right: auto;
-        width: 100%;
-        height: 190px;
-        border: none;
-        box-shadow: none;
+        width: 58% !important;
+        height: 200px !important;
       }
       .rooms-grid { grid-template-columns: 1fr; }
-      .amenities-grid { grid-template-columns: 1fr 1fr; }
+      .rooms-grid { grid-template-columns: 1fr 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 180px); }
       .gallery-item:first-child { grid-column: span 2; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -667,7 +673,7 @@
     }
     @media (max-width: 480px) {
       .section { padding: 3.5rem 4%; }
-      .amenities-grid { grid-template-columns: 1fr; }
+      .rooms-grid { grid-template-columns: 1fr; }
       .modal-highlights { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .gallery-item:first-child { grid-column: span 1; }
@@ -836,14 +842,16 @@
       border-top: 1px solid var(--sand);
     }
     .modal-price-row .price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 700;
       color: var(--pine);
+      letter-spacing: 0.04em;
     }
     .modal-price-row .price-per {
       font-size: 0.72rem;
       color: var(--text-lt);
+      font-family: 'Jost', sans-serif;
     }
     .modal-booking {
       padding: 2.5rem;
@@ -1355,7 +1363,7 @@
   <a href="#nainital" class="mobile-link">Nainital</a>
   <a href="#about" class="mobile-link">About</a>
   <a href="#rooms" class="mobile-link">Rooms</a>
-  <a href="#amenities" class="mobile-link">Amenities</a>
+  <a href="#rooms" class="mobile-link">rooms</a>
   <a href="#gallery" class="mobile-link">Gallery</a>
   <a href="#contact" class="mobile-link">Contact</a>
   <a href="#rooms" class="btn btn-gold mobile-link">Book Now</a>
@@ -1415,10 +1423,10 @@
       <path d="M 165,114 Q 250,160 335,114" fill="none" stroke="#c9a84c" stroke-width="1.6"/>
       <path d="M 174,114 Q 250,150 326,114" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
     </svg>
-    <p class="hero-tagline">"Experience Comfort in the Heart of Nainital"</p>
-    <a href="#rooms" class="btn btn-gold">Book Your Stay</a>
+    <p class="hero-tagline">A sanctuary above the lake, on Zoo Road, Tallital — where the Kumaon hills meet quiet elegance</p>
+    <a href="#rooms" class="btn btn-gold">Reserve Your Room</a>
     &nbsp;&nbsp;
-    <a href="#about" class="btn btn-outline">Explore Hotel</a>
+    <a href="#about" class="btn btn-outline">Discover the Hotel</a>
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
@@ -1435,9 +1443,9 @@
       <p class="section-label">Discover</p>
       <h2 class="section-title">The Jewel of Kumaon</h2>
       <div class="divider"></div>
-      <p>Nestled at an elevation of 2,084 metres in the Kumaon Himalayas of Uttarakhand, Nainital is one of India's most enchanting hill stations — a landscape of emerald hills, dense oak forests, and a sparkling pear-shaped lake that mirrors the sky.</p>
-      <p>The legendary <strong>Naini Lake</strong> is the city's beating heart, perfect for a serene boat ride at dawn. Stroll along the beloved <strong>Mall Road</strong> lined with colonial-era architecture, vibrant markets, and charming cafés. Trek up to Tiffin Top for panoramic Himalayan vistas, or visit the revered Naina Devi Temple perched beside the lakeside ghats.</p>
-      <p>With its cool mountain breeze year-round, colourful festivals, cable-car rides over the valleys, and star-lit skies — Nainital promises an experience that stays with you long after you leave.</p>
+      <p>Perched at 2,084 metres in the Kumaon Himalayas of Uttarakhand, Nainital is one of northern India's most beloved hill stations — a world of pine-scented forests, colonial promenades and a shimmering, pear-shaped lake that has captivated travellers for centuries.</p>
+      <p>The legendary <strong>Naini Lake</strong> is the soul of the town — serene at dawn, alive with colour by afternoon. Walk the length of <strong>Mall Road</strong> past Victorian-era facades and vibrant market stalls, take the cable car to Snow View Point for sweeping Himalayan panoramas, or seek blessings at the revered <strong>Naina Devi Temple</strong> perched at the lake's edge.</p>
+      <p>With a mild, pleasant climate year-round, lively festivals, and a natural landscape of rare quiet beauty, Nainital leaves a mark on every visitor that time cannot erase.</p>
       <div class="nainital-stats">
         <div class="stat"><div class="stat-num">2,084m</div><div class="stat-lbl">Altitude</div></div>
         <div class="stat"><div class="stat-num">1.5km</div><div class="stat-lbl">Naini Lake Length</div></div>
@@ -1453,18 +1461,20 @@
   <div class="about-grid">
     <div>
       <p class="section-label">Our Story</p>
-      <h2 class="section-title" style="color:var(--white)">Where Every Stay Becomes a Memory</h2>
+      <h2 class="section-title" style="color:var(--white)">A Home Above the Hills of Nainital</h2>
       <div class="divider"></div>
-      <p class="section-sub">Hotel Sudarshan is a beloved retreat perched above the hills of Nainital, designed for guests who seek comfort, warmth, and an authentic mountain experience. Our hotel blends the timeless charm of the Kumaon hills with thoughtfully curated modern amenities.</p>
-      <p class="section-sub" style="margin-top:1rem">From breathtaking mountain-view rooms to our vibrant in-house restaurant serving Kumaoni and continental cuisine, every corner of Hotel Sudarshan is crafted to make you feel at home — yet worlds away.</p>
-      <a href="#rooms" class="btn btn-gold" style="margin-top:2rem">Explore Rooms</a>
+      <p class="section-sub">Set on Zoo Road, Tallital — just steps from the Naini Lake and the heart of Nainital — Hotel Sudarshan has long been a trusted retreat for families, couples and solo travellers seeking genuine comfort at an honest price. The hotel is known for its attentive staff, clean well-kept rooms and an address that puts the best of Nainital right at your door.</p>
+      <p class="section-sub" style="margin-top:1rem">With complimentary Wi-Fi, free on-site parking, 24-hour room service, daily housekeeping, cable television in every room, and taxi and tour assistance available at the front desk — Hotel Sudarshan offers everything you need to settle in and explore at your own pace.</p>
+      <a href="#rooms" class="btn btn-gold" style="margin-top:2rem">View Our Rooms</a>
       <div class="about-features">
-        <div class="about-feat"><div class="feat-icon">🌿</div><div class="feat-text"><h4>Mountain View Rooms</h4><p>Waking up to the Himalayas</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🍽️</div><div class="feat-text"><h4>In-house Restaurant</h4><p>Local & global cuisine</p></div></div>
-        <div class="about-feat"><div class="feat-icon">📶</div><div class="feat-text"><h4>Free High-Speed WiFi</h4><p>Stay connected anywhere</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🚗</div><div class="feat-text"><h4>Secure Parking</h4><p>Complimentary for guests</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🛎️</div><div class="feat-text"><h4>24/7 Room Service</h4><p>Around-the-clock care</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🗺️</div><div class="feat-text"><h4>Travel Assistance</h4><p>Tours & local guidance</p></div></div>
+        <div class="about-feat"><div class="feat-icon">📶</div><div class="feat-text"><h4>Complimentary Wi-Fi</h4><p>Free high-speed internet throughout the property</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🚗</div><div class="feat-text"><h4>Free On-site Parking</h4><p>Secure, complimentary parking for all registered guests</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🛎️</div><div class="feat-text"><h4>24-hour Room Service</h4><p>Meals and essentials delivered to your door, day or night</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🏨</div><div class="feat-text"><h4>Round-the-clock Front Desk</h4><p>Our team is always on hand to assist you</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🧹</div><div class="feat-text"><h4>Daily Housekeeping</h4><p>Fresh linen, towels and thorough cleaning every day</p></div></div>
+        <div class="about-feat"><div class="feat-icon">📺</div><div class="feat-text"><h4>Cable & Satellite Television</h4><p>In-room entertainment in every room type</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🚕</div><div class="feat-text"><h4>Taxi & Transfer Assistance</h4><p>Local transport arranged on request at the front desk</p></div></div>
+        <div class="about-feat"><div class="feat-icon">🗺️</div><div class="feat-text"><h4>Tours & Sightseeing Help</h4><p>Guided trips to Naini Lake, Bhimtal, Corbett and beyond</p></div></div>
       </div>
     </div>
     <div class="about-img">
@@ -1481,25 +1491,26 @@
   <p class="section-label">Accommodations</p>
   <h2 class="section-title">Rooms & Suites</h2>
   <div class="divider divider-center"></div>
-  <p class="section-sub">Each room is thoughtfully appointed with premium linens, cosy furnishings, and curated touches that reflect the beauty of Nainital. Choose the stay that suits you best.</p>
+  <p class="section-sub">From well-appointed standard rooms to spacious family suites, every room at Hotel Sudarshan comes with complimentary Wi-Fi, cable television, daily housekeeping, fresh linen and attached bathroom with toiletries. Select rooms feature a private balcony or terrace. Choose the room that suits your journey.</p>
 
   <div class="rooms-grid">
 
     <!-- Standard Room -->
     <div class="room-card">
       <div class="room-img">
-        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&q=80" alt="Standard Room" loading="lazy" />
+        <img src="https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room" loading="lazy" />
         <span class="room-badge">Standard</span>
       </div>
       <div class="room-body">
         <h3>Standard Room</h3>
-        <p>A cosy, well-maintained room ideal for solo travellers or couples on a budget — offering all the essentials for a comfortable mountain stay.</p>
+        <p>A clean, well-maintained room with all the essentials for a comfortable stay — ideal for solo travellers or couples seeking a peaceful base in Nainital at a fair price.</p>
         <div class="room-amenities">
-          <span class="amenity-tag">📶 Free WiFi</span>
-          <span class="amenity-tag">📺 TV</span>
-          <span class="amenity-tag">🛁 Attached Bath</span>
-          <span class="amenity-tag">🌿 Garden View</span>
+          <span class="amenity-tag">📶 Free Wi-Fi</span>
+          <span class="amenity-tag">📺 Cable / Satellite TV</span>
+          <span class="amenity-tag">🛁 Attached Bathroom</span>
+          <span class="amenity-tag">🧴 Toiletries included</span>
           <span class="amenity-tag">🛏️ Double Bed</span>
+          <span class="amenity-tag">🛎️ 24-hr Room Service</span>
         </div>
         <div class="room-footer">
           <div class="room-price">
@@ -1514,18 +1525,19 @@
     <!-- Deluxe Room -->
     <div class="room-card">
       <div class="room-img">
-        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Deluxe Room" loading="lazy" />
+        <img src="https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room" loading="lazy" />
         <span class="room-badge">Deluxe</span>
       </div>
       <div class="room-body">
         <h3>Deluxe Room</h3>
-        <p>A well-appointed comfortable room with warm décor, garden views, and all essentials for a relaxing mountain escape.</p>
+        <p>A well-appointed room with warm décor, cable television, and an attached bathroom with toiletries. Select rooms in this category come with a private balcony or terrace.</p>
         <div class="room-amenities">
-          <span class="amenity-tag">📶 Free WiFi</span>
-          <span class="amenity-tag">📺 Smart TV</span>
-          <span class="amenity-tag">❄️ Air Conditioning</span>
-          <span class="amenity-tag">🛁 Attached Bath</span>
-          <span class="amenity-tag">🍵 Tea Maker</span>
+          <span class="amenity-tag">📶 Free Wi-Fi</span>
+          <span class="amenity-tag">📺 Cable / Satellite TV</span>
+          <span class="amenity-tag">🛁 Attached Bathroom</span>
+          <span class="amenity-tag">🧴 Toiletries & Towels</span>
+          <span class="amenity-tag">🌅 Balcony / Terrace</span>
+          <span class="amenity-tag">🪟 Blackout Curtains</span>
         </div>
         <div class="room-footer">
           <div class="room-price">
@@ -1540,19 +1552,19 @@
     <!-- Family Deluxe Room -->
     <div class="room-card">
       <div class="room-img">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Family Deluxe Room" loading="lazy" />
+        <img src="https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Room" loading="lazy" />
         <span class="room-badge">Family Deluxe</span>
       </div>
       <div class="room-body">
         <h3>Family Deluxe Room</h3>
-        <p>Spacious rooms featuring panoramic mountain or lake views, premium bedding, and enhanced furnishings for a luxurious stay.</p>
+        <p>A spacious room designed for families, with linen service, blackout curtains and a private balcony or terrace. Extra bed available on request to accommodate additional guests.</p>
         <div class="room-amenities">
-          <span class="amenity-tag">🏔️ Mountain View</span>
-          <span class="amenity-tag">📶 Free WiFi</span>
-          <span class="amenity-tag">📺 Smart TV</span>
-          <span class="amenity-tag">🛁 Jacuzzi Bath</span>
-          <span class="amenity-tag">☕ Coffee Machine</span>
-          <span class="amenity-tag">🍵 Mini Bar</span>
+          <span class="amenity-tag">📶 Free Wi-Fi</span>
+          <span class="amenity-tag">📺 Cable / Satellite TV</span>
+          <span class="amenity-tag">🛁 Attached Bathroom</span>
+          <span class="amenity-tag">🧴 Toiletries & Towels</span>
+          <span class="amenity-tag">🌅 Private Balcony</span>
+          <span class="amenity-tag">🛏️ Extra Bed on Request</span>
         </div>
         <div class="room-footer">
           <div class="room-price">
@@ -1567,19 +1579,19 @@
     <!-- Family Suite -->
     <div class="room-card">
       <div class="room-img">
-        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Family Suite" loading="lazy" />
+        <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="Family Suite" loading="lazy" />
         <span class="room-badge">Family Suite</span>
       </div>
       <div class="room-body">
         <h3>Family Suite</h3>
-        <p>Our grandest offering — a multi-room suite with a private living area, full lake-facing balcony, and premium amenities for families.</p>
+        <p>Our largest and most comfortable room — a suite-style accommodation with a private balcony, cable television, premium linen service and full bathroom amenities. Sleeps up to four guests.</p>
         <div class="room-amenities">
-          <span class="amenity-tag">🏠 Living Room</span>
-          <span class="amenity-tag">🏔️ Lake View</span>
-          <span class="amenity-tag">🛁 Premium Bath</span>
-          <span class="amenity-tag">📶 High-speed WiFi</span>
-          <span class="amenity-tag">🍽️ Kitchenette</span>
-          <span class="amenity-tag">👨‍👩‍👧 4 Guests</span>
+          <span class="amenity-tag">📶 Free Wi-Fi</span>
+          <span class="amenity-tag">📺 Cable / Satellite TV</span>
+          <span class="amenity-tag">🛁 Attached Bathroom</span>
+          <span class="amenity-tag">🧴 Full Toiletries</span>
+          <span class="amenity-tag">🌅 Private Balcony</span>
+          <span class="amenity-tag">👨‍👩‍👧 Up to 4 Guests</span>
         </div>
         <div class="room-footer">
           <div class="room-price">
@@ -1682,8 +1694,8 @@
 
 <!-- ===== FAQ SECTION ===== -->
 <section id="faq" class="section section-center">
-  <p class="section-label">FAQ</p>
-  <h2 class="section-title">Frequently Asked Questions</h2>
+  <p class="section-label">Questions & Answers</p>
+  <h2 class="section-title">Things Guests Often Ask</h2>
   <div class="divider divider-center"></div>
 
   <div class="faq-wrap">
@@ -1694,7 +1706,17 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Check-in time is <strong>12:00 noon</strong> and check-out time is <strong>11:00 AM</strong>. Early check-in and late check-out are subject to room availability and may be arranged on request (additional charges may apply). Luggage storage is complimentary.</p>
+        <p>Check-in at Hotel Sudarshan begins at <strong>10:00 AM</strong> and check-out is at <strong>10:00 AM</strong>. The front desk is staffed 24 hours a day, so early arrivals are welcome to leave luggage. Early check-in or late check-out may be arranged based on availability — please contact the hotel directly to request this.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Where exactly is the hotel located?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Hotel Sudarshan is located at <strong>Zoo Road, Tallital, Nainital — 263002, Uttarakhand, India</strong>. The hotel sits in Tallital, the southern end of town, close to the Nainital Zoo and within easy reach of the Naini Lake, Mall Road, and the Naina Devi Temple. Most major attractions are walkable from the property.</p>
       </div>
     </div>
 
@@ -1704,7 +1726,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes, we offer <strong>complimentary secure parking</strong> for all registered guests within our premises. The parking area is monitored by CCTV. Please inform us in advance if you are arriving with a larger vehicle.</p>
+        <p>Yes. Hotel Sudarshan offers <strong>free on-site private parking</strong> for all registered guests. This is one of the hotel's noted conveniences, as parking in Nainital can be difficult during peak season. Please inform the hotel in advance if you are arriving with a larger vehicle.</p>
       </div>
     </div>
 
@@ -1714,17 +1736,17 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Breakfast inclusion varies by package. Our <strong>Family Deluxe</strong> and <strong>Family Suite</strong> bookings on the MAP (Modified American Plan) include complimentary breakfast. For Deluxe rooms, breakfast can be added for ₹350 per person per day. Please check your booking details or contact us to confirm.</p>
+        <p>Breakfast may be included depending on the rate plan selected at the time of booking. The hotel does not have an on-site restaurant, but dining options are readily available on nearby Mall Road and in Tallital market. Please confirm breakfast inclusion with the hotel when booking.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">
-        Is the hotel close to Mall Road and Naini Lake?
+        Does the hotel have a restaurant or swimming pool?
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Absolutely! Hotel Sudarshan is ideally located on <strong>Mall Road</strong>, the heart of Nainital — just a short walk from the Naini Lake boating ghats, the Naina Devi Temple, local markets, and popular restaurants. Guests can explore all major attractions on foot.</p>
+        <p>Hotel Sudarshan does not have an on-site restaurant or a swimming pool. However, <strong>24-hour room service</strong> is available, and the hotel is surrounded by a wide variety of restaurants, dhabas and cafés along Mall Road and Tallital that cater to every taste and budget.</p>
       </div>
     </div>
 
@@ -1734,17 +1756,27 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Cancellations made <strong>48 hours or more</strong> before check-in are fully refunded. Cancellations within 48 hours of check-in are subject to a one-night charge. During peak season (May–June and December), a 72-hour cancellation policy applies. No-shows will be charged the full booking amount.</p>
+        <p>Hotel Sudarshan offers <strong>free cancellation</strong> on most bookings, subject to the rate plan chosen. Cancellation terms may vary by season and booking platform. Guests are advised to confirm the exact cancellation policy at the time of reservation, as peak season bookings (May–June, October and December) may carry different conditions.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">
-        Do you offer travel or tour packages?
+        Are children and pets welcome?
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">
-        <p>Yes! Our concierge team offers curated day trips, trekking arrangements, boat ride bookings on Naini Lake, and guided tours to nearby attractions like Bhimtal, Mukteshwar, and Corbett National Park. Ask our front desk for current packages and rates.</p>
+        <p>Hotel Sudarshan is a <strong>family-friendly property</strong> and warmly welcomes children. The hotel is considered suitable for families and has been reviewed positively by families travelling with children. Pets may be allowed upon request — please contact the hotel directly to confirm before your arrival.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        Is taxi or transport available from the hotel?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. The hotel provides <strong>taxi and transport assistance</strong> for guests. The front desk can help arrange local transfers, sightseeing trips to Bhimtal Lake, Mukteshwar, Corbett National Park, and other nearby attractions. Cab availability and rates can be confirmed directly with the hotel team.</p>
       </div>
     </div>
 
@@ -1792,6 +1824,23 @@
           <h4>Reception Hours</h4>
           <p>Open 24 hours, 7 days a week</p>
         </div>
+      </div>
+
+      <!-- Google Maps Embed -->
+      <div style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden; border: 2px solid var(--mist); box-shadow: 0 4px 16px rgba(44,62,45,0.10);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.3!2d79.465033!3d29.3816036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a130ede840af%3A0x42e2148b26c19d7e!2sHotel%20sudarshan%2C%20Zoo%20Rd%2C%20Tallital%2C%20Nainital%2C%20Uttarakhand%20263001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%"
+          height="220"
+          style="border:0; display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Hotel Sudarshan Location">
+        </iframe>
+        <a href="https://www.google.com/maps?ll=29.381648,79.465127&z=20&t=m&hl=en&gl=IN&mapclient=embed&cid=4819437139123084670" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:var(--pine); color:var(--cream); font-size:0.78rem; letter-spacing:0.08em; font-family:'Jost',sans-serif; text-transform:uppercase; transition:background 0.2s;">
+          <span>🗺️</span> Open in Google Maps
+        </a>
       </div>
     </div>
 
@@ -1894,7 +1943,6 @@
         <li><a href="#nainital">About Nainital</a></li>
         <li><a href="#about">About Hotel</a></li>
         <li><a href="#rooms">Rooms & Pricing</a></li>
-        <li><a href="#amenities">Amenities</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ul>
@@ -2395,10 +2443,10 @@
     <button class="modal-close-btn" onclick="closeRoomModal('familysuite')">✕</button>
     <div class="modal-photo-slider" id="slider-familysuite">
       <span class="modal-badge-overlay">Family Suite</span>
-      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=85" alt="Family Suite" class="active" />
-      <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=900&q=85" alt="Family Suite Living" />
-      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=900&q=85" alt="Family Suite Bath" />
-      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=900&q=85" alt="Family Suite Lake View" />
+      <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="Family Suite Balcony" class="active" />
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw" alt="Family Suite View" />
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw" alt="Family Suite Mountain View" />
+      <img src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw" alt="Family Suite Room" />
       <button class="slider-arrow slider-prev" onclick="slidePhoto('familysuite',-1)">&#8249;</button>
       <button class="slider-arrow slider-next" onclick="slidePhoto('familysuite',1)">&#8250;</button>
       <div class="slider-nav" id="dots-familysuite"></div>
