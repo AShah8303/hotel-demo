@@ -5,7 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hotel Sudarshan Nainital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            pine: '#2c3e2d',
+            'pine-mid': '#3d5c3f',
+            sage: '#7a9e6e',
+            mist: '#c8d8c4',
+            cream: '#f7f3ec',
+            sand: '#e8dece',
+            gold: '#c9a84c',
+            'gold-lt': '#e8c97a',
+            dark: '#1a2218',
+          },
+          fontFamily: {
+            playfair: ['"Playfair Display"', 'serif'],
+            dm: ['"DM Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
     /* ===== CSS Variables ===== */
@@ -30,37 +56,38 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--text);
       overflow-x: hidden;
+      overflow-y: visible;
     }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    .serif { font-family: 'Cormorant Garamond', serif; }
-    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.15; }
+    .serif { font-family: 'Playfair Display', serif; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.15; }
     .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.75rem;
     }
-    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.04em; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.01em; }
     .section-sub { font-size: 1rem; color: var(--text-lt); line-height: 1.8; margin-top: 0.75rem; max-width: 60ch; }
 
     /* ===== Buttons ===== */
     .btn {
       display: inline-block;
       padding: 0.85rem 2.25rem;
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
@@ -121,7 +148,7 @@
       color: rgba(255,255,255,0.85);
       font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: color 0.25s;
     }
@@ -146,7 +173,7 @@
     .mobile-nav a {
       color: var(--white);
       font-size: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 400;
       letter-spacing: 0.08em;
       transition: color 0.2s;
@@ -195,7 +222,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(20,32,18,0.55) 0%, rgba(20,32,18,0.75) 100%);
+      background: linear-gradient(to bottom, rgba(20,32,18,0.25) 0%, rgba(20,32,18,0.50) 100%);
     }
     .hero-content {
       position: relative;
@@ -212,9 +239,9 @@
       height: auto;
     }
     .hero-label {
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 1rem;
@@ -222,7 +249,7 @@
     .hero-title {
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 300;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.01em;
       line-height: 1;
       margin-bottom: 1.25rem;
       text-shadow: 0 2px 20px rgba(0,0,0,0.4);
@@ -230,12 +257,12 @@
     .hero-title strong { font-weight: 600; display: block; }
     .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.3rem);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-style: italic;
       font-weight: 300;
       color: rgba(255,255,255,0.9);
       margin-bottom: 2.5rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.01em;
     }
     .hero-scroll {
       position: absolute;
@@ -245,7 +272,7 @@
       z-index: 2;
       color: rgba(255,255,255,0.7);
       font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       display: flex;
       flex-direction: column;
@@ -264,14 +291,14 @@
     @keyframes lineGrow { 0%{height:0} 100%{height:40px} }
 
     /* ===== Section Wrapper ===== */
-    .section { padding: 6rem 5%; }
+    .section { padding: 6rem 5%; overflow: visible; }
     .section-center { text-align: center; }
     .section-center .section-label { display: block; }
     .section-center .divider { margin: 1.25rem auto; }
     .section-center .section-sub { margin: 0.75rem auto 0; }
 
     /* ===== About Nainital ===== */
-    #nainital { background: var(--cream); }
+    #nainital { background: var(--cream); position: relative; z-index: 3; }
     .nainital-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -323,11 +350,11 @@
       flex-wrap: wrap;
     }
     .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
-    .stat-num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); line-height: 1; }
-    .stat-lbl { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lt); margin-top: 0.2rem; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); line-height: 1; }
+    .stat-lbl { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-lt); margin-top: 0.2rem; }
 
     /* ===== About Hotel ===== */
-    #about { background: var(--pine); color: var(--white); }
+    #about { background: var(--pine); color: var(--white); overflow: hidden; padding-top: 6rem; padding-bottom: 6rem; }
     #about .section-title { color: var(--white); }
     #about .section-sub { color: rgba(255,255,255,0.75); }
     .about-grid {
@@ -362,7 +389,7 @@
       margin-top: 0.1rem;
     }
     .feat-text h4 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.05rem;
       font-weight: 600;
       font-style: italic;
@@ -374,76 +401,50 @@
     .about-img {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0.75rem;
-      height: 480px;
+      grid-template-rows: auto auto auto;
+      gap: 6px;
+      margin-top: -6rem;
+      margin-bottom: -6rem;
+    }
+    .about-img .img-tall {
+      grid-row: span 3;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .about-img .img-top-right {
+      height: 220px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .about-img .img-mid-right {
+      height: 220px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .about-img .img-bottom-right {
+      height: 220px;
+      overflow: hidden;
+      border-radius: 8px;
     }
     .about-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: var(--radius);
+      display: block;
+      transition: transform 0.5s ease;
     }
-    .about-img img:first-child { grid-row: span 2; }
+    .about-img div:hover img { transform: scale(1.05); }
 
-    /* ===== Rooms ===== */
-    #rooms { background: var(--sand); }
+    /* ===== Rooms - cards handled by Tailwind ===== */
     .rooms-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       margin-top: 3.5rem;
     }
-    .room-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .room-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-    .room-img { position: relative; overflow: hidden; }
-    .room-img img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.6s ease; }
-    .room-card:hover .room-img img { transform: scale(1.06); }
-    .room-badge {
-      position: absolute;
-      top: 1rem; left: 1rem;
-      background: var(--gold);
-      color: var(--dark);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.75rem;
-      border-radius: 2px;
-    }
-    .room-body { padding: 1.75rem; }
-    .room-body h3 { font-size: 1.4rem; color: var(--pine); margin-bottom: 0.5rem; font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 0.03em; }
-    .room-body p { font-size: 0.875rem; color: var(--text-lt); line-height: 1.75; margin-bottom: 1.25rem; }
-    .room-rooms { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .amenity-tag {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.72rem;
-      background: var(--mist);
-      color: var(--pine);
-      padding: 0.35rem 0.7rem;
-      border-radius: 20px;
-      font-weight: 500;
-    }
-    .room-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--sand);
-      padding-top: 1.25rem;
-    }
-    .room-price .price { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); letter-spacing: 0.04em; }
-    .room-price .price-per { font-size: 0.72rem; color: var(--text-lt); letter-spacing: 0.05em; font-family: 'Jost', sans-serif; }
 
     /* ===== rooms ===== */
-    #rooms { background: var(--cream); }
+    #rooms { background: var(--cream); position: relative; z-index: 1; padding-top: 7rem; }
     .rooms-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -510,7 +511,7 @@
       align-items: center;
       padding: 1.4rem 0;
       cursor: pointer;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--pine);
@@ -529,7 +530,7 @@
       color: var(--gold);
       flex-shrink: 0;
       transition: transform 0.3s, background 0.3s;
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
     }
     .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--dark); }
@@ -567,7 +568,7 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-    .contact-item h4 { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); margin-bottom: 0.3rem; }
+    .contact-item h4 { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); margin-bottom: 0.3rem; }
     .contact-item p, .contact-item a { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
     .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -579,7 +580,7 @@
       border: 1.5px solid rgba(0,0,0,0.12);
       border-radius: var(--radius);
       padding: 0.85rem 1rem;
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem;
       color: var(--text);
       background: var(--white);
@@ -607,10 +608,10 @@
     .footer-brand .nav-logo svg { height: 70px; width: auto; }
     .footer-brand p { font-size: 0.85rem; line-height: 1.75; }
     .footer-col h4 {
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 1.25rem;
@@ -809,7 +810,7 @@
       color: var(--text-lt);
       font-size: 0.95rem;
       margin-bottom: 1.25rem;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
     }
     .modal-info .modal-desc {
       font-size: 0.9rem;
@@ -842,7 +843,7 @@
       border-top: 1px solid var(--sand);
     }
     .modal-price-row .price {
-      font-family: 'Cinzel', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 2rem;
       font-weight: 700;
       color: var(--pine);
@@ -851,7 +852,7 @@
     .modal-price-row .price-per {
       font-size: 0.72rem;
       color: var(--text-lt);
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
     .modal-booking {
       padding: 2.5rem;
@@ -874,7 +875,7 @@
       border: 1.5px solid rgba(0,0,0,0.12);
       border-radius: var(--radius);
       padding: 0.75rem 1rem;
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.88rem;
       color: var(--text);
       background: var(--cream);
@@ -956,7 +957,7 @@
 
     .pg-section-title {
       font-size: 1rem;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 600;
       color: var(--pine);
       margin-bottom: 1rem;
@@ -986,7 +987,7 @@
       border-top: 1px solid var(--sand);
       padding-top: 0.6rem;
       margin-top: 0.3rem;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
     }
     .pg-nights-badge {
       display: inline-block;
@@ -1015,7 +1016,7 @@
       text-align: center;
       cursor: pointer;
       font-size: 0.72rem;
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       color: var(--text-lt);
       background: white;
@@ -1060,7 +1061,7 @@
       cursor: pointer;
       font-size: 0.65rem;
       color: var(--text-lt);
-      font-family: 'Jost', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       transition: all 0.2s;
     }
     .upi-app-btn:hover, .upi-app-btn.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
@@ -1156,6 +1157,38 @@
 .gallery-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.gallery-wrap {
+  position: relative;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(26,34,24,0.75);
+  border: 1.5px solid rgba(201,168,76,0.6);
+  color: #c9a84c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  backdrop-filter: blur(4px);
+}
+.gallery-arrow:hover {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #1a2218;
+  transform: translateY(-50%) scale(1.08);
+}
+.gallery-arrow-left  { left: -22px; }
+.gallery-arrow-right { right: -22px; }
 
 .lightbox {
   display: none;
@@ -1337,7 +1370,7 @@
       <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
       <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
       <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-      <text x="130" y="59" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+      <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
       <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
       <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
       <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
@@ -1417,7 +1450,7 @@
       <line x1="20" y1="59.5" x2="220" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
       <line x1="280" y1="59.5" x2="480" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
       <!-- Main text — larger font, wider viewBox means no clipping -->
-      <text x="250" y="102" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="44" font-weight="700" fill="#c9a84c" letter-spacing="5">HOTEL SUDARSHAN</text>
+      <text x="250" y="102" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="44" font-weight="700" fill="#c9a84c" letter-spacing="5">HOTEL SUDARSHAN</text>
       <!-- Bottom double lines + arc -->
       <line x1="20" y1="114" x2="165" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
       <line x1="335" y1="114" x2="480" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
@@ -1479,9 +1512,18 @@
       </div>
     </div>
     <div class="about-img">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2NNJAD1TtdQucTESBk40ylr0gK6YO_9T36XPjSyH1eJMamj7Um3GD2E5pgjjxOWbjYNinfk7J9X4s-y1OwMK1sVE1uJkcLo57gK_kI3lgNyIdASTMnYG2T2xndNE4WaGsdTDgXU3dBF9F=s1360-w1360-h1020-rw" alt="Hotel Lobby" loading="lazy" />
-      <img src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw" alt="Hotel Room" loading="lazy" />
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepQP_H9WMltN0f7XLy6SunrPJa7yKfGVy33jnzWBSEDj6q8yYX-yFdYWsODclT8MVl-S2d9xKuSs9k1Syg1cMNKFRzCvya-y9oGpqUIcT28ZIXY9B6h_VtSRjzL4O8rJYtzCMk=s1360-w1360-h1020-rw" alt="Hotel Restaurant" loading="lazy" />
+      <div class="img-tall">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2NNJAD1TtdQucTESBk40ylr0gK6YO_9T36XPjSyH1eJMamj7Um3GD2E5pgjjxOWbjYNinfk7J9X4s-y1OwMK1sVE1uJkcLo57gK_kI3lgNyIdASTMnYG2T2xndNE4WaGsdTDgXU3dBF9F=s1360-w1360-h1020-rw" alt="Hotel Lobby" loading="lazy" />
+      </div>
+      <div class="img-top-right">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw" alt="Hotel Room" loading="lazy" />
+      </div>
+      <div class="img-mid-right">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepQP_H9WMltN0f7XLy6SunrPJa7yKfGVy33jnzWBSEDj6q8yYX-yFdYWsODclT8MVl-S2d9xKuSs9k1Syg1cMNKFRzCvya-y9oGpqUIcT28ZIXY9B6h_VtSRjzL4O8rJYtzCMk=s1360-w1360-h1020-rw" alt="Hotel View" loading="lazy" />
+      </div>
+      <div class="img-bottom-right">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="Lake View" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
@@ -1497,26 +1539,26 @@
   <div class="rooms-grid">
 
     <!-- Standard Room -->
-    <div class="room-card">
-      <div class="room-img">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room" loading="lazy" />
-        <span class="room-badge">Standard</span>
+    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+      <div class="relative overflow-hidden">
+        <img src="https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Standard</span>
       </div>
-      <div class="room-body">
-        <h3>Standard Room</h3>
-        <p>A clean, well-maintained room with all the essentials for a comfortable stay — ideal for solo travellers or couples seeking a peaceful base in Nainital at a fair price.</p>
-        <div class="room-amenities">
-          <span class="amenity-tag">📶 Free Wi-Fi</span>
-          <span class="amenity-tag">📺 Cable / Satellite TV</span>
-          <span class="amenity-tag">🛁 Attached Bathroom</span>
-          <span class="amenity-tag">🧴 Toiletries included</span>
-          <span class="amenity-tag">🛏️ Double Bed</span>
-          <span class="amenity-tag">🛎️ 24-hr Room Service</span>
+      <div class="p-7">
+        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Standard Room</h3>
+        <p class="text-sm text-stone-500 leading-relaxed mb-5">A clean, well-maintained room with all the essentials for a comfortable stay — ideal for solo travellers or couples seeking a peaceful base in Nainital at a fair price.</p>
+        <div class="grid grid-cols-2 gap-1.5 mb-6">
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ Double Bed</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛎️ Room Service</span>
         </div>
-        <div class="room-footer">
-          <div class="room-price">
-            <div class="price">₹1,799</div>
-            <div class="price-per">per night + taxes</div>
+        <div class="flex items-center justify-between border-t border-sand pt-5">
+          <div>
+            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹1,799</div>
+            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
           </div>
           <button onclick="openQuickView('standard')" class="btn btn-pine">Book Now</button>
         </div>
@@ -1524,26 +1566,26 @@
     </div>
 
     <!-- Deluxe Room -->
-    <div class="room-card">
-      <div class="room-img">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room" loading="lazy" />
-        <span class="room-badge">Deluxe</span>
+    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+      <div class="relative overflow-hidden">
+        <img src="https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa" alt="Deluxe Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Deluxe</span>
       </div>
-      <div class="room-body">
-        <h3>Deluxe Room</h3>
-        <p>A well-appointed room with warm décor, cable television, and an attached bathroom with toiletries. Select rooms in this category come with a private balcony or terrace.</p>
-        <div class="room-amenities">
-          <span class="amenity-tag">📶 Free Wi-Fi</span>
-          <span class="amenity-tag">📺 Cable / Satellite TV</span>
-          <span class="amenity-tag">🛁 Attached Bathroom</span>
-          <span class="amenity-tag">🧴 Toiletries & Towels</span>
-          <span class="amenity-tag">🌅 Balcony / Terrace</span>
-          <span class="amenity-tag">🪟 Blackout Curtains</span>
+      <div class="p-7">
+        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Deluxe Room</h3>
+        <p class="text-sm text-stone-500 leading-relaxed mb-5">A well-appointed room with warm décor, cable television, and an attached bathroom with toiletries. Select rooms in this category come with a private balcony or terrace.</p>
+        <div class="grid grid-cols-2 gap-1.5 mb-6">
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries & Towels</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🌅 Balcony / Terrace</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🪟 Blackout Curtains</span>
         </div>
-        <div class="room-footer">
-          <div class="room-price">
-            <div class="price">₹2,999</div>
-            <div class="price-per">per night + taxes</div>
+        <div class="flex items-center justify-between border-t border-sand pt-5">
+          <div>
+            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹2,999</div>
+            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
           </div>
           <button onclick="openQuickView('deluxe')" class="btn btn-pine">Book Now</button>
         </div>
@@ -1551,26 +1593,26 @@
     </div>
 
     <!-- Family Deluxe Room -->
-    <div class="room-card">
-      <div class="room-img">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Room" loading="lazy" />
-        <span class="room-badge">Family Deluxe</span>
+    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+      <div class="relative overflow-hidden">
+        <img src="https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa" alt="Family Deluxe Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Family Deluxe</span>
       </div>
-      <div class="room-body">
-        <h3>Family Deluxe Room</h3>
-        <p>A spacious room designed for families, with linen service, blackout curtains and a private balcony or terrace. Extra bed available on request to accommodate additional guests.</p>
-        <div class="room-amenities">
-          <span class="amenity-tag">📶 Free Wi-Fi</span>
-          <span class="amenity-tag">📺 Cable / Satellite TV</span>
-          <span class="amenity-tag">🛁 Attached Bathroom</span>
-          <span class="amenity-tag">🧴 Toiletries & Towels</span>
-          <span class="amenity-tag">🌅 Private Balcony</span>
-          <span class="amenity-tag">🛏️ Extra Bed on Request</span>
+      <div class="p-7">
+        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Family Deluxe Room</h3>
+        <p class="text-sm text-stone-500 leading-relaxed mb-5">A spacious room designed for families, with linen service, blackout curtains and a private balcony or terrace. Extra bed available on request to accommodate additional guests.</p>
+        <div class="grid grid-cols-2 gap-1.5 mb-6">
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries & Towels</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🌅 Private Balcony</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ Extra Bed on Request</span>
         </div>
-        <div class="room-footer">
-          <div class="room-price">
-            <div class="price">₹4,499</div>
-            <div class="price-per">per night + taxes</div>
+        <div class="flex items-center justify-between border-t border-sand pt-5">
+          <div>
+            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹4,499</div>
+            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
           </div>
           <button onclick="openQuickView('familydeluxe')" class="btn btn-pine">Book Now</button>
         </div>
@@ -1578,26 +1620,26 @@
     </div>
 
     <!-- Family Suite -->
-    <div class="room-card">
-      <div class="room-img">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="Family Suite" loading="lazy" />
-        <span class="room-badge">Family Suite</span>
+    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+      <div class="relative overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="Family Suite" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Family Suite</span>
       </div>
-      <div class="room-body">
-        <h3>Family Suite</h3>
-        <p>Our largest and most comfortable room — a suite-style accommodation with a private balcony, cable television, premium linen service and full bathroom amenities. Sleeps up to four guests.</p>
-        <div class="room-amenities">
-          <span class="amenity-tag">📶 Free Wi-Fi</span>
-          <span class="amenity-tag">📺 Cable / Satellite TV</span>
-          <span class="amenity-tag">🛁 Attached Bathroom</span>
-          <span class="amenity-tag">🧴 Full Toiletries</span>
-          <span class="amenity-tag">🌅 Private Balcony</span>
-          <span class="amenity-tag">👨‍👩‍👧 Up to 4 Guests</span>
+      <div class="p-7">
+        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Family Suite</h3>
+        <p class="text-sm text-stone-500 leading-relaxed mb-5">Our largest and most comfortable room — a suite-style accommodation with a private balcony, cable television, premium linen service and full bathroom amenities. Sleeps up to four guests.</p>
+        <div class="grid grid-cols-2 gap-1.5 mb-6">
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Full Toiletries</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🌅 Private Balcony</span>
+          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">👨‍👩‍👧 Up to 4 Guests</span>
         </div>
-        <div class="room-footer">
-          <div class="room-price">
-            <div class="price">₹6,999</div>
-            <div class="price-per">per night + taxes</div>
+        <div class="flex items-center justify-between border-t border-sand pt-5">
+          <div>
+            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹6,999</div>
+            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
           </div>
           <button onclick="openQuickView('familysuite')" class="btn btn-pine">Book Now</button>
         </div>
@@ -1680,16 +1722,20 @@
   <h2 class="section-title">A Glimpse of Sudarshan</h2>
   <div class="divider divider-center"></div>
 
-  <div class="gallery-scroll">
-  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from window">
-  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw" alt="view from room">
-  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw" alt="another view from room">
-  <img src="https://lh3.googleusercontent.com/p/AF1QipPaDhCe33tvdhq9eJTyCeHnZkNiBA_d0Zwi-NKs=s1360-w1360-h1020-rw" alt="cloudy">
-  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_tyY5pWcpV5idzjtolt8TeT018brALGJDcuJ3dsaD38fuOV-HpYPm6bCLN3CuVBUXMpPExAQV7Tebcsuo7mSP6_aE_h_9T6Uc_7lUijSSz3cDDpkU4qgrWv1Uv8J7192UOUCJZw=s1360-w1360-h1020-rw" alt="main entrance">
-  <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0k1Q_H-ivVPF_zkoJOWWViqq3Mg_YFR5tbx9gs8czWWGSY17E2veqoWzN5lyTEE7X6OGQXIYTGc9mRXQGE27OzG3_JNtzBvOv7Pge5NNBpc0PWpuDNpIKnbd3OEW0sdZUoo5N=s1360-w1360-h1020-rw" alt="outside photo">
-  <img src="https://lh3.googleusercontent.com/p/AF1QipNRx1WOhQywB-KyzPtRyqGdFttTbYMDtaU0_4Fq=s1360-w1360-h1020-rw" alt="outside lightview">
-  <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="balcony">
-</div>
+  <div class="gallery-wrap">
+    <button class="gallery-arrow gallery-arrow-left" onclick="scrollGallery(-1)" aria-label="Scroll left">&#8592;</button>
+    <div class="gallery-scroll" id="galleryScroll">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from window">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw" alt="view from room">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw" alt="another view from room">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipPaDhCe33tvdhq9eJTyCeHnZkNiBA_d0Zwi-NKs=s1360-w1360-h1020-rw" alt="cloudy">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_tyY5pWcpV5idzjtolt8TeT018brALGJDcuJ3dsaD38fuOV-HpYPm6bCLN3CuVBUXMpPExAQV7Tebcsuo7mSP6_aE_h_9T6Uc_7lUijSSz3cDDpkU4qgrWv1Uv8J7192UOUCJZw=s1360-w1360-h1020-rw" alt="main entrance">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0k1Q_H-ivVPF_zkoJOWWViqq3Mg_YFR5tbx9gs8czWWGSY17E2veqoWzN5lyTEE7X6OGQXIYTGc9mRXQGE27OzG3_JNtzBvOv7Pge5NNBpc0PWpuDNpIKnbd3OEW0sdZUoo5N=s1360-w1360-h1020-rw" alt="outside photo">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipNRx1WOhQywB-KyzPtRyqGdFttTbYMDtaU0_4Fq=s1360-w1360-h1020-rw" alt="outside lightview">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="balcony">
+    </div>
+    <button class="gallery-arrow gallery-arrow-right" onclick="scrollGallery(1)" aria-label="Scroll right">&#8594;</button>
+  </div>
 </section>
 
 
@@ -1839,7 +1885,7 @@
           referrerpolicy="no-referrer-when-downgrade"
           title="Hotel Sudarshan Location">
         </iframe>
-        <a href="https://www.google.com/maps?ll=29.381648,79.465127&z=20&t=m&hl=en&gl=IN&mapclient=embed&cid=4819437139123084670" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:var(--pine); color:var(--cream); font-size:0.78rem; letter-spacing:0.08em; font-family:'Jost',sans-serif; text-transform:uppercase; transition:background 0.2s;">
+        <a href="https://www.google.com/maps?ll=29.381648,79.465127&z=20&t=m&hl=en&gl=IN&mapclient=embed&cid=4819437139123084670" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:var(--pine); color:var(--cream); font-size:0.78rem; letter-spacing:0.08em; font-family:'DM Sans',sans-serif; text-transform:uppercase; transition:background 0.2s;">
           <span>🗺️</span> Open in Google Maps
         </a>
       </div>
@@ -1923,7 +1969,7 @@
           <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
           <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
           <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="130" y="59" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+          <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
           <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
           <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
           <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
@@ -1987,8 +2033,8 @@
     </div>
     <div style="padding:2rem;">
       <span id="qv-badge" style="display:inline-block;background:var(--gold);color:var(--dark);font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:2px;margin-bottom:1rem;"></span>
-      <h2 id="qv-title" style="font-family:'Cinzel',serif;font-size:1.8rem;color:var(--pine);margin-bottom:0.5rem;"></h2>
-      <p id="qv-quote" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-lt);font-size:1.05rem;margin-bottom:1.25rem;"></p>
+      <h2 id="qv-title" style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--pine);margin-bottom:0.5rem;"></h2>
+      <p id="qv-quote" style="font-family:'Playfair Display',serif;font-style:italic;color:var(--text-lt);font-size:1.05rem;margin-bottom:1.25rem;"></p>
 
       <!-- Room Details Grid -->
       <div id="qv-details" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;"></div>
@@ -1999,7 +2045,7 @@
       <!-- Price + Book Button -->
       <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sand);padding-top:1.25rem;flex-wrap:wrap;gap:1rem;">
         <div>
-          <div id="qv-price" style="font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:var(--pine);"></div>
+          <div id="qv-price" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--pine);"></div>
           <div style="font-size:0.72rem;color:var(--text-lt);">per night + taxes</div>
         </div>
         <a id="qv-book-btn" href="#" target="_blank" class="btn btn-gold" style="font-size:0.85rem;padding:1rem 2rem;">
@@ -2263,6 +2309,13 @@
     if (e.key === 'ArrowLeft') qvSlide(-1);
     if (e.key === 'ArrowRight') qvSlide(1);
   });
+
+  // ===== GALLERY SCROLL ARROWS =====
+  function scrollGallery(dir) {
+    const el = document.getElementById('galleryScroll');
+    const scrollAmount = el.offsetWidth * 0.75;
+    el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+  }
 </script>
 </body>
 </html>
