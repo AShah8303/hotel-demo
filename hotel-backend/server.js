@@ -154,7 +154,9 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   const event = JSON.parse(req.body);
   console.log("📩 Event received:", event.event);
 
-  // ✅ Correct event for Razorpay Payment Pages/Links
+  // 🔍 Full payload log - room type field dhundhne ke liye
+  console.log("🔍 FULL PAYLOAD:", JSON.stringify(event.payload, null, 2));
+
   if (event.event === "payment_link.paid" || event.event === "payment.authorized") {
     const paymentLink = event.payload?.payment_link?.entity || {};
     const payment     = event.payload?.payment?.entity     || {};
@@ -169,12 +171,12 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
       roomType:        notes["room_type"]        || notes["Room Type"]        || notes["room type"]        || paymentLink.title        || paymentLink.description  || payment.description      || "—",
       checkIn:         notes["check_in_date"]    || notes["Check In date"]    || notes["Check-in Date"]    || notes["checkin"]         || "—",
       checkOut:        notes["check_out_date"]   || notes["Check Out Date"]   || notes["Check-out Date"]   || notes["checkout"]        || "—",
-      guests:          notes["number_of_guest"]  || notes["Number Of Guest"]  || notes["Number of Guest"] || notes["guest"]          || "—",
+      guests:          notes["number_of_guest"]  || notes["Number Of Guest"]  || notes["Number of Guest"] || notes["guest"]           || "—",
       specialRequests: notes["special_requests"] || notes["Special Requests"] || "—",
       amount:          (payment.amount || paymentLink.amount || 0) / 100,
     };
 
-    console.log("📋 Booking:", booking);
+    console.log("📋 Booking:", JSON.stringify(booking, null, 2));
 
     // 1. Owner email
     try {
