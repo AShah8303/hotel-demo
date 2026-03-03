@@ -155,7 +155,7 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   console.log("📩 Event received:", event.event);
 
   // ✅ Correct event for Razorpay Payment Pages/Links
-  if (event.event === "payment_link.paid" || event.event === "payment.authorized" || event.event === "payment.captured") {
+  if (event.event === "payment_link.paid") {
     const paymentLink = event.payload?.payment_link?.entity || {};
     const payment     = event.payload?.payment?.entity     || {};
     const customer    = paymentLink.customer || {};
@@ -166,14 +166,19 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
       name:            customer.name             || notes["name"]             || notes["Name"]             || notes["Full Name"]       || "—",
       phone:           customer.contact          || notes["phone"]            || notes["Phone"]            || notes["Phone Number"]    || "—",
       email:           customer.email            || payment.email             || "—",
-      roomType:        notes["room_type"]        || notes["Room Type"]        || notes["room type"]        || paymentLink.description  || "—",
+      roomType:        notes["room_type"]        || notes["Room Type"]        || notes["room type"]        || paymentLink.title        || paymentLink.description  || payment.description      || "—",
       checkIn:         notes["check_in_date"]    || notes["Check In date"]    || notes["Check-in Date"]    || notes["checkin"]         || "—",
       checkOut:        notes["check_out_date"]   || notes["Check Out Date"]   || notes["Check-out Date"]   || notes["checkout"]        || "—",
-      guests:          notes["number_of_guest"]  || notes["Number Of Guest"]  || notes["Number of Guests"] || notes["guests"]          || "—",
+      guests:          notes["number_of_guest"]  || notes["Number Of Guest"]  || notes["Number of Guest"] || notes["guest"]          || "—",
       specialRequests: notes["special_requests"] || notes["Special Requests"] || "—",
       amount:          (payment.amount || paymentLink.amount || 0) / 100,
     };
 
+    // 🔍 Debug: paymentLink ke saare fields console mein dekhne ke liye
+    console.log("🔍 paymentLink keys:", JSON.stringify(Object.keys(paymentLink)));
+    console.log("🔍 paymentLink.title:", paymentLink.title);
+    console.log("🔍 paymentLink.description:", paymentLink.description);
+    console.log("🔍 notes:", JSON.stringify(notes));
     console.log("📋 Booking:", booking);
 
     // 1. Owner email
