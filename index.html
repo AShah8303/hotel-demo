@@ -2048,9 +2048,9 @@
           <div id="qv-price" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--pine);"></div>
           <div style="font-size:0.72rem;color:var(--text-lt);">per night + taxes</div>
         </div>
-        <a id="qv-book-btn" href="#" target="_blank" class="btn btn-gold" style="font-size:0.85rem;padding:1rem 2rem;">
+        <button id="qv-book-btn" onclick="openBookingForm()" class="btn btn-gold" style="font-size:0.85rem;padding:1rem 2rem;border:none;cursor:pointer;">
           Reserve This Room →
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -2273,7 +2273,8 @@
     document.getElementById('qv-title').textContent = room.title;
     document.getElementById('qv-quote').textContent = room.quote;
     document.getElementById('qv-price').textContent = room.price;
-    document.getElementById('qv-book-btn').href = room.link;
+    // store current room for booking
+    window.currentRoom = room;
 
     // Details
     const detailsEl = document.getElementById('qv-details');
@@ -2317,5 +2318,211 @@
     el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
   }
 </script>
+
+<!-- ===== BOOKING MODAL ===== -->
+<div id="booking-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:10px;padding:2rem;max-width:480px;width:90%;max-height:90vh;overflow-y:auto;position:relative;">
+    <button onclick="closeBookingModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#666;">✕</button>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#2c3e2d;margin-bottom:0.25rem;" id="bm-title">Book Room</h3>
+    <p style="font-size:0.85rem;color:#888;margin-bottom:1.5rem;" id="bm-price-info"></p>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-in Date *</label>
+        <input type="date" id="bm-checkin" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" onchange="calcAmount()" />
+      </div>
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-out Date *</label>
+        <input type="date" id="bm-checkout" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" onchange="calcAmount()" />
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Full Name *</label>
+        <input type="text" id="bm-name" placeholder="Your name" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+      </div>
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Phone *</label>
+        <input type="tel" id="bm-phone" placeholder="+91 XXXXX XXXXX" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Email *</label>
+        <input type="email" id="bm-email" placeholder="you@email.com" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+      </div>
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">No. of Guests</label>
+        <input type="number" id="bm-guests" min="1" max="6" value="1" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+      </div>
+    </div>
+
+    <div style="margin-bottom:1.5rem;">
+      <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Special Requests (Optional)</label>
+      <textarea id="bm-special" rows="2" placeholder="Any special requirements..." style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;resize:none;"></textarea>
+    </div>
+
+    <div id="bm-summary" style="display:none;background:#f7f3ec;border-left:4px solid #c9a84c;padding:1rem;border-radius:4px;margin-bottom:1.5rem;">
+      <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.4rem;">
+        <span style="color:#666;" id="bm-nights-text"></span>
+        <span style="font-weight:700;color:#2c3e2d;font-size:1.1rem;" id="bm-total"></span>
+      </div>
+    </div>
+
+    <button onclick="proceedToPayment()" id="bm-pay-btn" style="width:100%;background:#c9a84c;color:#1a2218;border:none;padding:1rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+      Pay Now →
+    </button>
+    <p id="bm-error" style="color:red;font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
+  </div>
+</div>
+
+<script>
+  const BACKEND_URL = 'https://hotel-demo-backend.vercel.app';
+
+  const roomPrices = {
+    'Standard Room': 1799,
+    'Deluxe Room': 2999,
+    'Family Deluxe Room': 4499,
+    'Family Suite': 6999
+  };
+
+  function openBookingForm() {
+    const room = window.currentRoom;
+    if (!room) return;
+    document.getElementById('bm-title').textContent = 'Book ' + room.title;
+    document.getElementById('bm-price-info').textContent = room.price + ' per night';
+    document.getElementById('bm-summary').style.display = 'none';
+    document.getElementById('bm-checkin').value = '';
+    document.getElementById('bm-checkout').value = '';
+    document.getElementById('bm-name').value = '';
+    document.getElementById('bm-phone').value = '';
+    document.getElementById('bm-email').value = '';
+    document.getElementById('bm-guests').value = '1';
+    document.getElementById('bm-special').value = '';
+    document.getElementById('bm-error').style.display = 'none';
+    document.getElementById('booking-modal').style.display = 'flex';
+    
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('bm-checkin').min = today;
+    document.getElementById('bm-checkout').min = today;
+  }
+
+  function closeBookingModal() {
+    document.getElementById('booking-modal').style.display = 'none';
+  }
+
+  function calcAmount() {
+    const checkin = document.getElementById('bm-checkin').value;
+    const checkout = document.getElementById('bm-checkout').value;
+    if (!checkin || !checkout) return;
+    
+    const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
+    if (nights <= 0) {
+      document.getElementById('bm-summary').style.display = 'none';
+      return;
+    }
+
+    const room = window.currentRoom;
+    const pricePerNight = roomPrices[room.title] || 0;
+    const total = pricePerNight * nights;
+
+    document.getElementById('bm-nights-text').textContent = nights + ' night' + (nights > 1 ? 's' : '') + ' × ₹' + pricePerNight.toLocaleString('en-IN');
+    document.getElementById('bm-total').textContent = '₹' + total.toLocaleString('en-IN');
+    document.getElementById('bm-summary').style.display = 'block';
+  }
+
+  async function proceedToPayment() {
+    const room = window.currentRoom;
+    const checkin = document.getElementById('bm-checkin').value;
+    const checkout = document.getElementById('bm-checkout').value;
+    const name = document.getElementById('bm-name').value.trim();
+    const phone = document.getElementById('bm-phone').value.trim();
+    const email = document.getElementById('bm-email').value.trim();
+    const guests = document.getElementById('bm-guests').value;
+    const special = document.getElementById('bm-special').value.trim();
+    const errEl = document.getElementById('bm-error');
+
+    // Validation
+    if (!checkin || !checkout || !name || !phone || !email) {
+      errEl.textContent = 'Please fill all required fields.';
+      errEl.style.display = 'block';
+      return;
+    }
+    const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
+    if (nights <= 0) {
+      errEl.textContent = 'Check-out must be after check-in.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    const pricePerNight = roomPrices[room.title] || 0;
+    const amount = pricePerNight * nights;
+
+    const btn = document.getElementById('bm-pay-btn');
+    btn.textContent = 'Creating order...';
+    btn.disabled = true;
+
+    try {
+      // Format dates nicely
+      const fmt = (d) => new Date(d).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+
+      const res = await fetch(BACKEND_URL + '/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount,
+          roomType: room.title,
+          name, phone, email, guests,
+          checkIn: fmt(checkin),
+          checkOut: fmt(checkout),
+          specialRequests: special
+        })
+      });
+
+      const data = await res.json();
+      if (!data.orderId) throw new Error('Order creation failed');
+
+      const options = {
+        key: data.keyId,
+        amount: amount * 100,
+        currency: 'INR',
+        name: 'Hotel Sudarshan Nainital',
+        description: room.title,
+        order_id: data.orderId,
+        prefill: { name, email, contact: phone },
+        notes: {
+          room_type: room.title,
+          check_in_date: fmt(checkin),
+          check_out_date: fmt(checkout),
+          number_of_guest: guests,
+          special_requests: special,
+          name, phone, email
+        },
+        theme: { color: '#2c3e2d' },
+        handler: function(response) {
+          closeBookingModal();
+          closeQuickView();
+          alert('✅ Booking Confirmed! Payment ID: ' + response.razorpay_payment_id + '\nConfirmation email sent to ' + email);
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+      btn.textContent = 'Pay Now →';
+      btn.disabled = false;
+
+    } catch(err) {
+      errEl.textContent = 'Something went wrong. Please try again.';
+      errEl.style.display = 'block';
+      btn.textContent = 'Pay Now →';
+      btn.disabled = false;
+    }
+  }
+</script>
+
 </body>
 </html>
