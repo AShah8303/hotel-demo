@@ -136,7 +136,6 @@ function guestEmailHTML(b) {
     </div>`;
 }
 
-
 // ── CORS ─────────────────────────────────────────────────────
 const allowedOrigins = [
   "https://hotelsudarshannainital.com",
@@ -155,48 +154,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
-
-// ── Create Razorpay Order ─────────────────────────────────────
-app.post("/create-order", async (req, res) => {
-  try {
-    const { amount, roomType, name, phone, email, guests, checkIn, checkOut, specialRequests } = req.body;
-
-    const auth = Buffer.from(
-      `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
-    ).toString("base64");
-
-    const orderRes = await fetch("https://api.razorpay.com/v1/orders", {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${auth}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: amount * 100,
-        currency: "INR",
-        notes: {
-          room_type: roomType,
-          name, phone, email,
-          check_in_date: checkIn,
-          check_out_date: checkOut,
-          number_of_guest: guests,
-          special_requests: specialRequests || "",
-        },
-      }),
-    });
-
-    const order = await orderRes.json();
-    if (!order.id) throw new Error("Order creation failed");
-
-    res.json({ orderId: order.id, keyId: process.env.RAZORPAY_KEY_ID });
-  } catch (err) {
-    console.error("❌ Create order error:", err.message);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ── Webhook Route ────────────────────────────────────────────
+// ── Webhook Route (express.json se PEHLE) ───────────────────
 app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (req, res) => {
   const secret    = process.env.RAZORPAY_WEBHOOK_SECRET;
   const signature = req.headers["x-razorpay-signature"];
@@ -214,7 +172,6 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   const event = JSON.parse(req.body);
   console.log("📩 Event received:", event.event);
 
-  // ✅ Correct event for Razorpay Payment Pages/Links
   if (event.event === "payment_link.paid" || event.event === "payment.authorized") {
     const paymentLink = event.payload?.payment_link?.entity || {};
     const payment     = event.payload?.payment?.entity     || {};
@@ -271,4 +228,46 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   res.json({ status: "ok" });
 });
 
-app.listen(3000, () => console.log("🚀 Server running on port 3000"));
+// ── JSON Middleware (webhook ke BAAD) ────────────────────────
+app.use(express.json());
+
+// ── Create Razorpay Order ─────────────────────────────────────
+app.post("/create-order", async (req, res) => {
+  try {
+    const { amount, roomType, name, phone, email, guests, checkIn, checkOut, specialRequests } = req.body;
+
+    const auth = Buffer.from(
+      `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
+    ).toString("base64");
+
+    const orderRes = await fetch("https://api.razorpay.com/v1/orders", {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: amount * 100,
+        currency: "INR",
+        notes: {
+          room_type: roomType,
+          name, phone, email,
+          check_in_date: checkIn,
+          check_out_date: checkOut,
+          number_of_guest: guests,
+          special_requests: specialRequests || "",
+        },
+      }),
+    });
+
+    const order = await orderRes.json();
+    if (!order.id) throw new Error("Order creation failed");
+
+    res.json({ orderId: order.id, keyId: process.env.RAZORPAY_KEY_ID });
+  } catch (err) {
+    console.error("❌ Create order error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+module.exports = app;
