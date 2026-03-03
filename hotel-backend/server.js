@@ -15,6 +15,46 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// ── Razorpay: Order se Payment Page title fetch karo ────────
+async function getRoomType(orderId) {
+  try {
+    const auth = Buffer.from(
+      `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
+    ).toString("base64");
+
+    // Step 1: Order fetch karo
+    const orderRes = await fetch(`https://api.razorpay.com/v1/orders/${orderId}`, {
+      headers: { Authorization: `Basic ${auth}` },
+    });
+    const order = await orderRes.json();
+    console.log("🔍 Order:", JSON.stringify(order, null, 2));
+
+    // Step 2: notes mein room_type check karo
+    if (order?.notes?.room_type) return order.notes.room_type;
+    if (order?.notes?.["Room Type"]) return order.notes["Room Type"];
+
+    // Step 3: receipt mein room type ho sakta hai
+    if (order?.receipt) return order.receipt;
+
+    // Step 4: Payment Link ID se title fetch karo
+    const plId = order?.notes?.payment_link_id || order?.payment_link_id;
+    if (plId) {
+      const plRes = await fetch(`https://api.razorpay.com/v1/payment_links/${plId}`, {
+        headers: { Authorization: `Basic ${auth}` },
+      });
+      const pl = await plRes.json();
+      console.log("🔍 Payment Link:", JSON.stringify(pl, null, 2));
+      if (pl?.title) return pl.title;
+      if (pl?.description) return pl.description;
+    }
+
+    return null;
+  } catch (err) {
+    console.error("❌ getRoomType error:", err.message);
+    return null;
+  }
+}
+
 // ── Google Sheets: Append Row ────────────────────────────────
 async function appendToGoogleSheet(booking) {
   try {
@@ -154,25 +194,36 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   const event = JSON.parse(req.body);
   console.log("📩 Event received:", event.event);
 
-  // 🔍 Full payload log - room type field dhundhne ke liye
-  console.log("🔍 FULL PAYLOAD:", JSON.stringify(event.payload, null, 2));
-
   if (event.event === "payment_link.paid" || event.event === "payment.authorized") {
     const paymentLink = event.payload?.payment_link?.entity || {};
     const payment     = event.payload?.payment?.entity     || {};
     const customer    = paymentLink.customer || {};
     const notes       = paymentLink.notes || payment.notes || {};
 
+    // Room type: notes se → paymentLink se → API se fetch karo
+    let roomType =
+      notes["room_type"]     ||
+      notes["Room Type"]     ||
+      notes["room type"]     ||
+      paymentLink.title      ||
+      paymentLink.description||
+      null;
+
+    // Agar abhi bhi nahi mila toh order se fetch karo
+    if (!roomType && payment.order_id) {
+      roomType = await getRoomType(payment.order_id);
+    }
+
     const booking = {
-      paymentId:       payment.id                || paymentLink.id || "N/A",
-      name:            customer.name             || notes["name"]             || notes["Name"]             || notes["Full Name"]       || "—",
-      phone:           customer.contact          || notes["phone"]            || notes["Phone"]            || notes["Phone Number"]    || "—",
-      email:           customer.email            || payment.email             || "—",
-      roomType:        notes["room_type"]        || notes["Room Type"]        || notes["room type"]        || paymentLink.title        || paymentLink.description  || payment.description      || "—",
-      checkIn:         notes["check_in_date"]    || notes["Check In date"]    || notes["Check-in Date"]    || notes["checkin"]         || "—",
-      checkOut:        notes["check_out_date"]   || notes["Check Out Date"]   || notes["Check-out Date"]   || notes["checkout"]        || "—",
-      guests:          notes["number_of_guest"]  || notes["Number Of Guest"]  || notes["Number of Guest"] || notes["guest"]           || "—",
-      specialRequests: notes["special_requests"] || notes["Special Requests"] || "—",
+      paymentId:       payment.id               || paymentLink.id || "N/A",
+      name:            customer.name            || notes["name"]            || notes["Name"]            || notes["Full Name"]    || "—",
+      phone:           customer.contact         || notes["phone"]           || notes["Phone"]           || notes["Phone Number"] || "—",
+      email:           customer.email           || payment.email            || "—",
+      roomType:        roomType                 || "—",
+      checkIn:         notes["check_in_date"]   || notes["Check In date"]   || notes["Check-in Date"]   || notes["checkin"]      || "—",
+      checkOut:        notes["check_out_date"]  || notes["Check Out Date"]  || notes["Check-out Date"]  || notes["checkout"]     || "—",
+      guests:          notes["number_of_guest"] || notes["Number Of Guest"] || notes["Number of Guest"] || notes["guest"]        || "—",
+      specialRequests: notes["special_requests"]|| notes["Special Requests"]|| "—",
       amount:          (payment.amount || paymentLink.amount || 0) / 100,
     };
 
