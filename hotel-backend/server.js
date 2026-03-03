@@ -155,7 +155,7 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   console.log("📩 Event received:", event.event);
 
   // ✅ Correct event for Razorpay Payment Pages/Links
-  if (event.event === "payment_link.paid") {
+  if (event.event === "payment_link.paid" || event.event === "payment.authorized") {
     const paymentLink = event.payload?.payment_link?.entity || {};
     const payment     = event.payload?.payment?.entity     || {};
     const customer    = paymentLink.customer || {};
