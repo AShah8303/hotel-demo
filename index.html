@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hotel Sudarshan Nainital</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -53,8 +56,19 @@
     }
 
     /* ===== Reset & Base ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
@@ -62,12 +76,34 @@
       overflow-x: hidden;
       overflow-y: visible;
     }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
 
-    .serif { font-family: 'Playfair Display', serif; }
-    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.15; }
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
     .section-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem;
@@ -77,8 +113,22 @@
       color: var(--gold);
       margin-bottom: 0.75rem;
     }
-    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--pine); font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.01em; }
-    .section-sub { font-size: 1rem; color: var(--text-lt); line-height: 1.8; margin-top: 0.75rem; max-width: 60ch; }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--pine);
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-lt);
+      line-height: 1.8;
+      margin-top: 0.75rem;
+      max-width: 60ch;
+    }
 
     /* ===== Buttons ===== */
     .btn {
@@ -93,19 +143,38 @@
       cursor: pointer;
       transition: var(--transition);
     }
+
     .btn-gold {
       background: var(--gold);
       color: var(--dark);
     }
-    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+    .btn-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
     .btn-outline {
       background: transparent;
       border: 1.5px solid var(--gold);
       color: var(--gold);
     }
-    .btn-outline:hover { background: var(--gold); color: var(--dark); transform: translateY(-2px); }
-    .btn-pine { background: var(--pine); color: var(--cream); }
-    .btn-pine:hover { background: var(--pine-mid); transform: translateY(-2px); }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-pine {
+      background: var(--pine);
+      color: var(--cream);
+    }
+
+    .btn-pine:hover {
+      background: var(--pine-mid);
+      transform: translateY(-2px);
+    }
 
     /* ===== Divider ===== */
     .divider {
@@ -114,12 +183,17 @@
       background: var(--gold);
       margin: 1.25rem 0;
     }
-    .divider-center { margin: 1.25rem auto; }
+
+    .divider-center {
+      margin: 1.25rem auto;
+    }
 
     /* ===== Nav ===== */
     #navbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -127,37 +201,69 @@
       padding: 1.25rem 5%;
       transition: background 0.4s ease, padding 0.4s ease;
     }
+
     #navbar.scrolled {
-      background: rgba(26,34,24,0.97);
+      background: rgba(26, 34, 24, 0.97);
       padding: 0.9rem 5%;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     }
+
     .nav-logo {
       display: flex;
       align-items: center;
       gap: 0;
       text-decoration: none;
     }
+
     .nav-logo svg {
       height: 52px;
       width: auto;
     }
-    #navbar.scrolled .nav-logo svg { opacity: 0.95; }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+    #navbar.scrolled .nav-logo svg {
+      opacity: 0.95;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
     .nav-links a {
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       font-size: 0.8rem;
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: color 0.25s;
     }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links .btn { padding: 0.6rem 1.5rem; font-size: 0.72rem; }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links .btn {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.72rem;
+    }
 
     /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { display: block; width: 25px; height: 2px; background: var(--white); transition: var(--transition); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
     .mobile-nav {
       display: none;
       position: fixed;
@@ -169,7 +275,11 @@
       justify-content: center;
       gap: 2.5rem;
     }
-    .mobile-nav.open { display: flex; }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
     .mobile-nav a {
       color: var(--white);
       font-size: 1.5rem;
@@ -178,7 +288,11 @@
       letter-spacing: 0.08em;
       transition: color 0.2s;
     }
-    .mobile-nav a:hover { color: var(--gold); }
+
+    .mobile-nav a:hover {
+      color: var(--gold);
+    }
+
     .mobile-close {
       position: fixed;
       top: 1.2rem;
@@ -187,8 +301,8 @@
       font-size: 1.4rem;
       line-height: 1;
       cursor: pointer;
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.35);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       border-radius: 50%;
       width: 44px;
       height: 44px;
@@ -198,7 +312,12 @@
       z-index: 1001;
       transition: background 0.2s, border-color 0.2s;
     }
-    .mobile-close:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+    .mobile-close:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
 
     /* ===== Hero ===== */
     #hero {
@@ -211,19 +330,28 @@
       text-align: center;
       overflow: hidden;
     }
+
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.pexels.com/photos/34792711/pexels-photo-34792711.jpeg') center/cover no-repeat;
+      background: url('bg.jpg') center/cover no-repeat;
       transform: scale(1.05);
       animation: heroZoom 12s ease forwards;
     }
-    @keyframes heroZoom { to { transform: scale(1); } }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
+    }
+
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(20,32,18,0.25) 0%, rgba(20,32,18,0.50) 100%);
+      background: linear-gradient(to bottom, rgba(10, 16, 10, 0.15) 0%, rgba(10, 16, 10, 0.55) 100%);
+
     }
+
     .hero-content {
       position: relative;
       z-index: 2;
@@ -231,13 +359,26 @@
       padding: 0 1rem;
       animation: fadeUp 1s 0.4s both;
     }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero-logo-svg {
       display: block;
       margin: 0 auto 1rem;
       width: min(520px, 90vw);
       height: auto;
     }
+
     .hero-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
@@ -246,31 +387,38 @@
       color: var(--gold);
       margin-bottom: 1rem;
     }
+
     .hero-title {
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 300;
       letter-spacing: 0.01em;
       line-height: 1;
       margin-bottom: 1.25rem;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
     }
-    .hero-title strong { font-weight: 600; display: block; }
+
+    .hero-title strong {
+      font-weight: 600;
+      display: block;
+    }
+
     .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-weight: 300;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: 2.5rem;
       letter-spacing: 0.01em;
     }
+
     .hero-scroll {
       position: absolute;
       bottom: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       font-size: 0.7rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -280,25 +428,66 @@
       gap: 0.5rem;
       animation: pulse 2s infinite;
     }
+
     .hero-scroll::after {
       content: '';
       width: 1px;
       height: 40px;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.5);
       animation: lineGrow 2s infinite;
     }
-    @keyframes pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
-    @keyframes lineGrow { 0%{height:0} 100%{height:40px} }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.6
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    @keyframes lineGrow {
+      0% {
+        height: 0
+      }
+
+      100% {
+        height: 40px
+      }
+    }
 
     /* ===== Section Wrapper ===== */
-    .section { padding: 6rem 5%; overflow: visible; }
-    .section-center { text-align: center; }
-    .section-center .section-label { display: block; }
-    .section-center .divider { margin: 1.25rem auto; }
-    .section-center .section-sub { margin: 0.75rem auto 0; }
+    .section {
+      padding: 6rem 5%;
+      overflow: visible;
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .section-label {
+      display: block;
+    }
+
+    .section-center .divider {
+      margin: 1.25rem auto;
+    }
+
+    .section-center .section-sub {
+      margin: 0.75rem auto 0;
+    }
 
     /* ===== About Nainital ===== */
-    #nainital { background: var(--cream); position: relative; z-index: 3; }
+    #nainital {
+      background: var(--cream);
+      position: relative;
+      z-index: 3;
+    }
+
     .nainital-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -306,11 +495,13 @@
       align-items: center;
       margin-top: 3.5rem;
     }
+
     .nainital-img-wrap {
       position: relative;
       width: 100%;
       height: 520px;
     }
+
     .nainital-img-wrap img {
       width: 75%;
       height: 420px;
@@ -318,13 +509,15 @@
       border-radius: var(--radius);
       position: absolute;
       border: 4px solid var(--gold);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
     }
+
     .nainital-img-wrap img:first-child {
       top: 0;
       left: 0;
       z-index: 1;
     }
+
     .nainital-img-accent {
       position: absolute;
       bottom: 0;
@@ -334,29 +527,62 @@
       object-fit: cover;
       border-radius: var(--radius);
       border: 4px solid var(--gold) !important;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
       z-index: 2;
     }
+
     .nainital-text p {
       color: var(--text-lt);
       line-height: 1.85;
       margin-bottom: 1.25rem;
       font-size: 0.97rem;
     }
+
     .nainital-stats {
       display: flex;
       gap: 2rem;
       margin-top: 2rem;
       flex-wrap: wrap;
     }
-    .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--pine); line-height: 1; }
-    .stat-lbl { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-lt); margin-top: 0.2rem; }
+
+    .stat {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--pine);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      margin-top: 0.2rem;
+    }
 
     /* ===== About Hotel ===== */
-    #about { background: var(--pine); color: var(--white); overflow: hidden; padding-top: 6rem; padding-bottom: 6rem; }
-    #about .section-title { color: var(--white); }
-    #about .section-sub { color: rgba(255,255,255,0.75); }
+    #about {
+      background: var(--pine);
+      color: var(--white);
+      overflow: hidden;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    #about .section-title {
+      color: var(--white);
+    }
+
+    #about .section-sub {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -364,22 +590,25 @@
       align-items: center;
       margin-top: 3.5rem;
     }
+
     .about-features {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem 1.75rem;
       margin-top: 2.5rem;
     }
+
     .about-feat {
       display: flex;
       gap: 1rem;
       align-items: flex-start;
     }
+
     .feat-icon {
       width: 44px;
       height: 44px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(201, 168, 76, 0.35);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -388,6 +617,7 @@
       flex-shrink: 0;
       margin-top: 0.1rem;
     }
+
     .feat-text h4 {
       font-family: 'Playfair Display', serif;
       font-size: 1.05rem;
@@ -397,7 +627,14 @@
       letter-spacing: 0.01em;
       line-height: 1.2;
     }
-    .feat-text p { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; line-height: 1.55; }
+
+    .feat-text p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.3rem;
+      line-height: 1.55;
+    }
+
     .about-img {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -406,26 +643,31 @@
       margin-top: -6rem;
       margin-bottom: -6rem;
     }
+
     .about-img .img-tall {
       grid-row: span 3;
       overflow: hidden;
       border-radius: 8px;
     }
+
     .about-img .img-top-right {
       height: 220px;
       overflow: hidden;
       border-radius: 8px;
     }
+
     .about-img .img-mid-right {
       height: 220px;
       overflow: hidden;
       border-radius: 8px;
     }
+
     .about-img .img-bottom-right {
       height: 220px;
       overflow: hidden;
       border-radius: 8px;
     }
+
     .about-img img {
       width: 100%;
       height: 100%;
@@ -433,7 +675,10 @@
       display: block;
       transition: transform 0.5s ease;
     }
-    .about-img div:hover img { transform: scale(1.05); }
+
+    .about-img div:hover img {
+      transform: scale(1.05);
+    }
 
     /* ===== Rooms - cards handled by Tailwind ===== */
     .rooms-grid {
@@ -443,36 +688,103 @@
       margin-top: 3.5rem;
     }
 
+    /* ===== Amenities fix ===== */
+    .rooms-grid>div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rooms-grid>div .p-7 {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .rooms-grid>div .border-t {
+      margin-top: auto;
+    }
+
+    .rooms-grid .amenity-span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--pine);
+      border-left: 2px solid var(--gold);
+      padding: 4px 0 4px 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* ===== rooms ===== */
-    #rooms { background: var(--cream); position: relative; z-index: 1; padding-top: 7rem; }
+    #rooms {
+      background: var(--cream);
+      position: relative;
+      z-index: 1;
+      padding-top: 7rem;
+    }
+
     .rooms-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
       margin-top: 3.5rem;
     }
+
     .amenity-card {
       text-align: center;
       padding: 2.5rem 1.5rem;
       background: var(--white);
-      border: 1px solid rgba(0,0,0,0.06);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: var(--radius);
       transition: var(--transition);
     }
-    .amenity-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+
+    .amenity-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+    }
+
     .amenity-ico {
       font-size: 2.2rem;
       margin-bottom: 1rem;
       display: block;
     }
-    .amenity-card h3 { font-size: 1.2rem; color: var(--pine); margin-bottom: 0.5rem; }
-    .amenity-card p { font-size: 0.84rem; color: var(--text-lt); line-height: 1.7; }
+
+    .amenity-card h3 {
+      font-size: 1.2rem;
+      color: var(--pine);
+      margin-bottom: 0.5rem;
+    }
+
+    .amenity-card p {
+      font-size: 0.84rem;
+      color: var(--text-lt);
+      line-height: 1.7;
+    }
 
     /* ===== Gallery ===== */
-    #gallery { background: var(--pine); }
-    #gallery .section-title { color: var(--white); }
-    #gallery .section-label { color: var(--gold); }
-    #gallery .divider { background: var(--gold); }
+    #gallery {
+      background: var(--pine);
+    }
+
+    #gallery .section-title {
+      color: var(--white);
+    }
+
+    #gallery .section-label {
+      color: var(--gold);
+    }
+
+    #gallery .divider {
+      background: var(--gold);
+    }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -480,31 +792,60 @@
       gap: 0.75rem;
       margin-top: 3rem;
     }
+
     .gallery-item {
       overflow: hidden;
       border-radius: var(--radius);
       position: relative;
     }
-    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
     .gallery-item::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.25);
+      background: rgba(0, 0, 0, 0.25);
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .gallery-item:hover::after { opacity: 1; }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
 
     /* ===== FAQ ===== */
-    #faq { background: var(--sand); }
-    .faq-wrap { max-width: 760px; margin: 3.5rem auto 0; }
-    .faq-item {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
+    #faq {
+      background: var(--sand);
     }
-    .faq-item:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+
+    .faq-wrap {
+      max-width: 760px;
+      margin: 3.5rem auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     .faq-q {
       display: flex;
       justify-content: space-between;
@@ -518,6 +859,7 @@
       user-select: none;
       gap: 1rem;
     }
+
     .faq-q .faq-icon {
       width: 28px;
       height: 28px;
@@ -533,30 +875,55 @@
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--dark); }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--gold);
+      color: var(--dark);
+    }
+
     .faq-a {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease, padding 0.4s ease;
     }
-    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.25rem; }
-    .faq-a p { font-size: 0.9rem; color: var(--text-lt); line-height: 1.8; }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-bottom: 1.25rem;
+    }
+
+    .faq-a p {
+      font-size: 0.9rem;
+      color: var(--text-lt);
+      line-height: 1.8;
+    }
 
     /* ===== Contact ===== */
-    #contact { background: var(--cream); }
+    #contact {
+      background: var(--cream);
+    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
       gap: 4rem;
       margin-top: 3.5rem;
     }
-    .contact-info h3 { font-size: 1.5rem; color: var(--pine); margin-bottom: 1.5rem; }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      color: var(--pine);
+      margin-bottom: 1.5rem;
+    }
+
     .contact-item {
       display: flex;
       gap: 1rem;
       align-items: flex-start;
       margin-bottom: 1.5rem;
     }
+
     .contact-ico {
       width: 42px;
       height: 42px;
@@ -568,16 +935,54 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-    .contact-item h4 { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); margin-bottom: 0.3rem; }
-    .contact-item p, .contact-item a { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
-    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); }
+
+    .contact-item h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
     .form-group input,
     .form-group textarea,
     .form-group select {
-      border: 1.5px solid rgba(0,0,0,0.12);
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
       border-radius: var(--radius);
       padding: 0.85rem 1rem;
       font-family: 'DM Sans', sans-serif;
@@ -587,26 +992,47 @@
       outline: none;
       transition: border-color 0.25s;
     }
+
     .form-group input:focus,
     .form-group textarea:focus,
-    .form-group select:focus { border-color: var(--pine); }
-    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select:focus {
+      border-color: var(--pine);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
 
     /* ===== Footer ===== */
     footer {
       background: var(--dark);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       padding: 3.5rem 5% 2rem;
     }
+
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 3rem;
       margin-bottom: 3rem;
     }
-    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
-    .footer-brand .nav-logo svg { height: 70px; width: auto; }
-    .footer-brand p { font-size: 0.85rem; line-height: 1.75; }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand .nav-logo svg {
+      height: 70px;
+      width: auto;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.75;
+    }
+
     .footer-col h4 {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
@@ -616,14 +1042,32 @@
       color: var(--gold);
       margin-bottom: 1.25rem;
     }
-    .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a { font-size: 0.87rem; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 0.85rem; margin-top: 1.5rem; }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.87rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
+    }
+
     .social-link {
       width: 38px;
       height: 38px;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -631,9 +1075,15 @@
       font-size: 0.9rem;
       transition: var(--transition);
     }
-    .social-link:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+    .social-link:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -642,47 +1092,148 @@
       gap: 1rem;
       font-size: 0.8rem;
     }
-    .footer-bottom a { transition: color 0.2s; }
-    .footer-bottom a:hover { color: var(--gold); }
+
+    .footer-bottom a {
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold);
+    }
 
     /* ===== Responsive ===== */
     @media (max-width: 1024px) {
-      .rooms-grid { grid-template-columns: 1fr 1fr; }      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-      .gallery-item:first-child { grid-column: span 1; grid-row: span 1; }
+      .rooms-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
     }
+
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .nainital-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .nainital-img-wrap { height: 340px; }
-      .nainital-img-wrap img { height: 260px; }
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nainital-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nainital-img-wrap {
+        height: 340px;
+      }
+
+      .nainital-img-wrap img {
+        height: 260px;
+      }
+
       .nainital-img-accent {
         width: 58% !important;
         height: 200px !important;
       }
-      .rooms-grid { grid-template-columns: 1fr; }
-      .rooms-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 180px); }
-      .gallery-item:first-child { grid-column: span 2; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .about-features { grid-template-columns: 1fr; }
-      .about-img { height: 300px; }
-      .section { padding: 4rem 4%; }
-      .modal-highlights { grid-template-columns: 1fr 1fr; }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 180px);
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 2;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        height: 300px;
+      }
+
+      .section {
+        padding: 4rem 4%;
+      }
+
+      .modal-highlights {
+        grid-template-columns: 1fr 1fr;
+      }
     }
+
     @media (max-width: 480px) {
-      .section { padding: 3.5rem 4%; }
-      .rooms-grid { grid-template-columns: 1fr; }
-      .modal-highlights { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .gallery-item:first-child { grid-column: span 1; }
-      .gallery-item { height: 200px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .hero-title { font-size: 2.4rem; }
-      .nainital-stats { gap: 1.2rem; }
-      .stat-num { font-size: 1.6rem; }
+      .section {
+        padding: 3.5rem 4%;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 1;
+      }
+
+      .gallery-item {
+        height: 200px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .nainital-stats {
+        gap: 1.2rem;
+      }
+
+      .stat-num {
+        font-size: 1.6rem;
+      }
     }
 
     /* ===== Room Modal ===== */
@@ -690,13 +1241,19 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(20,32,18,0.85);
+      background: rgba(20, 32, 18, 0.85);
       z-index: 2000;
       overflow-y: auto;
       padding: 2rem 1rem;
       backdrop-filter: blur(4px);
     }
-    .room-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+    .room-modal-overlay.open {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
     .room-modal {
       background: var(--cream);
       max-width: 900px;
@@ -707,22 +1264,43 @@
       margin: auto;
       animation: modalSlideUp 0.4s ease both;
     }
-    @keyframes modalSlideUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .modal-close-btn {
       position: absolute;
       top: 1.2rem;
       right: 1.2rem;
       z-index: 10;
-      width: 38px; height: 38px;
-      background: rgba(26,34,24,0.7);
-      border: none; border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      background: rgba(26, 34, 24, 0.7);
+      border: none;
+      border-radius: 50%;
       color: #fff;
       font-size: 1.2rem;
       cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background 0.2s;
     }
-    .modal-close-btn:hover { background: var(--gold); color: var(--dark); }
+
+    .modal-close-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
     .modal-photo-slider {
       position: relative;
       width: 100%;
@@ -730,6 +1308,7 @@
       overflow: hidden;
       background: #000;
     }
+
     .modal-photo-slider img {
       position: absolute;
       inset: 0;
@@ -740,7 +1319,11 @@
       opacity: 0;
       transition: opacity 0.5s ease;
     }
-    .modal-photo-slider img.active { opacity: 1; }
+
+    .modal-photo-slider img.active {
+      opacity: 1;
+    }
+
     .slider-nav {
       position: absolute;
       bottom: 1rem;
@@ -750,33 +1333,53 @@
       gap: 0.5rem;
       z-index: 5;
     }
+
     .slider-dot {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
       transition: background 0.2s;
       border: none;
     }
-    .slider-dot.active { background: var(--gold); }
+
+    .slider-dot.active {
+      background: var(--gold);
+    }
+
     .slider-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(26,34,24,0.6);
+      background: rgba(26, 34, 24, 0.6);
       border: none;
       color: #fff;
-      width: 42px; height: 42px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       font-size: 1.2rem;
       cursor: pointer;
       z-index: 5;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background 0.2s;
     }
-    .slider-arrow:hover { background: var(--gold); color: var(--dark); }
-    .slider-prev { left: 1rem; }
-    .slider-next { right: 1rem; }
+
+    .slider-arrow:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .slider-prev {
+      left: 1rem;
+    }
+
+    .slider-next {
+      right: 1rem;
+    }
+
     .modal-badge-overlay {
       position: absolute;
       top: 1.2rem;
@@ -791,20 +1394,24 @@
       border-radius: 2px;
       z-index: 5;
     }
+
     .modal-body {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
     }
+
     .modal-info {
       padding: 2.5rem;
       border-right: 1px solid var(--sand);
     }
+
     .modal-info h2 {
       font-size: 2rem;
       color: var(--pine);
       margin-bottom: 0.5rem;
     }
+
     .modal-info .modal-tagline {
       font-style: italic;
       color: var(--text-lt);
@@ -812,18 +1419,21 @@
       margin-bottom: 1.25rem;
       font-family: 'Playfair Display', serif;
     }
+
     .modal-info .modal-desc {
       font-size: 0.9rem;
       color: var(--text-lt);
       line-height: 1.85;
       margin-bottom: 1.5rem;
     }
+
     .modal-highlights {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
       margin-bottom: 1.75rem;
     }
+
     .modal-highlight {
       display: flex;
       align-items: center;
@@ -835,6 +1445,7 @@
       border-radius: 20px;
       font-weight: 500;
     }
+
     .modal-price-row {
       display: flex;
       align-items: center;
@@ -842,6 +1453,7 @@
       padding-top: 1.25rem;
       border-top: 1px solid var(--sand);
     }
+
     .modal-price-row .price {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
@@ -849,30 +1461,54 @@
       color: var(--pine);
       letter-spacing: 0.04em;
     }
+
     .modal-price-row .price-per {
       font-size: 0.72rem;
       color: var(--text-lt);
       font-family: 'DM Sans', sans-serif;
     }
+
     .modal-booking {
       padding: 2.5rem;
       background: var(--white);
     }
+
     .modal-booking h3 {
       font-size: 1.2rem;
       color: var(--pine);
       margin-bottom: 0.25rem;
     }
+
     .modal-booking p.sub {
       font-size: 0.8rem;
       color: var(--text-lt);
       margin-bottom: 1.5rem;
     }
-    .modal-form { display: flex; flex-direction: column; gap: 1rem; }
-    .modal-form .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
-    .modal-form label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-lt); }
-    .modal-form input, .modal-form select, .modal-form textarea {
-      border: 1.5px solid rgba(0,0,0,0.12);
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .modal-form label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
+    .modal-form input,
+    .modal-form select,
+    .modal-form textarea {
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
       border-radius: var(--radius);
       padding: 0.75rem 1rem;
       font-family: 'DM Sans', sans-serif;
@@ -882,8 +1518,19 @@
       outline: none;
       transition: border-color 0.25s;
     }
-    .modal-form input:focus, .modal-form select:focus, .modal-form textarea:focus { border-color: var(--pine); }
-    .modal-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    .modal-form input:focus,
+    .modal-form select:focus,
+    .modal-form textarea:focus {
+      border-color: var(--pine);
+    }
+
+    .modal-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
     .modal-success {
       display: none;
       background: var(--mist);
@@ -893,51 +1540,144 @@
       font-size: 0.88rem;
       text-align: center;
     }
+
     @media (max-width: 700px) {
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-info { border-right: none; border-bottom: 1px solid var(--sand); padding: 1.25rem; }
-      .modal-booking { padding: 1.25rem; }
-      .modal-photo-slider { aspect-ratio: 4 / 3; }
-      .modal-highlights { grid-template-columns: 1fr; }
-      .modal-info h2 { font-size: 1.6rem; }
-      .modal-info .modal-desc { font-size: 0.85rem; word-break: break-word; overflow-wrap: break-word; }
-      .modal-highlight { font-size: 0.78rem; }
-      .modal-price-row { flex-wrap: wrap; gap: 0.75rem; }
-      .room-modal-overlay { padding: 0.5rem; }
-      .room-modal { border-radius: 4px; }
-      .payment-gateway { max-height: none; }
-      .modal-form .form-row { grid-template-columns: 1fr; }
-      .pg-btn-row { flex-direction: column; }
-      .card-row { flex-direction: column; }
-      .pg-pay-tab { min-width: 60px; font-size: 0.65rem; padding: 0.5rem 0.3rem; }
-      .modal-booking h3 { font-size: 1rem; }
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-info {
+        border-right: none;
+        border-bottom: 1px solid var(--sand);
+        padding: 1.25rem;
+      }
+
+      .modal-booking {
+        padding: 1.25rem;
+      }
+
+      .modal-photo-slider {
+        aspect-ratio: 4 / 3;
+      }
+
+      .modal-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-info h2 {
+        font-size: 1.6rem;
+      }
+
+      .modal-info .modal-desc {
+        font-size: 0.85rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .modal-highlight {
+        font-size: 0.78rem;
+      }
+
+      .modal-price-row {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .room-modal-overlay {
+        padding: 0.5rem;
+      }
+
+      .room-modal {
+        border-radius: 4px;
+      }
+
+      .payment-gateway {
+        max-height: none;
+      }
+
+      .modal-form .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .pg-btn-row {
+        flex-direction: column;
+      }
+
+      .card-row {
+        flex-direction: column;
+      }
+
+      .pg-pay-tab {
+        min-width: 60px;
+        font-size: 0.65rem;
+        padding: 0.5rem 0.3rem;
+      }
+
+      .modal-booking h3 {
+        font-size: 1rem;
+      }
     }
 
     /* ===== Payment Gateway Styles ===== */
-    .payment-gateway { overflow-y: auto; max-height: 560px; padding-right: 2px; }
-    .pg-step { display: none; }
-    .pg-step.active { display: block; }
+    .payment-gateway {
+      overflow-y: auto;
+      max-height: 560px;
+      padding-right: 2px;
+    }
+
+    .pg-step {
+      display: none;
+    }
+
+    .pg-step.active {
+      display: block;
+    }
+
     .pg-progress {
       display: flex;
       align-items: center;
       gap: 0;
       margin-bottom: 1.5rem;
     }
+
     .pg-step-dot {
-      width: 28px; height: 28px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--sand);
       border: 2px solid var(--mist);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
       color: var(--text-lt);
       transition: all 0.3s;
       flex-shrink: 0;
     }
-    .pg-step-dot.done { background: var(--pine); border-color: var(--pine); color: white; }
-    .pg-step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--dark); }
-    .pg-step-line { flex: 1; height: 2px; background: var(--mist); }
-    .pg-step-line.done { background: var(--pine); }
+
+    .pg-step-dot.done {
+      background: var(--pine);
+      border-color: var(--pine);
+      color: white;
+    }
+
+    .pg-step-dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+
+    .pg-step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--mist);
+    }
+
+    .pg-step-line.done {
+      background: var(--pine);
+    }
+
     .pg-step-label {
       font-size: 0.62rem;
       letter-spacing: 0.08em;
@@ -946,14 +1686,28 @@
       text-align: center;
       margin-top: 0.3rem;
     }
-    .pg-progress-wrap { margin-bottom: 1.5rem; }
+
+    .pg-progress-wrap {
+      margin-bottom: 1.5rem;
+    }
+
     .pg-progress-labels {
       display: flex;
       justify-content: space-between;
       margin-top: 0.35rem;
     }
-    .pg-step-label-item { font-size: 0.6rem; color: var(--text-lt); text-transform: uppercase; letter-spacing: 0.07em; }
-    .pg-step-label-item.active { color: var(--gold); font-weight: 600; }
+
+    .pg-step-label-item {
+      font-size: 0.6rem;
+      color: var(--text-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .pg-step-label-item.active {
+      color: var(--gold);
+      font-weight: 600;
+    }
 
     .pg-section-title {
       font-size: 1rem;
@@ -974,12 +1728,14 @@
       margin-bottom: 1rem;
       font-size: 0.82rem;
     }
+
     .pg-summary-row {
       display: flex;
       justify-content: space-between;
       padding: 0.3rem 0;
       color: var(--text-lt);
     }
+
     .pg-summary-row.total {
       font-weight: 700;
       color: var(--pine);
@@ -989,6 +1745,7 @@
       margin-top: 0.3rem;
       font-family: 'Playfair Display', serif;
     }
+
     .pg-nights-badge {
       display: inline-block;
       background: var(--gold);
@@ -1007,6 +1764,7 @@
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
+
     .pg-pay-tab {
       flex: 1;
       min-width: 70px;
@@ -1022,33 +1780,57 @@
       background: white;
       transition: all 0.2s;
     }
-    .pg-pay-tab.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
-    .pg-pay-tab .tab-icon { display: block; font-size: 1.1rem; margin-bottom: 0.15rem; }
-    .pg-pay-method { display: none; }
-    .pg-pay-method.active { display: block; }
+
+    .pg-pay-tab.active {
+      border-color: var(--gold);
+      color: var(--pine);
+      background: #fffdf5;
+    }
+
+    .pg-pay-tab .tab-icon {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .pg-pay-method {
+      display: none;
+    }
+
+    .pg-pay-method.active {
+      display: block;
+    }
 
     /* Card inputs */
-    .card-row { display: flex; gap: 0.75rem; }
+    .card-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
     .card-input-wrap {
       position: relative;
       display: flex;
       align-items: center;
     }
+
     .card-input-wrap input {
       padding-right: 3rem;
     }
+
     .card-brand-icon {
       position: absolute;
       right: 0.75rem;
       font-size: 1.2rem;
       pointer-events: none;
     }
+
     .upi-apps {
       display: flex;
       gap: 0.75rem;
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
+
     .upi-app-btn {
       display: flex;
       flex-direction: column;
@@ -1064,11 +1846,26 @@
       font-family: 'DM Sans', sans-serif;
       transition: all 0.2s;
     }
-    .upi-app-btn:hover, .upi-app-btn.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
-    .upi-app-btn .upi-icon { font-size: 1.4rem; }
+
+    .upi-app-btn:hover,
+    .upi-app-btn.active {
+      border-color: var(--gold);
+      color: var(--pine);
+      background: #fffdf5;
+    }
+
+    .upi-app-btn .upi-icon {
+      font-size: 1.4rem;
+    }
 
     /* Net banking select */
-    .nb-banks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; }
+    .nb-banks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
     .nb-bank {
       padding: 0.6rem;
       border: 1.5px solid var(--mist);
@@ -1080,7 +1877,13 @@
       background: white;
       transition: all 0.2s;
     }
-    .nb-bank:hover, .nb-bank.active { border-color: var(--gold); color: var(--pine); background: #fffdf5; }
+
+    .nb-bank:hover,
+    .nb-bank.active {
+      border-color: var(--gold);
+      color: var(--pine);
+      background: #fffdf5;
+    }
 
     .pg-secure-note {
       display: flex;
@@ -1096,25 +1899,32 @@
       text-align: center;
       padding: 2rem 1rem;
     }
+
     .pg-success-icon {
-      width: 64px; height: 64px;
+      width: 64px;
+      height: 64px;
       background: linear-gradient(135deg, var(--pine), var(--sage));
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto 1.25rem;
       font-size: 2rem;
     }
+
     .pg-success-screen h3 {
       font-size: 1.5rem;
       color: var(--pine);
       margin-bottom: 0.5rem;
     }
+
     .pg-success-screen p {
       color: var(--text-lt);
       font-size: 0.88rem;
       line-height: 1.7;
       margin-bottom: 0.5rem;
     }
+
     .pg-booking-id {
       display: inline-block;
       background: var(--mist);
@@ -1127,1160 +1937,1419 @@
       font-weight: 600;
       letter-spacing: 0.1em;
     }
-    .pg-btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
-    .pg-btn-row button { flex: 1; }
+
+    .pg-btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .pg-btn-row button {
+      flex: 1;
+    }
+
     /* ===== Horizontal Scroll Gallery ===== */
-.gallery-scroll {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 0;
-}
+    .gallery-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
+    }
 
-.gallery-scroll img {
-  height: 260px;
-  width: auto;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
+    .gallery-scroll img {
+      height: 260px;
+      width: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
 
-.gallery-scroll img:hover {
-  transform: scale(1.05);
-}
+    .gallery-scroll img:hover {
+      transform: scale(1.05);
+    }
 
-/* Hide scrollbar */
-.gallery-scroll::-webkit-scrollbar {
-  display: none;
-}
+    /* Hide scrollbar */
+    .gallery-scroll::-webkit-scrollbar {
+      display: none;
+    }
 
-.gallery-wrap {
-  position: relative;
-}
+    .gallery-wrap {
+      position: relative;
+    }
 
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(26,34,24,0.75);
-  border: 1.5px solid rgba(201,168,76,0.6);
-  color: #c9a84c;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.25s, border-color 0.25s, transform 0.25s;
-  backdrop-filter: blur(4px);
-}
-.gallery-arrow:hover {
-  background: #c9a84c;
-  border-color: #c9a84c;
-  color: #1a2218;
-  transform: translateY(-50%) scale(1.08);
-}
-.gallery-arrow-left  { left: -22px; }
-.gallery-arrow-right { right: -22px; }
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(26, 34, 24, 0.75);
+      border: 1.5px solid rgba(201, 168, 76, 0.6);
+      color: #c9a84c;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      backdrop-filter: blur(4px);
+    }
 
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 5000;
-  text-align: center;
-}
+    .gallery-arrow:hover {
+      background: #c9a84c;
+      border-color: #c9a84c;
+      color: #1a2218;
+      transform: translateY(-50%) scale(1.08);
+    }
 
-.lightbox img {
-  max-width: 80%;
-  max-height: 80%;
-  margin-top: 5%;
-}
+    .gallery-arrow-left {
+      left: -22px;
+    }
 
-.close {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-}
+    .gallery-arrow-right {
+      right: -22px;
+    }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 5000;
+      text-align: center;
+    }
 
-.prev { left: 40px; }
-.next { right: 40px; }
-/* ===== DARK PINE GOOGLE REVIEWS SECTION ===== */
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      margin-top: 5%;
+    }
 
-.reviews-dark {
-  position: relative;
-  background: linear-gradient(180deg, #1a2218 0%, #2c3e2d 100%);
-  padding: 100px 5%;
-  overflow: hidden;
-  text-align: center;
-  color: white;
-}
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
 
-.reviews-dark .section-title {
-  color: white;
-}
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
 
-.google-rating {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+    .prev {
+      left: 40px;
+    }
 
-.google-rating img {
-  height: 20px;
-}
+    .next {
+      right: 40px;
+    }
 
-.rating-score {
-  font-size: 28px;
-  font-weight: 600;
-}
+    /* ===== DARK PINE GOOGLE REVIEWS SECTION ===== */
 
-.rating-stars {
-  color: #e8c97a;
-  letter-spacing: 3px;
-}
+    .reviews-dark {
+      position: relative;
+      background: linear-gradient(180deg, #1a2218 0%, #2c3e2d 100%);
+      padding: 100px 5%;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+    }
 
-.rating-count {
-  opacity: 0.7;
-  font-size: 14px;
-}
+    .reviews-dark .section-title {
+      color: white;
+    }
 
-/* Carousel */
-.reviews-carousel {
-  overflow: hidden;
-  margin-top: 60px;
-  position: relative;
-}
+    .google-rating {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-.reviews-track {
-  display: flex;
-  gap: 30px;
-  width: max-content;
-  animation: scrollReviews 30s linear infinite;
-}
+    .google-rating img {
+      height: 20px;
+    }
 
-@keyframes scrollReviews {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+    .rating-score {
+      font-size: 28px;
+      font-weight: 600;
+    }
 
-.review-card-dark {
-  min-width: 320px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(6px);
-  transition: 0.4s ease;
-}
+    .rating-stars {
+      color: #e8c97a;
+      letter-spacing: 3px;
+    }
 
-.review-card-dark:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-8px);
-}
+    .rating-count {
+      opacity: 0.7;
+      font-size: 14px;
+    }
 
-.review-card-dark p {
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
+    /* Carousel */
+    .reviews-carousel {
+      overflow: hidden;
+      margin-top: 60px;
+      position: relative;
+    }
 
-.review-card-dark span {
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
+    .reviews-track {
+      display: flex;
+      gap: 30px;
+      width: max-content;
+      animation: scrollReviews 30s linear infinite;
+    }
 
-@keyframes scrollReviews {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+    @keyframes scrollReviews {
+      0% {
+        transform: translateX(0);
+      }
 
-/* Floating Parallax Clouds */
-.clouds {
-  position: absolute;
-  inset: 0;
-  background: url('https://www.transparenttextures.com/patterns/clouds.png');
-  opacity: 0.08;
-  animation: moveClouds 60s linear infinite;
-  pointer-events: none;
-}
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
-@keyframes moveClouds {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 0; }
-}
+    .review-card-dark {
+      min-width: 320px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      transition: 0.4s ease;
+    }
+
+    .review-card-dark:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-8px);
+    }
+
+    .review-card-dark p {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .review-card-dark span {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    @keyframes scrollReviews {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Floating Parallax Clouds */
+    .clouds {
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/clouds.png');
+      opacity: 0.08;
+      animation: moveClouds 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes moveClouds {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 1000px 0;
+      }
+    }
   </style>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+
 <body>
 
-<!-- ===== NAVIGATION ===== -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="52">
-      <g transform="translate(130,19)">
-        <circle r="10" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
-        <circle r="3.5" fill="#0a1628" stroke="#c9a84c" stroke-width="1"/>
-        <circle r="14.5" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
-        <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#c9a84c" stroke-width="0.9"/>
-        <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#c9a84c" stroke-width="0.9"/>
-        <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
-        <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
-        <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#c9a84c"/>
-        <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#c9a84c"/>
-        <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#c9a84c"/>
-        <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#c9a84c"/>
-        <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#c9a84c"/>
-        <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#c9a84c"/>
-        <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#c9a84c"/>
-        <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#c9a84c"/>
-      </g>
-      <line x1="12" y1="34" x2="111" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
-      <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
-      <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-      <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-      <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
-      <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
-      <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
-      <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
-      <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
-    </svg>
-  </a>
-  <div class="nav-links">
-    <a href="#nainital">Nainital</a>
-    <a href="#about">About</a>
-    <a href="#rooms">Rooms</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-    <a href="#rooms" class="btn btn-gold">Book Now</a>
-  </div>
-  <div class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- Mobile Nav -->
-<div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
-  <a href="#nainital" class="mobile-link">Nainital</a>
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#rooms" class="mobile-link">Rooms</a>
-  <a href="#rooms" class="mobile-link">rooms</a>
-  <a href="#gallery" class="mobile-link">Gallery</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-  <a href="#rooms" class="btn btn-gold mobile-link">Book Now</a>
-</div>
-
-
-<!-- ===== HERO SECTION ===== -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 165" class="hero-logo-svg">
-      <!-- Wheel -->
-      <g transform="translate(250,32)">
-        <circle r="16" fill="none" stroke="#c9a84c" stroke-width="1.8"/>
-        <circle r="5.5" fill="#0a1628" stroke="#c9a84c" stroke-width="1.4"/>
-        <circle r="23" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
-        <line x1="0" y1="-15" x2="0" y2="15" stroke="#c9a84c" stroke-width="1.2"/>
-        <line x1="-15" y1="0" x2="15" y2="0" stroke="#c9a84c" stroke-width="1.2"/>
-        <line x1="-10.6" y1="-10.6" x2="10.6" y2="10.6" stroke="#c9a84c" stroke-width="1.2"/>
-        <line x1="10.6" y1="-10.6" x2="-10.6" y2="10.6" stroke="#c9a84c" stroke-width="1.2"/>
-        <line x1="0" y1="-23" x2="0" y2="-16" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="0" y1="23" x2="0" y2="16" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="-23" y1="0" x2="-16" y2="0" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="23" y1="0" x2="16" y2="0" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="-16.3" y1="-16.3" x2="-11.3" y2="-11.3" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="16.3" y1="-16.3" x2="11.3" y2="-11.3" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="-16.3" y1="16.3" x2="-11.3" y2="11.3" stroke="#c9a84c" stroke-width="1.1"/>
-        <line x1="16.3" y1="16.3" x2="11.3" y2="11.3" stroke="#c9a84c" stroke-width="1.1"/>
-        <polygon points="0,-27 3.2,-21 -3.2,-21" fill="#c9a84c"/>
-        <polygon points="0,27 3.2,21 -3.2,21" fill="#c9a84c"/>
-        <polygon points="-27,0 -21,3.2 -21,-3.2" fill="#c9a84c"/>
-        <polygon points="27,0 21,3.2 21,-3.2" fill="#c9a84c"/>
-        <polygon points="-19.1,-19.1 -15.3,-14.6 -14.6,-15.3" fill="#c9a84c"/>
-        <polygon points="19.1,-19.1 15.3,-14.6 14.6,-15.3" fill="#c9a84c"/>
-        <polygon points="-19.1,19.1 -15.3,14.6 -14.6,15.3" fill="#c9a84c"/>
-        <polygon points="19.1,19.1 15.3,14.6 14.6,15.3" fill="#c9a84c"/>
-        <circle cx="0" cy="-16" r="1.5" fill="#c9a84c"/>
-        <circle cx="0" cy="16" r="1.5" fill="#c9a84c"/>
-        <circle cx="-16" cy="0" r="1.5" fill="#c9a84c"/>
-        <circle cx="16" cy="0" r="1.5" fill="#c9a84c"/>
-        <circle cx="-11.3" cy="-11.3" r="1.5" fill="#c9a84c"/>
-        <circle cx="11.3" cy="-11.3" r="1.5" fill="#c9a84c"/>
-        <circle cx="-11.3" cy="11.3" r="1.5" fill="#c9a84c"/>
-        <circle cx="11.3" cy="11.3" r="1.5" fill="#c9a84c"/>
-      </g>
-      <!-- Top double lines -->
-      <line x1="20" y1="57" x2="220" y2="57" stroke="#c9a84c" stroke-width="1.6"/>
-      <line x1="280" y1="57" x2="480" y2="57" stroke="#c9a84c" stroke-width="1.6"/>
-      <line x1="20" y1="59.5" x2="220" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
-      <line x1="280" y1="59.5" x2="480" y2="59.5" stroke="#c9a84c" stroke-width="0.6"/>
-      <!-- Main text — larger font, wider viewBox means no clipping -->
-      <text x="250" y="102" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="44" font-weight="700" fill="#c9a84c" letter-spacing="5">HOTEL SUDARSHAN</text>
-      <!-- Bottom double lines + arc -->
-      <line x1="20" y1="114" x2="165" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
-      <line x1="335" y1="114" x2="480" y2="114" stroke="#c9a84c" stroke-width="1.6"/>
-      <path d="M 165,114 Q 250,160 335,114" fill="none" stroke="#c9a84c" stroke-width="1.6"/>
-      <path d="M 174,114 Q 250,150 326,114" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
-    </svg>
-    <p class="hero-tagline">A sanctuary above the lake, on Zoo Road, Tallital — where the Kumaon hills meet quiet elegance</p>
-    <a href="#rooms" class="btn btn-gold">Reserve Your Room</a>
-    &nbsp;&nbsp;
-    <a href="#about" class="btn btn-outline">Discover the Hotel</a>
-  </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-
-<!-- ===== ABOUT NAINITAL SECTION ===== -->
-<section id="nainital" class="section">
-  <div class="nainital-grid">
-    <div class="nainital-img-wrap">
-      <img src="https://www.swantour.com/blogs/wp-content/uploads/2018/12/Nainital-Lake.jpg" alt="Naini Lake Nainital" loading="lazy" />
-      <img class="nainital-img-accent" src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from hotel" loading="lazy" />
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="52">
+        <g transform="translate(130,19)">
+          <circle r="10" fill="none" stroke="#fade42" stroke-width="1.3" />
+          <circle r="3.5" fill="#0a1628" stroke="#fade42" stroke-width="1" />
+          <circle r="14.5" fill="none" stroke="#fade42" stroke-width="0.9" />
+          <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#fade42" stroke-width="0.9" />
+          <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#fade42" stroke-width="0.9" />
+          <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#fade42" stroke-width="0.9" />
+          <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#fade42" stroke-width="0.9" />
+          <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#fade42" />
+          <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#fade42" />
+          <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#fade42" />
+          <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#fade42" />
+          <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#fade42" />
+          <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#fade42" />
+          <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#fade42" />
+          <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#fade42" />
+        </g>
+        <line x1="12" y1="34" x2="111" y2="34" stroke="#fade42" stroke-width="1.3" />
+        <line x1="149" y1="34" x2="248" y2="34" stroke="#fade42" stroke-width="1.3" />
+        <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#fade42" stroke-width="0.5" />
+        <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#fade42" stroke-width="0.5" />
+        <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21"
+          font-weight="700" fill="#fade42" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+        <line x1="12" y1="66" x2="90" y2="66" stroke="#fade42" stroke-width="1.3" />
+        <line x1="170" y1="66" x2="248" y2="66" stroke="#fade42" stroke-width="1.3" />
+        <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#fade42" stroke-width="1.3" />
+        <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#fade42" stroke-width="0.6" />
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#nainital">Nainital</a>
+      <a href="#about">About</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#rooms" class="btn btn-gold">Book Now</a>
     </div>
-    <div class="nainital-text">
-      <p class="section-label">Discover</p>
-      <h2 class="section-title">The Jewel of Kumaon</h2>
-      <div class="divider"></div>
-      <p>Perched at 2,084 metres in the Kumaon Himalayas of Uttarakhand, Nainital is one of northern India's most beloved hill stations — a world of pine-scented forests, colonial promenades and a shimmering, pear-shaped lake that has captivated travellers for centuries.</p>
-      <p>The legendary <strong>Naini Lake</strong> is the soul of the town — serene at dawn, alive with colour by afternoon. Walk the length of <strong>Mall Road</strong> past Victorian-era facades and vibrant market stalls, take the cable car to Snow View Point for sweeping Himalayan panoramas, or seek blessings at the revered <strong>Naina Devi Temple</strong> perched at the lake's edge.</p>
-      <p>With a mild, pleasant climate year-round, lively festivals, and a natural landscape of rare quiet beauty, Nainital leaves a mark on every visitor that time cannot erase.</p>
-      <div class="nainital-stats">
-        <div class="stat"><div class="stat-num">2,084m</div><div class="stat-lbl">Altitude</div></div>
-        <div class="stat"><div class="stat-num">1.5km</div><div class="stat-lbl">Naini Lake Length</div></div>
-        <div class="stat"><div class="stat-num">300+</div><div class="stat-lbl">Sunny Days / Year</div></div>
-      </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
     </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#nainital" class="mobile-link">Nainital</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#rooms" class="mobile-link">Rooms</a>
+    <a href="#rooms" class="mobile-link">rooms</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#rooms" class="btn btn-gold mobile-link">Book Now</a>
   </div>
-</section>
 
 
-<!-- ===== ABOUT HOTEL SUDARSHAN SECTION ===== -->
-<section id="about" class="section">
-  <div class="about-grid">
-    <div>
-      <p class="section-label">Our Story</p>
-      <h2 class="section-title" style="color:var(--white)">A Home Above the Hills of Nainital</h2>
-      <div class="divider"></div>
-      <p class="section-sub">Set on Zoo Road, Tallital — just steps from the Naini Lake and the heart of Nainital — Hotel Sudarshan has long been a trusted retreat for families, couples and solo travellers seeking genuine comfort at an honest price. The hotel is known for its attentive staff, clean well-kept rooms and an address that puts the best of Nainital right at your door.</p>
-      <p class="section-sub" style="margin-top:1rem">With complimentary Wi-Fi, free on-site parking, 24-hour room service, daily housekeeping, cable television in every room, and taxi and tour assistance available at the front desk — Hotel Sudarshan offers everything you need to settle in and explore at your own pace.</p>
-      <a href="#rooms" class="btn btn-gold" style="margin-top:2rem">View Our Rooms</a>
-      <div class="about-features">
-        <div class="about-feat"><div class="feat-icon">📶</div><div class="feat-text"><h4>Complimentary Wi-Fi</h4><p>Free high-speed internet throughout the property</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🚗</div><div class="feat-text"><h4>Free On-site Parking</h4><p>Secure, complimentary parking for all registered guests</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🛎️</div><div class="feat-text"><h4>24-hour Room Service</h4><p>Meals and essentials delivered to your door, day or night</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🏨</div><div class="feat-text"><h4>Round-the-clock Front Desk</h4><p>Our team is always on hand to assist you</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🧹</div><div class="feat-text"><h4>Daily Housekeeping</h4><p>Fresh linen, towels and thorough cleaning every day</p></div></div>
-        <div class="about-feat"><div class="feat-icon">📺</div><div class="feat-text"><h4>Cable & Satellite Television</h4><p>In-room entertainment in every room type</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🚕</div><div class="feat-text"><h4>Taxi & Transfer Assistance</h4><p>Local transport arranged on request at the front desk</p></div></div>
-        <div class="about-feat"><div class="feat-icon">🗺️</div><div class="feat-text"><h4>Tours & Sightseeing Help</h4><p>Guided trips to Naini Lake, Bhimtal, Corbett and beyond</p></div></div>
-      </div>
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 165" class="hero-logo-svg">
+        <!-- Wheel -->
+        <g transform="translate(250,32)">
+          <circle r="16" fill="none" stroke="#fade42" stroke-width="1.8" />
+          <circle r="5.5" fill="#0a1628" stroke="#fade42" stroke-width="1.4" />
+          <circle r="23" fill="none" stroke="#fade42" stroke-width="1.2" />
+          <line x1="0" y1="-15" x2="0" y2="15" stroke="#fade42" stroke-width="1.2" />
+          <line x1="-15" y1="0" x2="15" y2="0" stroke="#fade42" stroke-width="1.2" />
+          <line x1="-10.6" y1="-10.6" x2="10.6" y2="10.6" stroke="#fade42" stroke-width="1.2" />
+          <line x1="10.6" y1="-10.6" x2="-10.6" y2="10.6" stroke="#fade42" stroke-width="1.2" />
+          <line x1="0" y1="-23" x2="0" y2="-16" stroke="#fade42" stroke-width="1.1" />
+          <line x1="0" y1="23" x2="0" y2="16" stroke="#fade42" stroke-width="1.1" />
+          <line x1="-23" y1="0" x2="-16" y2="0" stroke="#fade42" stroke-width="1.1" />
+          <line x1="23" y1="0" x2="16" y2="0" stroke="#fade42" stroke-width="1.1" />
+          <line x1="-16.3" y1="-16.3" x2="-11.3" y2="-11.3" stroke="#fade42" stroke-width="1.1" />
+          <line x1="16.3" y1="-16.3" x2="11.3" y2="-11.3" stroke="#fade42" stroke-width="1.1" />
+          <line x1="-16.3" y1="16.3" x2="-11.3" y2="11.3" stroke="#fade42" stroke-width="1.1" />
+          <line x1="16.3" y1="16.3" x2="11.3" y2="11.3" stroke="#fade42" stroke-width="1.1" />
+          <polygon points="0,-27 3.2,-21 -3.2,-21" fill="#fade42" />
+          <polygon points="0,27 3.2,21 -3.2,21" fill="#fade42" />
+          <polygon points="-27,0 -21,3.2 -21,-3.2" fill="#fade42" />
+          <polygon points="27,0 21,3.2 21,-3.2" fill="#fade42" />
+          <polygon points="-19.1,-19.1 -15.3,-14.6 -14.6,-15.3" fill="#fade42" />
+          <polygon points="19.1,-19.1 15.3,-14.6 14.6,-15.3" fill="#fade42" />
+          <polygon points="-19.1,19.1 -15.3,14.6 -14.6,15.3" fill="#fade42" />
+          <polygon points="19.1,19.1 15.3,14.6 14.6,15.3" fill="#fade42" />
+          <circle cx="0" cy="-16" r="1.5" fill="#fade42" />
+          <circle cx="0" cy="16" r="1.5" fill="#fade42" />
+          <circle cx="-16" cy="0" r="1.5" fill="#fade42" />
+          <circle cx="16" cy="0" r="1.5" fill="#fade42" />
+          <circle cx="-11.3" cy="-11.3" r="1.5" fill="#fade42" />
+          <circle cx="11.3" cy="-11.3" r="1.5" fill="#fade42" />
+          <circle cx="-11.3" cy="11.3" r="1.5" fill="#fade42" />
+          <circle cx="11.3" cy="11.3" r="1.5" fill="#fade42" />
+        </g>
+        <!-- Top double lines -->
+        <line x1="20" y1="57" x2="220" y2="57" stroke="#fade42" stroke-width="1.6" />
+        <line x1="280" y1="57" x2="480" y2="57" stroke="#fade42" stroke-width="1.6" />
+        <line x1="20" y1="59.5" x2="220" y2="59.5" stroke="#fade42" stroke-width="0.6" />
+        <line x1="280" y1="59.5" x2="480" y2="59.5" stroke="#fade42" stroke-width="0.6" />
+        <!-- Main text — larger font, wider viewBox means no clipping -->
+        <text x="250" y="102" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="44"
+          font-weight="890" fill="#fade42" letter-spacing="4">HOTEL SUDARSHAN</text>
+        <!-- Bottom double lines + arc -->
+        <line x1="20" y1="114" x2="165" y2="114" stroke="#fade42" stroke-width="1.6" />
+        <line x1="335" y1="114" x2="480" y2="114" stroke="#fade42" stroke-width="1.6" />
+        <path d="M 165,114 Q 250,160 335,114" fill="none" stroke="#fade42" stroke-width="1.6" />
+        <path d="M 174,114 Q 250,150 326,114" fill="none" stroke="#fade42" stroke-width="0.7" />
+      </svg>
+      <p class="hero-tagline">A sanctuary above the lake, on Zoo Road, Tallital — where the Kumaon hills meet quiet
+        elegance</p>
+      <a href="#rooms" class="btn btn-gold">Reserve Your Room</a>
+      &nbsp;&nbsp;
+      <a href="#about" class="btn btn-outline">Discover the Hotel</a>
     </div>
-    <div class="about-img">
-      <div class="img-tall">
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2NNJAD1TtdQucTESBk40ylr0gK6YO_9T36XPjSyH1eJMamj7Um3GD2E5pgjjxOWbjYNinfk7J9X4s-y1OwMK1sVE1uJkcLo57gK_kI3lgNyIdASTMnYG2T2xndNE4WaGsdTDgXU3dBF9F=s1360-w1360-h1020-rw" alt="Hotel Lobby" loading="lazy" />
-      </div>
-      <div class="img-top-right">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw" alt="Hotel Room" loading="lazy" />
-      </div>
-      <div class="img-mid-right">
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepQP_H9WMltN0f7XLy6SunrPJa7yKfGVy33jnzWBSEDj6q8yYX-yFdYWsODclT8MVl-S2d9xKuSs9k1Syg1cMNKFRzCvya-y9oGpqUIcT28ZIXY9B6h_VtSRjzL4O8rJYtzCMk=s1360-w1360-h1020-rw" alt="Hotel View" loading="lazy" />
-      </div>
-      <div class="img-bottom-right">
-        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="Lake View" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="hero-scroll">Scroll</div>
+  </section>
 
 
-<!-- ===== ROOMS & PRICING SECTION ===== -->
-<section id="rooms" class="section section-center">
-  <p class="section-label">Accommodations</p>
-  <h2 class="section-title">Rooms & Suites</h2>
-  <div class="divider divider-center"></div>
-  <p class="section-sub">From well-appointed standard rooms to spacious family suites, every room at Hotel Sudarshan comes with complimentary Wi-Fi, cable television, daily housekeeping, fresh linen and attached bathroom with toiletries. Select rooms feature a private balcony or terrace. Choose the room that suits your journey.</p>
-
-  <div class="rooms-grid">
-
-    <!-- Standard Room -->
-    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-      <div class="relative overflow-hidden">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa" alt="Standard Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
-        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Standard</span>
+  <!-- ===== ABOUT NAINITAL SECTION ===== -->
+  <section id="nainital" class="section">
+    <div class="nainital-grid">
+      <div class="nainital-img-wrap">
+        <img src="https://www.swantour.com/blogs/wp-content/uploads/2018/12/Nainital-Lake.jpg" alt="Naini Lake Nainital"
+          loading="lazy" />
+        <img class="nainital-img-accent"
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw"
+          alt="view from hotel" loading="lazy" />
       </div>
-      <div class="p-7">
-        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Standard Room</h3>
-        <p class="text-sm text-stone-500 leading-relaxed mb-5">A clean, well-maintained double bed room with access to a shared veranda (common balcony) — ideal for couples or solo travellers seeking a comfortable and affordable stay in Nainital. Enjoy fresh mountain air from the common balcony. <strong>4 rooms available.</strong></p>
-        <div class="grid grid-cols-2 gap-1.5 mb-6">
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ Double Bed</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🌿 Common Veranda</span>
-        </div>
-        <div class="flex items-center justify-between border-t border-sand pt-5">
-          <div>
-            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹2,500</div>
-            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
+      <div class="nainital-text">
+        <p class="section-label">Discover</p>
+        <h2 class="section-title">The Jewel of Kumaon</h2>
+        <div class="divider"></div>
+        <p>Perched at 2,084 metres in the Kumaon Himalayas of Uttarakhand, Nainital is one of northern India's most
+          beloved hill stations — a world of pine-scented forests, colonial promenades and a shimmering, pear-shaped
+          lake that has captivated travellers for centuries.</p>
+        <p>The legendary <strong>Naini Lake</strong> is the soul of the town — serene at dawn, alive with colour by
+          afternoon. Walk the length of <strong>Mall Road</strong> past Victorian-era facades and vibrant market stalls,
+          take the cable car to Snow View Point for sweeping Himalayan panoramas, or seek blessings at the revered
+          <strong>Naina Devi Temple</strong> perched at the lake's edge.
+        </p>
+        <p>With a mild, pleasant climate year-round, lively festivals, and a natural landscape of rare quiet beauty,
+          Nainital leaves a mark on every visitor that time cannot erase.</p>
+        <div class="nainital-stats">
+          <div class="stat">
+            <div class="stat-num">2,084m</div>
+            <div class="stat-lbl">Altitude</div>
           </div>
-          <button onclick="openQuickView('standard')" class="btn btn-pine">Book Now</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Triple Semi Deluxe Room -->
-    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-      <div class="relative overflow-hidden">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa" alt="Triple Semi Deluxe Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
-        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Deluxe</span>
-      </div>
-      <div class="p-7">
-        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Triple Semi Deluxe Room</h3>
-        <p class="text-sm text-stone-500 leading-relaxed mb-5">A spacious triple bed room with warm décor and all essential amenities. Please note: this is an interior room with no window and no outside view — a quiet, cosy stay at great value. <strong>6 rooms available.</strong></p>
-        <div class="grid grid-cols-2 gap-1.5 mb-6">
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries & Towels</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ Triple Bed</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🚫 No Window / No View</span>
-        </div>
-        <div class="flex items-center justify-between border-t border-sand pt-5">
-          <div>
-            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹3,500</div>
-            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
+          <div class="stat">
+            <div class="stat-num">1.5km</div>
+            <div class="stat-lbl">Naini Lake Length</div>
           </div>
-          <button onclick="openQuickView('deluxe')" class="btn btn-pine">Book Now</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Triple Deluxe Room -->
-    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-      <div class="relative overflow-hidden">
-        <img src="https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa" alt="Triple Deluxe Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
-        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Triple Deluxe</span>
-      </div>
-      <div class="p-7">
-        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Triple Deluxe Room</h3>
-        <p class="text-sm text-stone-500 leading-relaxed mb-5">A triple bed room with a stunning mountain or lake view directly from your window. Enjoy the natural beauty of Nainital in a well-appointed room with premium amenities. <strong>2 rooms available.</strong></p>
-        <div class="grid grid-cols-2 gap-1.5 mb-6">
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Toiletries & Towels</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🏔️ Mountain / Lake View</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ Triple Bed</span>
-        </div>
-        <div class="flex items-center justify-between border-t border-sand pt-5">
-          <div>
-            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹4,600</div>
-            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
+          <div class="stat">
+            <div class="stat-num">300+</div>
+            <div class="stat-lbl">Sunny Days / Year</div>
           </div>
-          <button onclick="openQuickView('familydeluxe')" class="btn btn-pine">Book Now</button>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Family Room -->
-    <div class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-      <div class="relative overflow-hidden">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="Family Room" loading="lazy" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
-        <span class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Family Room</span>
-      </div>
-      <div class="p-7">
-        <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Family Room</h3>
-        <p class="text-sm text-stone-500 leading-relaxed mb-5">Our largest and most comfortable room — featuring 5 beds with breathtaking mountain and lake views. Premium linen, full bathroom amenities and ample space for the whole family. Perfect for groups of up to 5 guests. <strong>4 rooms available.</strong></p>
-        <div class="grid grid-cols-2 gap-1.5 mb-6">
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📶 Free Wi-Fi</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">📺 Cable TV</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛁 Attached Bath</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🧴 Full Toiletries</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🏔️ Mountain & Lake View</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛏️ 5 Beds</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">👨‍👩‍👧 Up to 5 Guests</span>
-          <span class="flex items-center gap-1.5 text-xs font-semibold text-pine border-l-2 border-gold pl-2 py-1 uppercase tracking-wide hover:bg-mist/50 transition-colors">🛎️ Room Service</span>
-        </div>
-        <div class="flex items-center justify-between border-t border-sand pt-5">
-          <div>
-            <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹5,500</div>
-            <div class="text-xs text-stone-400 tracking-wide font-dm">per night + taxes</div>
+
+  <!-- ===== ABOUT HOTEL SUDARSHAN SECTION ===== -->
+  <section id="about" class="section">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title" style="color:var(--white)">A Home Above the Hills of Nainital</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Set on Zoo Road, Tallital — just steps from the Naini Lake and the heart of Nainital —
+          Hotel Sudarshan has long been a trusted retreat for families, couples and solo travellers seeking genuine
+          comfort at an honest price. The hotel is known for its attentive staff, clean well-kept rooms and an address
+          that puts the best of Nainital right at your door.</p>
+        <p class="section-sub" style="margin-top:1rem">With complimentary Wi-Fi, free on-site parking, 24-hour room
+          service, daily housekeeping, cable television in every room, and taxi and tour assistance available at the
+          front desk — Hotel Sudarshan offers everything you need to settle in and explore at your own pace.</p>
+        <a href="#rooms" class="btn btn-gold" style="margin-top:2rem">View Our Rooms</a>
+        <div class="about-features">
+          <div class="about-feat">
+            <div class="feat-icon">📶</div>
+            <div class="feat-text">
+              <h4>Complimentary Wi-Fi</h4>
+              <p>Free high-speed internet throughout the property</p>
+            </div>
           </div>
-          <button onclick="openQuickView('familysuite')" class="btn btn-pine">Book Now</button>
+          <div class="about-feat">
+            <div class="feat-icon">🚗</div>
+            <div class="feat-text">
+              <h4>Free On-site Parking</h4>
+              <p>Secure, complimentary parking for all registered guests</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">🛎️</div>
+            <div class="feat-text">
+              <h4>24-hour Room Service</h4>
+              <p>Meals and essentials delivered to your door, day or night</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">🏨</div>
+            <div class="feat-text">
+              <h4>Round-the-clock Front Desk</h4>
+              <p>Our team is always on hand to assist you</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">🧹</div>
+            <div class="feat-text">
+              <h4>Daily Housekeeping</h4>
+              <p>Fresh linen, towels and thorough cleaning every day</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">📺</div>
+            <div class="feat-text">
+              <h4>Cable & Satellite Television</h4>
+              <p>In-room entertainment in every room type</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">🚕</div>
+            <div class="feat-text">
+              <h4>Taxi & Transfer Assistance</h4>
+              <p>Local transport arranged on request at the front desk</p>
+            </div>
+          </div>
+          <div class="about-feat">
+            <div class="feat-icon">🗺️</div>
+            <div class="feat-text">
+              <h4>Tours & Sightseeing Help</h4>
+              <p>Guided trips to Naini Lake, Bhimtal, Corbett and beyond</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img">
+        <div class="img-tall">
+          <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwep2NNJAD1TtdQucTESBk40ylr0gK6YO_9T36XPjSyH1eJMamj7Um3GD2E5pgjjxOWbjYNinfk7J9X4s-y1OwMK1sVE1uJkcLo57gK_kI3lgNyIdASTMnYG2T2xndNE4WaGsdTDgXU3dBF9F=s1360-w1360-h1020-rw"
+            alt="Hotel Lobby" loading="lazy" />
+        </div>
+        <div class="img-top-right">
+          <img
+            src="https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw"
+            alt="Hotel Room" loading="lazy" />
+        </div>
+        <div class="img-mid-right">
+          <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepQP_H9WMltN0f7XLy6SunrPJa7yKfGVy33jnzWBSEDj6q8yYX-yFdYWsODclT8MVl-S2d9xKuSs9k1Syg1cMNKFRzCvya-y9oGpqUIcT28ZIXY9B6h_VtSRjzL4O8rJYtzCMk=s1360-w1360-h1020-rw"
+            alt="Hotel View" loading="lazy" />
+        </div>
+        <div class="img-bottom-right">
+          <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw"
+            alt="Lake View" loading="lazy" />
         </div>
       </div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
-<!-- ===== AMENITIES SECTION ===== -->
-<section id="reviews" class="reviews-dark">
+  <!-- ===== ROOMS & PRICING SECTION ===== -->
+  <section id="rooms" class="section section-center">
+    <p class="section-label">Accommodations</p>
+    <h2 class="section-title">Rooms & Suites</h2>
+    <div class="divider divider-center"></div>
+    <p class="section-sub">From well-appointed standard rooms to spacious family suites, every room at Hotel Sudarshan
+      comes with complimentary Wi-Fi, cable television, daily housekeeping, fresh linen and attached bathroom with
+      toiletries. Select rooms feature a private balcony or terrace. Choose the room that suits your journey.</p>
 
-  <div class="reviews-header">
-    <p class="section-label">Guest Reviews</p>
-    <h2 class="section-title">What Guests Say About Us</h2>
+    <div class="rooms-grid">
+
+      <!-- Standard Room -->
+      <div
+        class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/KpZMX7V6/standard1.jpg" alt="Standard Room" loading="lazy"
+            class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+          <span
+            class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Standard</span>
+        </div>
+        <div class="p-7 flex flex-col" style="flex:1;height:calc(100% - 14rem);">
+          <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Standard Room</h3>
+          <p class="text-sm text-stone-500 leading-relaxed mb-5">A clean, well-maintained double bed room with access to
+            a shared veranda (common balcony) — ideal for couples or solo travellers seeking a comfortable and
+            affordable stay in Nainital. Enjoy fresh mountain air from the common balcony. <strong>4 rooms
+              available.</strong></p>
+          <div class="grid grid-cols-2 gap-1.5 mb-6" style="flex-grow:1;align-content:start;">
+            <span class="amenity-span">📶
+              Free Wi-Fi</span>
+            <span class="amenity-span">📺
+              Cable TV</span>
+            <span class="amenity-span">🛁
+              Attached Bath</span>
+            <span class="amenity-span">🧴
+              Toiletries</span>
+            <span class="amenity-span">🛏️
+              Double Bed</span>
+            <span class="amenity-span">🌿
+              Common Veranda</span>
+          </div>
+          <div class="flex items-center justify-between border-t border-sand pt-5">
+            <div>
+              <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹2,500</div>
+              <div class="text-xs text-stone-400 tracking-wide font-dm">inclusive of taxes</div>
+            </div>
+            <button onclick="openQuickView('standard')" class="btn btn-pine">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Triple Semi Deluxe Room -->
+      <div
+        class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/Kc6hGT9j/semi-deluxe1.jpg" alt="Triple Semi Deluxe Room" loading="lazy"
+            class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+          <span
+            class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Deluxe</span>
+        </div>
+        <div class="p-7 flex flex-col" style="flex:1;height:calc(100% - 14rem);">
+          <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Triple Semi Deluxe Room</h3>
+          <p class="text-sm text-stone-500 leading-relaxed mb-5">A spacious triple bed room with warm décor and all
+            essential amenities. Please note: this is an interior room with no window and no outside view — a quiet,
+            cosy stay at great value. <strong>6 rooms available.</strong></p>
+          <div class="grid grid-cols-2 gap-1.5 mb-6" style="flex-grow:1;align-content:start;">
+            <span class="amenity-span">📶
+              Free Wi-Fi</span>
+            <span class="amenity-span">📺
+              Cable TV</span>
+            <span class="amenity-span">🛁
+              Attached Bath</span>
+            <span class="amenity-span">🧴
+              Toiletries & Towels</span>
+            <span class="amenity-span">🛏️
+              Triple Bed</span>
+            <span class="amenity-span">🚫
+              No Window / No View</span>
+          </div>
+          <div class="flex items-center justify-between border-t border-sand pt-5">
+            <div>
+              <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹3,500</div>
+              <div class="text-xs text-stone-400 tracking-wide font-dm">inclusive of taxes</div>
+            </div>
+            <button onclick="openQuickView('deluxe')" class="btn btn-pine">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Triple Deluxe Room -->
+      <div
+        class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/wfvw2QL/delux1.jpg" alt="Triple Deluxe Room" loading="lazy"
+            class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+          <span
+            class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Triple
+            Deluxe</span>
+        </div>
+        <div class="p-7 flex flex-col" style="flex:1;height:calc(100% - 14rem);">
+          <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Triple Deluxe Room</h3>
+          <p class="text-sm text-stone-500 leading-relaxed mb-5">A triple bed room with a stunning mountain or lake view
+            directly from your window. Enjoy the natural beauty of Nainital in a well-appointed room with premium
+            amenities. <strong>2 rooms available.</strong></p>
+          <div class="grid grid-cols-2 gap-1.5 mb-6" style="flex-grow:1;align-content:start;">
+            <span class="amenity-span">📶
+              Free Wi-Fi</span>
+            <span class="amenity-span">📺
+              Cable TV</span>
+            <span class="amenity-span">🛁
+              Attached Bath</span>
+            <span class="amenity-span">🧴
+              Toiletries & Towels</span>
+            <span class="amenity-span">🏔️
+              Mountain / Lake View</span>
+            <span class="amenity-span">🛏️
+              Triple Bed</span>
+          </div>
+          <div class="flex items-center justify-between border-t border-sand pt-5">
+            <div>
+              <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹4,600</div>
+              <div class="text-xs text-stone-400 tracking-wide font-dm">inclusive of taxes</div>
+            </div>
+            <button onclick="openQuickView('familydeluxe')" class="btn btn-pine">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Family Room -->
+      <div
+        class="bg-white rounded overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col">
+        <div class="relative overflow-hidden">
+          <img src="https://i.ibb.co/twQPdX9G/family1.jpg" alt="Family Room" loading="lazy"
+            class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
+          <span
+            class="absolute top-3 left-3 bg-gold text-dark text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-sm">Family
+            Room</span>
+        </div>
+        <div class="p-7 flex flex-col" style="flex:1;height:calc(100% - 14rem);">
+          <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Family Room</h3>
+          <p class="text-sm text-stone-500 leading-relaxed mb-5">Our largest and most comfortable room — featuring 5
+            beds with breathtaking mountain and lake views. Premium linen, full bathroom amenities and ample space for
+            the whole family. Perfect for groups of up to 5 guests. <strong>4 rooms available.</strong></p>
+          <div class="grid grid-cols-2 gap-1.5 mb-6" style="flex-grow:1;align-content:start;">
+            <span class="amenity-span">📶
+              Free Wi-Fi</span>
+            <span class="amenity-span">📺
+              Cable TV</span>
+            <span class="amenity-span">🛁
+              Attached Bath</span>
+            <span class="amenity-span">🧴
+              Full Toiletries</span>
+            <span class="amenity-span">🏔️
+              Mountain & Lake View</span>
+            <span class="amenity-span">🛏️
+              5 Beds</span>
+            <span class="amenity-span">👨‍👩‍👧
+              Up to 5 Guests</span>
+            <span class="amenity-span">🛎️
+              Room Service</span>
+          </div>
+          <div class="flex items-center justify-between border-t border-sand pt-5">
+            <div>
+              <div class="font-playfair text-3xl font-bold text-pine -tracking-tight">₹5,500</div>
+              <div class="text-xs text-stone-400 tracking-wide font-dm">inclusive of taxes</div>
+            </div>
+            <button onclick="openQuickView('familysuite')" class="btn btn-pine">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== AMENITIES SECTION ===== -->
+  <section id="reviews" class="reviews-dark">
+
+    <div class="reviews-header">
+      <p class="section-label">Guest Reviews</p>
+      <h2 class="section-title">What Guests Say About Us</h2>
+      <div class="divider divider-center"></div>
+
+      <div class="google-rating">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+        <span class="rating-score">4.8</span>
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-count">(500+ Reviews)</span>
+      </div>
+    </div>
+
+    <div class="reviews-carousel">
+      <div class="reviews-track">
+
+        <div class="review-card-dark">
+          <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
+          <span>— Rahul Sharma</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Luxury rooms, amazing food, and perfect location.”</p>
+          <span>— Priya Mehta</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
+          <span>— Amit Verma</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
+          <span>— Sneha Kapoor</span>
+        </div>
+        <div class="review-card-dark">
+          <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
+          <span>— Rahul Sharma</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Luxury rooms, amazing food, and perfect Mall Road location.”</p>
+          <span>— Priya Mehta</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
+          <span>— Amit Verma</span>
+        </div>
+
+        <div class="review-card-dark">
+          <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
+          <span>— Sneha Kapoor</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="clouds"></div>
+
+  </section>
+
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="gallery" class="section section-center">
+    <p class="section-label">Visual Tour</p>
+    <h2 class="section-title">A Glimpse of Sudarshan</h2>
     <div class="divider divider-center"></div>
 
-    <div class="google-rating">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-      <span class="rating-score">4.8</span>
-      <span class="rating-stars">★★★★★</span>
-      <span class="rating-count">(500+ Reviews)</span>
+    <div class="gallery-wrap">
+      <button class="gallery-arrow gallery-arrow-left" onclick="scrollGallery(-1)"
+        aria-label="Scroll left">&#8592;</button>
+      <div class="gallery-scroll" id="galleryScroll">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw"
+          alt="view from window">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw"
+          alt="view from room">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw"
+          alt="another view from room">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipPaDhCe33tvdhq9eJTyCeHnZkNiBA_d0Zwi-NKs=s1360-w1360-h1020-rw"
+          alt="cloudy">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_tyY5pWcpV5idzjtolt8TeT018brALGJDcuJ3dsaD38fuOV-HpYPm6bCLN3CuVBUXMpPExAQV7Tebcsuo7mSP6_aE_h_9T6Uc_7lUijSSz3cDDpkU4qgrWv1Uv8J7192UOUCJZw=s1360-w1360-h1020-rw"
+          alt="main entrance">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0k1Q_H-ivVPF_zkoJOWWViqq3Mg_YFR5tbx9gs8czWWGSY17E2veqoWzN5lyTEE7X6OGQXIYTGc9mRXQGE27OzG3_JNtzBvOv7Pge5NNBpc0PWpuDNpIKnbd3OEW0sdZUoo5N=s1360-w1360-h1020-rw"
+          alt="outside photo">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipNRx1WOhQywB-KyzPtRyqGdFttTbYMDtaU0_4Fq=s1360-w1360-h1020-rw"
+          alt="outside lightview">
+        <img src="https://i.ibb.co/twQPdX9G/family1.jpg" alt="balcony">
+      </div>
+      <button class="gallery-arrow gallery-arrow-right" onclick="scrollGallery(1)"
+        aria-label="Scroll right">&#8594;</button>
     </div>
-  </div>
-
-  <div class="reviews-carousel">
-    <div class="reviews-track">
-
-      <div class="review-card-dark">
-        <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
-        <span>— Rahul Sharma</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Luxury rooms, amazing food, and perfect location.”</p>
-        <span>— Priya Mehta</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
-        <span>— Amit Verma</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
-        <span>— Sneha Kapoor</span>
-      </div>
-      <div class="review-card-dark">
-        <p>“The most beautiful lake view in Nainital. Staff treated us like family.”</p>
-        <span>— Rahul Sharma</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Luxury rooms, amazing food, and perfect Mall Road location.”</p>
-        <span>— Priya Mehta</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Highly recommended for families. Clean, safe and peaceful stay.”</p>
-        <span>— Amit Verma</span>
-      </div>
-
-      <div class="review-card-dark">
-        <p>“Balcony sunrise view was unforgettable. Worth every rupee.”</p>
-        <span>— Sneha Kapoor</span>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="clouds"></div>
-
-</section>
+  </section>
 
 
-<!-- ===== GALLERY SECTION ===== -->
-<section id="gallery" class="section section-center">
-  <p class="section-label">Visual Tour</p>
-  <h2 class="section-title">A Glimpse of Sudarshan</h2>
-  <div class="divider divider-center"></div>
-
-  <div class="gallery-wrap">
-    <button class="gallery-arrow gallery-arrow-left" onclick="scrollGallery(-1)" aria-label="Scroll left">&#8592;</button>
-    <div class="gallery-scroll" id="galleryScroll">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw" alt="view from window">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw" alt="view from room">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw" alt="another view from room">
-      <img src="https://lh3.googleusercontent.com/p/AF1QipPaDhCe33tvdhq9eJTyCeHnZkNiBA_d0Zwi-NKs=s1360-w1360-h1020-rw" alt="cloudy">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_tyY5pWcpV5idzjtolt8TeT018brALGJDcuJ3dsaD38fuOV-HpYPm6bCLN3CuVBUXMpPExAQV7Tebcsuo7mSP6_aE_h_9T6Uc_7lUijSSz3cDDpkU4qgrWv1Uv8J7192UOUCJZw=s1360-w1360-h1020-rw" alt="main entrance">
-      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer0k1Q_H-ivVPF_zkoJOWWViqq3Mg_YFR5tbx9gs8czWWGSY17E2veqoWzN5lyTEE7X6OGQXIYTGc9mRXQGE27OzG3_JNtzBvOv7Pge5NNBpc0PWpuDNpIKnbd3OEW0sdZUoo5N=s1360-w1360-h1020-rw" alt="outside photo">
-      <img src="https://lh3.googleusercontent.com/p/AF1QipNRx1WOhQywB-KyzPtRyqGdFttTbYMDtaU0_4Fq=s1360-w1360-h1020-rw" alt="outside lightview">
-      <img src="https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw" alt="balcony">
-    </div>
-    <button class="gallery-arrow gallery-arrow-right" onclick="scrollGallery(1)" aria-label="Scroll right">&#8594;</button>
-  </div>
-</section>
-
-
-<!-- ===== FAQ SECTION ===== -->
-<section id="faq" class="section section-center">
-  <p class="section-label">Questions & Answers</p>
-  <h2 class="section-title">Things Guests Often Ask</h2>
-  <div class="divider divider-center"></div>
-
-  <div class="faq-wrap">
-
-    <div class="faq-item">
-      <div class="faq-q">
-        What are the check-in and check-out times?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Check-in at Hotel Sudarshan begins at <strong>10:00 AM</strong> and check-out is at <strong>10:00 AM</strong>. The front desk is staffed 24 hours a day, so early arrivals are welcome to leave luggage. Early check-in or late check-out may be arranged based on availability — please contact the hotel directly to request this.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Where exactly is the hotel located?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Hotel Sudarshan is located at <strong>Zoo Road, Tallital, Nainital — 263002, Uttarakhand, India</strong>. The hotel sits in Tallital, the southern end of town, close to the Nainital Zoo and within easy reach of the Naini Lake, Mall Road, and the Naina Devi Temple. Most major attractions are walkable from the property.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Is parking available at the hotel?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Yes. Hotel Sudarshan offers <strong>free on-site private parking</strong> for all registered guests. This is one of the hotel's noted conveniences, as parking in Nainital can be difficult during peak season. Please inform the hotel in advance if you are arriving with a larger vehicle.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Is breakfast included in the room rate?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Breakfast may be included depending on the rate plan selected at the time of booking. The hotel does not have an on-site restaurant, but dining options are readily available on nearby Mall Road and in Tallital market. Please confirm breakfast inclusion with the hotel when booking.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Does the hotel have a restaurant or swimming pool?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Hotel Sudarshan does not have an on-site restaurant or a swimming pool. However, <strong>24-hour room service</strong> is available, and the hotel is surrounded by a wide variety of restaurants, dhabas and cafés along Mall Road and Tallital that cater to every taste and budget.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        What is the cancellation policy?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Hotel Sudarshan offers <strong>free cancellation</strong> on most bookings, subject to the rate plan chosen. Cancellation terms may vary by season and booking platform. Guests are advised to confirm the exact cancellation policy at the time of reservation, as peak season bookings (May–June, October and December) may carry different conditions.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Are children and pets welcome?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Hotel Sudarshan is a <strong>family-friendly property</strong> and warmly welcomes children. The hotel is considered suitable for families and has been reviewed positively by families travelling with children. Pets may be allowed upon request — please contact the hotel directly to confirm before your arrival.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        Is taxi or transport available from the hotel?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">
-        <p>Yes. The hotel provides <strong>taxi and transport assistance</strong> for guests. The front desk can help arrange local transfers, sightseeing trips to Bhimtal Lake, Mukteshwar, Corbett National Park, and other nearby attractions. Cab availability and rates can be confirmed directly with the hotel team.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===== CONTACT SECTION ===== -->
-<section id="contact" class="section">
-  <div class="section-center" style="margin-bottom:0">
-    <p class="section-label">Get in Touch</p>
-    <h2 class="section-title">Contact & Reservations</h2>
+  <!-- ===== FAQ SECTION ===== -->
+  <section id="faq" class="section section-center">
+    <p class="section-label">Questions & Answers</p>
+    <h2 class="section-title">Things Guests Often Ask</h2>
     <div class="divider divider-center"></div>
+
+    <div class="faq-wrap">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          What are the check-in and check-out times?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Check-in at Hotel Sudarshan begins at <strong>10:00 AM</strong> and check-out is at <strong>10:00
+              AM</strong>. The front desk is staffed 24 hours a day, so early arrivals are welcome to leave luggage.
+            Early check-in or late check-out may be arranged based on availability — please contact the hotel directly
+            to request this.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Where exactly is the hotel located?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Hotel Sudarshan is located at <strong>Zoo Road, Tallital, Nainital — 263002, Uttarakhand, India</strong>.
+            The hotel sits in Tallital, the southern end of town, close to the Nainital Zoo and within easy reach of the
+            Naini Lake, Mall Road, and the Naina Devi Temple. Most major attractions are walkable from the property.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Is parking available at the hotel?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes. Hotel Sudarshan offers <strong>free on-site private parking</strong> for all registered guests. This
+            is one of the hotel's noted conveniences, as parking in Nainital can be difficult during peak season. Please
+            inform the hotel in advance if you are arriving with a larger vehicle.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Is breakfast included in the room rate?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Breakfast may be included depending on the rate plan selected at the time of booking. The hotel does not
+            have an on-site restaurant, but dining options are readily available on nearby Mall Road and in Tallital
+            market. Please confirm breakfast inclusion with the hotel when booking.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Does the hotel have a restaurant or swimming pool?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Hotel Sudarshan does not have an on-site restaurant or a swimming pool. However, <strong>24-hour room
+              service</strong> is available, and the hotel is surrounded by a wide variety of restaurants, dhabas and
+            cafés along Mall Road and Tallital that cater to every taste and budget.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          What is the cancellation policy?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Hotel Sudarshan offers <strong>free cancellation</strong> on most bookings, subject to the rate plan
+            chosen. Cancellation terms may vary by season and booking platform. Guests are advised to confirm the exact
+            cancellation policy at the time of reservation, as peak season bookings (May–June, October and December) may
+            carry different conditions.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Are children and pets welcome?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Hotel Sudarshan is a <strong>family-friendly property</strong> and warmly welcomes children. The hotel is
+            considered suitable for families and has been reviewed positively by families travelling with children. Pets
+            may be allowed upon request — please contact the hotel directly to confirm before your arrival.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Is taxi or transport available from the hotel?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <p>Yes. The hotel provides <strong>taxi and transport assistance</strong> for guests. The front desk can help
+            arrange local transfers, sightseeing trips to Bhimtal Lake, Mukteshwar, Corbett National Park, and other
+            nearby attractions. Cab availability and rates can be confirmed directly with the hotel team.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact" class="section">
+    <div class="section-center" style="margin-bottom:0">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact & Reservations</h2>
+      <div class="divider divider-center"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>We'd love to host you</h3>
+        <div class="contact-item">
+          <div class="contact-ico">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Hotel sudarshan,Zoo Rd,Tallital,<br>Nainital – 263001,<br>Uttarakhand, India</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+917895354272">+91 78953 54272</a><br>
+            <a href="tel:+915942235574">+91 59422 35574</a>
+
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="/cdn-cgi/l/email-protection#6e1c0b1d0b1c180f1a0701001d2e06011a0b021d1b0a0f1c1d060f00400700"><span
+                class="__cf_email__"
+                data-cfemail="c1b3a4b2a4b3b7a0b5a8aeafb281a9aeb5a4adb2b4a5a0b3b2a9a0afefa8af">[email&#160;protected]</span></a><br>
+            <a href="/cdn-cgi/l/email-protection#b6dfd8d0d9f6ded9c2d3dac5c3d2d7c4c5ded7d898dfd8"><span
+                class="__cf_email__"
+                data-cfemail="2b42454d446b43445f4e47585e4f4a5958434a45054245">[email&#160;protected]</span></a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico">🕐</div>
+          <div>
+            <h4>Reception Hours</h4>
+            <p>Open 24 hours, 7 days a week</p>
+          </div>
+        </div>
+
+        <!-- Google Maps Embed -->
+        <div
+          style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden; border: 2px solid var(--mist); box-shadow: 0 4px 16px rgba(44,62,45,0.10);">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.3!2d79.465033!3d29.3816036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a130ede840af%3A0x42e2148b26c19d7e!2sHotel%20sudarshan%2C%20Zoo%20Rd%2C%20Tallital%2C%20Nainital%2C%20Uttarakhand%20263001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            width="100%" height="220" style="border:0; display:block;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Hotel Sudarshan Location">
+          </iframe>
+          <a href="https://www.google.com/maps?ll=29.381648,79.465127&z=20&t=m&hl=en&gl=IN&mapclient=embed&cid=4819437139123084670"
+            target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:var(--pine); color:var(--cream); font-size:0.78rem; letter-spacing:0.08em; font-family:'DM Sans',sans-serif; text-transform:uppercase; transition:background 0.2s;">
+            <span>🗺️</span> Open in Google Maps
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Rajiv" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Sharma" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+91 9800000000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="checkin">Check-in Date</label>
+            <input type="date" id="checkin" />
+          </div>
+          <div class="form-group">
+            <label for="checkout">Check-out Date</label>
+            <input type="date" id="checkout" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="room">Room Type</label>
+          <select id="room">
+            <option value="">-- Select Room Type --</option>
+            <option>Triple Semi Deluxe room – ₹2,999/night</option>
+            <option>Triple Deluxe Room – ₹4,499/night</option>
+            <option>Family Suite – ₹6,999/night</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Special Requests or Message</label>
+          <textarea id="message"
+            placeholder="Tell us anything — early check-in, dietary needs, special occasion..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="align-self:flex-start">Send Enquiry →</button>
+        <p id="formSuccess" style="display:none;color:var(--pine);font-size:0.9rem;margin-top:0.5rem">✅ Thank you! We'll
+          get back to you within 24 hours.</p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="nav-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="70">
+            <g transform="translate(130,19)">
+              <circle r="10" fill="none" stroke="#fade42" stroke-width="1.3" />
+              <circle r="3.5" fill="#1a2218" stroke="#fade42" stroke-width="1" />
+              <circle r="14.5" fill="none" stroke="#fade42" stroke-width="0.9" />
+              <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#fade42" stroke-width="0.9" />
+              <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#fade42" stroke-width="0.9" />
+              <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#fade42" stroke-width="0.9" />
+              <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#fade42" stroke-width="0.9" />
+              <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#fade42" />
+              <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#fade42" />
+              <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#fade42" />
+              <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#fade42" />
+              <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#fade42" />
+              <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#fade42" />
+              <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#fade42" />
+              <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#fade42" />
+            </g>
+            <line x1="12" y1="34" x2="111" y2="34" stroke="#fade42" stroke-width="1.3" />
+            <line x1="149" y1="34" x2="248" y2="34" stroke="#fade42" stroke-width="1.3" />
+            <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#fade42" stroke-width="0.5" />
+            <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#fade42" stroke-width="0.5" />
+            <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21"
+              font-weight="700" fill="#fade42" letter-spacing="3.5">HOTEL SUDARSHAN</text>
+            <line x1="12" y1="66" x2="90" y2="66" stroke="#fade42" stroke-width="1.3" />
+            <line x1="170" y1="66" x2="248" y2="66" stroke="#fade42" stroke-width="1.3" />
+            <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#fade42" stroke-width="1.3" />
+            <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#fade42" stroke-width="0.6" />
+          </svg>
+        </span>
+        <p>A beloved mountain retreat on Mall Road, Nainital — where Himalayan charm meets heartfelt hospitality. Your
+          perfect escape into the hills.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#nainital">About Nainital</a></li>
+          <li><a href="#about">About Hotel</a></li>
+          <li><a href="#rooms">Rooms & Pricing</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Rooms</h4>
+        <ul>
+          <li><a href="#rooms">Triple Semi Deluxe room</a></li>
+          <li><a href="#rooms">Triple Deluxe Room</a></li>
+          <li><a href="#rooms">Family Suite</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="#faq">Cancellation Policy</a></li>
+          <li><a href="#faq">Check-in / Check-out</a></li>
+          <li><a href="#faq">Breakfast Info</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Hotel Sudarshan, Nainital. All Rights Reserved.</p>
+      <p>Designed with ❤️ for the Hills of Uttarakhand</p>
+    </div>
+  </footer>
+
+
+
+  <!-- ===== QUICK VIEW MODAL ===== -->
+  <div class="room-modal-overlay" id="quickview-modal">
+    <div class="room-modal" style="max-width:600px">
+      <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
+      <div id="qv-slider" style="position:relative;width:100%;height:320px;overflow:hidden;background:#1a2218;">
+        <div id="qv-slides"
+          style="display:flex;height:100%;transition:transform 0.4s ease;will-change:transform;flex-wrap:nowrap;"></div>
+        <button onclick="qvSlide(-1)"
+          style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);background:rgba(26,34,24,0.6);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;">&#8249;</button>
+        <button onclick="qvSlide(1)"
+          style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(26,34,24,0.6);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;">&#8250;</button>
+        <div id="qv-dots"
+          style="position:absolute;bottom:0.75rem;left:50%;transform:translateX(-50%);display:flex;gap:0.4rem;z-index:5;">
+        </div>
+      </div>
+      <div style="padding:2rem;">
+        <span id="qv-badge"
+          style="display:inline-block;background:var(--gold);color:var(--dark);font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:2px;margin-bottom:1rem;"></span>
+        <h2 id="qv-title"
+          style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--pine);margin-bottom:0.5rem;"></h2>
+        <p id="qv-quote"
+          style="font-family:'Playfair Display',serif;font-style:italic;color:var(--text-lt);font-size:1.05rem;margin-bottom:1.25rem;">
+        </p>
+
+        <!-- Room Details Grid -->
+        <div id="qv-details" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;">
+        </div>
+
+        <!-- Amenities -->
+        <div id="qv-amenities" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;"></div>
+
+        <!-- Price + Book Button -->
+        <div
+          style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sand);padding-top:1.25rem;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <div id="qv-price"
+              style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--pine);"></div>
+            <div style="font-size:0.72rem;color:var(--text-lt);">inclusive of taxes</div>
+          </div>
+          <button id="qv-book-btn" onclick="openBookingForm()" class="btn btn-gold"
+            style="font-size:0.85rem;padding:1rem 2rem;border:none;cursor:pointer;">
+            Reserve This Room →
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <h3>We'd love to host you</h3>
-      <div class="contact-item">
-        <div class="contact-ico">📍</div>
-        <div>
-          <h4>Address</h4>
-          <p>Hotel sudarshan,Zoo Rd,Tallital,<br>Nainital – 263001,<br>Uttarakhand, India</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-ico">📞</div>
-        <div>
-          <h4>Phone</h4>
-          <a href="tel:+917895354272">+91 78953 54272</a><br>
-          <a href="tel:+915942235574">+91 59422 35574</a>
-          
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-ico">✉️</div>
-        <div>
-          <h4>Email</h4>
-          <a href="/cdn-cgi/l/email-protection#6e1c0b1d0b1c180f1a0701001d2e06011a0b021d1b0a0f1c1d060f00400700"><span class="__cf_email__" data-cfemail="c1b3a4b2a4b3b7a0b5a8aeafb281a9aeb5a4adb2b4a5a0b3b2a9a0afefa8af">[email&#160;protected]</span></a><br>
-          <a href="/cdn-cgi/l/email-protection#b6dfd8d0d9f6ded9c2d3dac5c3d2d7c4c5ded7d898dfd8"><span class="__cf_email__" data-cfemail="2b42454d446b43445f4e47585e4f4a5958434a45054245">[email&#160;protected]</span></a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-ico">🕐</div>
-        <div>
-          <h4>Reception Hours</h4>
-          <p>Open 24 hours, 7 days a week</p>
-        </div>
-      </div>
 
-      <!-- Google Maps Embed -->
-      <div style="margin-top: 1.5rem; border-radius: 8px; overflow: hidden; border: 2px solid var(--mist); box-shadow: 0 4px 16px rgba(44,62,45,0.10);">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3479.3!2d79.465033!3d29.3816036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a130ede840af%3A0x42e2148b26c19d7e!2sHotel%20sudarshan%2C%20Zoo%20Rd%2C%20Tallital%2C%20Nainital%2C%20Uttarakhand%20263001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-          width="100%"
-          height="220"
-          style="border:0; display:block;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Hotel Sudarshan Location">
-        </iframe>
-        <a href="https://www.google.com/maps?ll=29.381648,79.465127&z=20&t=m&hl=en&gl=IN&mapclient=embed&cid=4819437139123084670" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem 1rem; background:var(--pine); color:var(--cream); font-size:0.78rem; letter-spacing:0.08em; font-family:'DM Sans',sans-serif; text-transform:uppercase; transition:background 0.2s;">
-          <span>🗺️</span> Open in Google Maps
-        </a>
-      </div>
-    </div>
-
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" placeholder="Rajiv" required />
-        </div>
-        <div class="form-group">
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" placeholder="Sharma" required />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="you@example.com" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="+91 9800000000" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="checkin">Check-in Date</label>
-          <input type="date" id="checkin" />
-        </div>
-        <div class="form-group">
-          <label for="checkout">Check-out Date</label>
-          <input type="date" id="checkout" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="room">Room Type</label>
-        <select id="room">
-          <option value="">-- Select Room Type --</option>
-          <option>Triple Semi Deluxe room – ₹2,999/night</option>
-          <option>Triple Deluxe Room – ₹4,499/night</option>
-          <option>Family Suite – ₹6,999/night</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Special Requests or Message</label>
-        <textarea id="message" placeholder="Tell us anything — early check-in, dietary needs, special occasion..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-gold" style="align-self:flex-start">Send Enquiry →</button>
-      <p id="formSuccess" style="display:none;color:var(--pine);font-size:0.9rem;margin-top:0.5rem">✅ Thank you! We'll get back to you within 24 hours.</p>
-    </form>
-  </div>
-</section>
-
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <span class="nav-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 92" height="70">
-          <g transform="translate(130,19)">
-            <circle r="10" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
-            <circle r="3.5" fill="#1a2218" stroke="#c9a84c" stroke-width="1"/>
-            <circle r="14.5" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
-            <line x1="0" y1="-9.5" x2="0" y2="9.5" stroke="#c9a84c" stroke-width="0.9"/>
-            <line x1="-9.5" y1="0" x2="9.5" y2="0" stroke="#c9a84c" stroke-width="0.9"/>
-            <line x1="-6.7" y1="-6.7" x2="6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
-            <line x1="6.7" y1="-6.7" x2="-6.7" y2="6.7" stroke="#c9a84c" stroke-width="0.9"/>
-            <polygon points="0,-17.5 2.2,-13.5 -2.2,-13.5" fill="#c9a84c"/>
-            <polygon points="0,17.5 2.2,13.5 -2.2,13.5" fill="#c9a84c"/>
-            <polygon points="-17.5,0 -13.5,2.2 -13.5,-2.2" fill="#c9a84c"/>
-            <polygon points="17.5,0 13.5,2.2 13.5,-2.2" fill="#c9a84c"/>
-            <polygon points="-12.4,-12.4 -10,-9.5 -9.5,-10" fill="#c9a84c"/>
-            <polygon points="12.4,-12.4 10,-9.5 9.5,-10" fill="#c9a84c"/>
-            <polygon points="-12.4,12.4 -10,9.5 -9.5,10" fill="#c9a84c"/>
-            <polygon points="12.4,12.4 10,9.5 9.5,10" fill="#c9a84c"/>
-          </g>
-          <line x1="12" y1="34" x2="111" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
-          <line x1="149" y1="34" x2="248" y2="34" stroke="#c9a84c" stroke-width="1.3"/>
-          <line x1="12" y1="36.2" x2="111" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-          <line x1="149" y1="36.2" x2="248" y2="36.2" stroke="#c9a84c" stroke-width="0.5"/>
-          <text x="130" y="59" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="21" font-weight="700" fill="#c9a84c" letter-spacing="3.5">HOTEL SUDARSHAN</text>
-          <line x1="12" y1="66" x2="90" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
-          <line x1="170" y1="66" x2="248" y2="66" stroke="#c9a84c" stroke-width="1.3"/>
-          <path d="M 90,66 Q 130,92 170,66" fill="none" stroke="#c9a84c" stroke-width="1.3"/>
-          <path d="M 96,66 Q 130,85 164,66" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
-        </svg>
-      </span>
-      <p>A beloved mountain retreat on Mall Road, Nainital — where Himalayan charm meets heartfelt hospitality. Your perfect escape into the hills.</p>
-      <div class="social-links">
-        <a href="#" class="social-link" aria-label="Facebook">f</a>
-        <a href="#" class="social-link" aria-label="Instagram">📷</a>
-        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
-        <a href="#" class="social-link" aria-label="YouTube">▶</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#nainital">About Nainital</a></li>
-        <li><a href="#about">About Hotel</a></li>
-        <li><a href="#rooms">Rooms & Pricing</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Our Rooms</h4>
-      <ul>
-        <li><a href="#rooms">Triple Semi Deluxe room</a></li>
-        <li><a href="#rooms">Triple Deluxe Room</a></li>
-        <li><a href="#rooms">Family Suite</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Policies</h4>
-      <ul>
-        <li><a href="#faq">Cancellation Policy</a></li>
-        <li><a href="#faq">Check-in / Check-out</a></li>
-        <li><a href="#faq">Breakfast Info</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms & Conditions</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Hotel Sudarshan, Nainital. All Rights Reserved.</p>
-    <p>Designed with ❤️ for the Hills of Uttarakhand</p>
-  </div>
-</footer>
-
-
-
-<!-- ===== QUICK VIEW MODAL ===== -->
-<div class="room-modal-overlay" id="quickview-modal">
-  <div class="room-modal" style="max-width:600px">
-    <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
-    <div id="qv-slider" style="position:relative;width:100%;height:320px;overflow:hidden;background:#1a2218;">
-      <div id="qv-slides" style="display:flex;height:100%;transition:transform 0.4s ease;will-change:transform;flex-wrap:nowrap;"></div>
-      <button onclick="qvSlide(-1)" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);background:rgba(26,34,24,0.6);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;">&#8249;</button>
-      <button onclick="qvSlide(1)" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:rgba(26,34,24,0.6);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;">&#8250;</button>
-      <div id="qv-dots" style="position:absolute;bottom:0.75rem;left:50%;transform:translateX(-50%);display:flex;gap:0.4rem;z-index:5;"></div>
-    </div>
-    <div style="padding:2rem;">
-      <span id="qv-badge" style="display:inline-block;background:var(--gold);color:var(--dark);font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:2px;margin-bottom:1rem;"></span>
-      <h2 id="qv-title" style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--pine);margin-bottom:0.5rem;"></h2>
-      <p id="qv-quote" style="font-family:'Playfair Display',serif;font-style:italic;color:var(--text-lt);font-size:1.05rem;margin-bottom:1.25rem;"></p>
-
-      <!-- Room Details Grid -->
-      <div id="qv-details" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:1.5rem;"></div>
-
-      <!-- Amenities -->
-      <div id="qv-amenities" style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;"></div>
-
-      <!-- Price + Book Button -->
-      <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sand);padding-top:1.25rem;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <div id="qv-price" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--pine);"></div>
-          <div style="font-size:0.72rem;color:var(--text-lt);">per night + taxes</div>
-        </div>
-        <button id="qv-book-btn" onclick="openBookingForm()" class="btn btn-gold" style="font-size:0.85rem;padding:1rem 2rem;border:none;cursor:pointer;">
-          Reserve This Room →
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== JAVASCRIPT ===== -->
-<script>
-  // --- Navbar scroll effect ---
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // --- Mobile Nav ---
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  const mobileClose = document.getElementById('mobileClose');
-
-  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
-  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => mobileNav.classList.remove('open'));
-  });
-
-  // --- FAQ Accordion ---
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // --- Navbar scroll effect ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
-  });
 
-  // --- Contact Form ---
-  function handleSubmit(e) {
-    e.preventDefault();
-    const success = document.getElementById('formSuccess');
-    success.style.display = 'block';
-    e.target.reset();
-    setTimeout(() => { success.style.display = 'none'; }, 6000);
-  }
+    // --- Mobile Nav ---
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
 
-  // --- Scroll animations ---
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
+    hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.room-card, .amenity-card, .gallery-item, .faq-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-
-  // --- Lightbox ---
-  let currentIndex = 0;
-  const images = document.querySelectorAll(".gallery-scroll img");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-
-  if (images.length && lightbox) {
-    images.forEach((img, index) => {
-      img.addEventListener("click", () => {
-        currentIndex = index;
-        lightbox.style.display = "block";
-        lightboxImg.src = images[currentIndex].src;
+    // --- FAQ Accordion ---
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
       });
     });
-  }
 
-  function closeLightbox() { if(lightbox) lightbox.style.display = "none"; }
-  function changeSlide(direction) {
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = images.length - 1;
-    if (currentIndex >= images.length) currentIndex = 0;
-    if(lightboxImg) lightboxImg.src = images[currentIndex].src;
-  }
+    // --- Contact Form ---
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const success = document.getElementById('formSuccess');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
 
-  // ===== QUICK VIEW MODAL DATA =====
-  // ===== ROOM DATA WITH MULTIPLE IMAGES =====
-  let qvCurrentSlide = 0;
-  let qvTotalSlides = 0;
+      const payload = {
+        firstName: document.getElementById('fname').value,
+        lastName:  document.getElementById('lname').value,
+        email:     document.getElementById('email').value,
+        phone:     document.getElementById('phone').value,
+        checkIn:   document.getElementById('checkin').value,
+        checkOut:  document.getElementById('checkout').value,
+        roomType:  document.getElementById('room').value,
+        message:   document.getElementById('message').value,
+      };
 
-  const roomData = {
-    standard: {
-      badge: 'Standard',
-      title: 'Standard Room',
-      quote: "Everything you need, nothing you don't",
-      imgs: [
-        'https://images.getaroom-cdn.com/image/upload/s--3NKxpqEQ--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/8acd206b8b99d58e381f8811473cae977296230d?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--hcgcK_BM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/c4f9a58946db6b0dbd264d3328313be2aaf45af3?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--XQwrRieS--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567478/3807f9e8e9558a0bab77519bf875f555bd99c4c6?_a=BACAEuEv&atc=e7cd1cfa'
-      ],
-      price: '₹2,500',
-      details: [
-        { icon: '📐', label: 'Room Size', value: '180 sq ft' },
-        { icon: '👥', label: 'Max Guests', value: '2 Guests' },
-        { icon: '🛏️', label: 'Bed Type', value: 'Double Bed' },
-        { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
-        { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
-        { icon: '🏔️', label: 'View', value: 'Garden View' },
-      ],
-      amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🛎️ 24hr Room Service', '🚗 Free Parking'],
-      link: 'https://rzp.io/rzp/STDNTEST'
-    },
-    deluxe: {
-      badge: 'Deluxe',
-      title: 'Triple Semi Deluxe room',
-      quote: "Your cosy sanctuary in the mountains",
-      imgs: [
-        'https://images.getaroom-cdn.com/image/upload/s--HXcA9N6F--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/86267d8e7f2a8b6f3075fd6072005e638af4b9b6?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--8jYCq6Z0--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567482/7955a8b699be7390898139f94d19ec837de91548?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--Fz2lUO0C--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567482/13697cc7cb39f7d991781c3be1506eef9fd66014?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--UNghUT2I--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567481/c75e651c3f68548745eff3279f94d6ec5eb3b251?_a=BACAEuEv&atc=e7cd1cfa'
-      ],
-      price: '₹3,500',
-      details: [
-        { icon: '📐', label: 'Room Size', value: '220 sq ft' },
-        { icon: '👥', label: 'Max Guests', value: '2 Guests' },
-        { icon: '🛏️', label: 'Bed Type', value: 'King Bed' },
-        { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
-        { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
-        { icon: '🌅', label: 'View', value: 'Balcony / Terrace' },
-      ],
-      amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries & Towels', '🌅 Balcony', '🪟 Blackout Curtains'],
-      link: 'https://rzp.io/rzp/STDNTEST'
-    },
-    familydeluxe: {
-      badge: 'Family Deluxe',
-      title: 'Triple Deluxe Room',
-      quote: "Wake up to Himalayan skies every morning",
-      imgs: [
-        'https://images.getaroom-cdn.com/image/upload/s--Ac6LeDuM--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/c1ddec4ca8169cc03d018380677e558d5d93b34e?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--CYvdU_Sa--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1742834629/55e29fe48a7f5ccb143c3503665d3dd489ba10aa?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--53blkpNq--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/898f157b2936bd2d6d4d7a01c6235911b0540f4c?_a=BACAEuEv&atc=e7cd1cfa',
-        'https://images.getaroom-cdn.com/image/upload/s--TdZN-wkc--/c_limit,e_improve,fl_lossy.immutable_cache,h_940,q_auto:good,w_940/v1737567480/178d88d81b321b04485581a9cb769b1cc5ab2e64?_a=BACAEuEv&atc=e7cd1cfa'
-      ],
-      price: '₹4,600',
-      details: [
-        { icon: '📐', label: 'Room Size', value: '280 sq ft' },
-        { icon: '👥', label: 'Max Guests', value: '3 Guests' },
-        { icon: '🛏️', label: 'Bed Type', value: 'King + Extra' },
-        { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
-        { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
-        { icon: '🏔️', label: 'View', value: 'Mountain View' },
-      ],
-      amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🌅 Private Balcony', '🛏️ Extra Bed on Request'],
-      link: 'https://rzp.io/rzp/DnAxWA3'
-    },
-    familysuite: {
-      badge: 'Family Suite',
-      title: 'Family Suite',
-      quote: "Space, luxury and memories for the whole family",
-      imgs: [
-        'https://lh3.googleusercontent.com/p/AF1QipNkk-PA_19Y3u0Ktk5_csdvC2zM7yV8w8O17jds=s1360-w1360-h1020-rw',
-        'https://lh3.googleusercontent.com/gps-cs-s/AHVAweqpPTyq1F48ANippHpuTs9rH4uQB--7Go994Id8t5Kn1eFXF_lMbX-LJE5YGS9C1rfa7PRLRdg7U7nSxTIJnpZ5Ut0oUvj_JUpSaG-gUe8OstOPlCiN-fdBeCbosD1n2THgUISb4SYpKW-v=s1360-w1360-h1020-rw',
-        'https://lh3.googleusercontent.com/gps-cs-s/AHVAweo6sw2L46wCCGtsQeDFI1ulxIIi6a6uBGl2ig_bzQ6G6FUtqqHIz6wOVGPiSyN_zisQ8bYkdkDfir3gEkhiRX4_4HfBq33CCJLFFsd9XU_4NjHIMrtrXyIlPF9T4rPNd9zAZawBySpXSrU=s1360-w1360-h1020-rw',
-        'https://lh3.googleusercontent.com/p/AF1QipM127Q7u9wVkyRdwTEag8-b7k7MOz-euL28utPA=s1360-w1360-h1020-rw'
-      ],
-      price: '₹5,500',
-      details: [
-        { icon: '📐', label: 'Room Size', value: '420 sq ft' },
-        { icon: '👥', label: 'Max Guests', value: '4 Guests' },
-        { icon: '🛏️', label: 'Bedrooms', value: '2 Bedrooms' },
-        { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
-        { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
-        { icon: '🏔️', label: 'View', value: 'Lake Facing' },
-      ],
-      amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Premium Bath', '🧴 Full Toiletries', '🌅 Lake Balcony', '👨‍👩‍👧 Up to 4 Guests'],
-      link: 'https://rzp.io/rzp/DnAxWA3'
+      try {
+        const res = await fetch('https://hotel-demo-backend.vercel.app/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          success.style.display = 'block';
+          e.target.reset();
+          setTimeout(() => { success.style.display = 'none'; }, 6000);
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        alert('Network error. Please try again.');
+      }
+
+      btn.textContent = 'Send Enquiry';
+      btn.disabled = false;
     }
-  };
 
-  function qvGoToSlide(idx) {
-    qvCurrentSlide = idx;
-    const slides = document.getElementById('qv-slides');
-    const sliderWidth = document.getElementById('qv-slider').offsetWidth;
-    slides.style.transform = `translateX(-${idx * sliderWidth}px)`;
-    document.querySelectorAll('.qv-dot').forEach((d, i) => {
-      d.style.background = i === idx ? '#c9a84c' : 'rgba(255,255,255,0.5)';
+    // --- Scroll animations ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.room-card, .amenity-card, .gallery-item, .faq-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
     });
-  }
 
-  function qvSlide(dir) {
-    let next = qvCurrentSlide + dir;
-    if (next < 0) next = qvTotalSlides - 1;
-    if (next >= qvTotalSlides) next = 0;
-    qvGoToSlide(next);
-  }
+    // --- Lightbox ---
+    let currentIndex = 0;
+    const images = document.querySelectorAll(".gallery-scroll img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
 
-  function openQuickView(roomId) {
-    const room = roomData[roomId];
-    if (!room) return;
+    if (images.length && lightbox) {
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          currentIndex = index;
+          lightbox.style.display = "block";
+          lightboxImg.src = images[currentIndex].src;
+        });
+      });
+    }
 
-    qvCurrentSlide = 0;
-    qvTotalSlides = room.imgs.length;
+    function closeLightbox() { if (lightbox) lightbox.style.display = "none"; }
+    function changeSlide(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      if (lightboxImg) lightboxImg.src = images[currentIndex].src;
+    }
 
-    // Build slider
-    const slidesEl = document.getElementById('qv-slides');
-    slidesEl.style.transform = 'translateX(0px)';
-    slidesEl.innerHTML = room.imgs.map(src => `
+    // ===== QUICK VIEW MODAL DATA =====
+    // ===== ROOM DATA WITH MULTIPLE IMAGES =====
+    let qvCurrentSlide = 0;
+    let qvTotalSlides = 0;
+
+    const roomData = {
+      standard: {
+        badge: 'Standard',
+        title: 'Standard Room',
+        quote: "Everything you need, nothing you don't",
+        imgs: [
+          'https://i.ibb.co/KpZMX7V6/standard1.jpg',
+          'https://i.ibb.co/vSGBPpw/standard2.jpg',
+          'https://i.ibb.co/7xbR3SZy/standard3.jpg',
+          'https://i.ibb.co/272jbR5n/standard4.jpg',
+          'https://i.ibb.co/0VfH6TYw/standard5.jpg'
+        ],
+        price: '₹2,500',
+        details: [
+          { icon: '📐', label: 'Room Size', value: '180 sq ft' },
+          { icon: '👥', label: 'Max Guests', value: '2 Guests' },
+          { icon: '🛏️', label: 'Bed Type', value: 'Double Bed' },
+          { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
+          { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
+          { icon: '🏔️', label: 'View', value: 'Garden View' },
+        ],
+        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🛎️ 24hr Room Service', '🚗 Free Parking'],
+        link: 'https://rzp.io/rzp/STDNTEST'
+      },
+      deluxe: {
+        badge: 'Deluxe',
+        title: 'Triple Semi Deluxe room',
+        quote: "Your cosy sanctuary in the mountains",
+        imgs: [
+          'https://i.ibb.co/Kc6hGT9j/semi-deluxe1.jpg',
+          'https://i.ibb.co/KcjQS0PP/semi-deluxe2.jpg',
+          'https://i.ibb.co/MkS2JndF/semi-deluxe3.jpg',
+          'https://i.ibb.co/VYzvWspG/semi-deluxe4.jpg',
+          'https://i.ibb.co/gL8487zk/semi-deluxe5.jpg'
+        ],
+        price: '₹3,500',
+        details: [
+          { icon: '📐', label: 'Room Size', value: '220 sq ft' },
+          { icon: '👥', label: 'Max Guests', value: '2 Guests' },
+          { icon: '🛏️', label: 'Bed Type', value: 'King Bed' },
+          { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
+          { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
+          { icon: '🌅', label: 'View', value: 'Balcony / Terrace' },
+        ],
+        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries & Towels', '🌅 Balcony', '🪟 Blackout Curtains'],
+        link: 'https://rzp.io/rzp/STDNTEST'
+      },
+      familydeluxe: {
+        badge: 'Family Deluxe',
+        title: 'Triple Deluxe Room',
+        quote: "Wake up to Himalayan skies every morning",
+        imgs: [
+          'https://i.ibb.co/wfvw2QL/delux1.jpg',
+          'https://i.ibb.co/sJbh8qLK/delux2.jpg',
+          'https://i.ibb.co/XGkHRwH/delux3.jpg',
+          'https://i.ibb.co/LXkwTrC9/delux4.jpg',
+          'https://i.ibb.co/SXQvWjCR/delux5.jpg'
+        ],
+        price: '₹4,600',
+        details: [
+          { icon: '📐', label: 'Room Size', value: '280 sq ft' },
+          { icon: '👥', label: 'Max Guests', value: '3 Guests' },
+          { icon: '🛏️', label: 'Bed Type', value: 'King + Extra' },
+          { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
+          { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
+          { icon: '🏔️', label: 'View', value: 'Mountain View' },
+        ],
+        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🌅 Private Balcony', '🛏️ Extra Bed on Request'],
+        link: 'https://rzp.io/rzp/DnAxWA3'
+      },
+      familysuite: {
+        badge: 'Family Suite',
+        title: 'Family Suite',
+        quote: "Space, luxury and memories for the whole family",
+        imgs: [
+          'https://i.ibb.co/twQPdX9G/family1.jpg',
+          'https://i.ibb.co/SDcz0fxQ/family2.jpg',
+          'https://i.ibb.co/9m3V46hg/family3.jpg',
+          'https://i.ibb.co/DH8jTNgy/family4.jpg',
+          'https://i.ibb.co/1G6vk678/family5.jpg',
+          'https://i.ibb.co/jvNHLyBY/family6.jpg',
+          'https://i.ibb.co/MLMQKrN/family7.jpg',
+          'https://i.ibb.co/60JgGdKq/family8.jpg'
+        ],
+        price: '₹5,500',
+        details: [
+          { icon: '📐', label: 'Room Size', value: '420 sq ft' },
+          { icon: '👥', label: 'Max Guests', value: '4 Guests' },
+          { icon: '🛏️', label: 'Bedrooms', value: '2 Bedrooms' },
+          { icon: '🕐', label: 'Check-in', value: '12:00 PM' },
+          { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
+          { icon: '🏔️', label: 'View', value: 'Lake Facing' },
+        ],
+        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Premium Bath', '🧴 Full Toiletries', '🌅 Lake Balcony', '👨‍👩‍👧 Up to 4 Guests'],
+        link: 'https://rzp.io/rzp/DnAxWA3'
+      }
+    };
+
+    function qvGoToSlide(idx) {
+      qvCurrentSlide = idx;
+      const slides = document.getElementById('qv-slides');
+      const sliderWidth = document.getElementById('qv-slider').offsetWidth;
+      slides.style.transform = `translateX(-${idx * sliderWidth}px)`;
+      document.querySelectorAll('.qv-dot').forEach((d, i) => {
+        d.style.background = i === idx ? '#c9a84c' : 'rgba(255,255,255,0.5)';
+      });
+    }
+
+    function qvSlide(dir) {
+      let next = qvCurrentSlide + dir;
+      if (next < 0) next = qvTotalSlides - 1;
+      if (next >= qvTotalSlides) next = 0;
+      qvGoToSlide(next);
+    }
+
+    function openQuickView(roomId) {
+      const room = roomData[roomId];
+      if (!room) return;
+
+      qvCurrentSlide = 0;
+      qvTotalSlides = room.imgs.length;
+
+      // Build slider
+      const slidesEl = document.getElementById('qv-slides');
+      slidesEl.style.transform = 'translateX(0px)';
+      slidesEl.innerHTML = room.imgs.map(src => `
       <div style="min-width:100%;max-width:100%;height:320px;flex-shrink:0;flex-grow:0;background:#1a2218;display:flex;align-items:center;justify-content:center;overflow:hidden;box-sizing:border-box;">
         <img src="${src}" alt="${room.title}" style="max-width:100%;max-height:320px;width:auto;height:auto;object-fit:contain;display:block;" />
       </div>
     `).join('');
 
-    // Build dots
-    const dotsEl = document.getElementById('qv-dots');
-    dotsEl.innerHTML = room.imgs.map((_, i) => `
-      <button class="qv-dot" onclick="qvGoToSlide(${i})" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:${i===0?'#c9a84c':'rgba(255,255,255,0.5)'};padding:0;"></button>
+      // Build dots
+      const dotsEl = document.getElementById('qv-dots');
+      dotsEl.innerHTML = room.imgs.map((_, i) => `
+      <button class="qv-dot" onclick="qvGoToSlide(${i})" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:${i === 0 ? '#c9a84c' : 'rgba(255,255,255,0.5)'};padding:0;"></button>
     `).join('');
 
-    document.getElementById('qv-badge').textContent = room.badge;
-    document.getElementById('qv-title').textContent = room.title;
-    document.getElementById('qv-quote').textContent = room.quote;
-    document.getElementById('qv-price').textContent = room.price;
-    // store current room for booking
-    window.currentRoom = room;
+      document.getElementById('qv-badge').textContent = room.badge;
+      document.getElementById('qv-title').textContent = room.title;
+      document.getElementById('qv-quote').textContent = room.quote;
+      document.getElementById('qv-price').textContent = room.price;
+      // store current room for booking
+      window.currentRoom = room;
 
-    // Details
-    const detailsEl = document.getElementById('qv-details');
-    detailsEl.innerHTML = room.details.map(d => `
+      // Details
+      const detailsEl = document.getElementById('qv-details');
+      detailsEl.innerHTML = room.details.map(d => `
       <div style="background:var(--cream);border:1px solid var(--sand);border-radius:6px;padding:0.75rem;text-align:center;">
         <div style="font-size:1.3rem;margin-bottom:0.3rem;">${d.icon}</div>
         <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-lt);margin-bottom:0.2rem;">${d.label}</div>
@@ -2288,243 +3357,266 @@
       </div>
     `).join('');
 
-    // Amenities
-    const amenEl = document.getElementById('qv-amenities');
-    amenEl.innerHTML = room.amenities.map(a => `
+      // Amenities
+      const amenEl = document.getElementById('qv-amenities');
+      amenEl.innerHTML = room.amenities.map(a => `
       <span style="display:flex;align-items:center;gap:0.35rem;font-size:0.72rem;background:var(--mist);color:var(--pine);padding:0.35rem 0.75rem;border-radius:20px;font-weight:500;">${a}</span>
     `).join('');
 
-    document.getElementById('quickview-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+      document.getElementById('quickview-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-  function closeQuickView() {
-    document.getElementById('quickview-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+    function closeQuickView() {
+      document.getElementById('quickview-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-  document.getElementById('quickview-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeQuickView();
-  });
+    document.getElementById('quickview-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeQuickView();
+    });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeQuickView();
-    if (e.key === 'ArrowLeft') qvSlide(-1);
-    if (e.key === 'ArrowRight') qvSlide(1);
-  });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeQuickView();
+      if (e.key === 'ArrowLeft') qvSlide(-1);
+      if (e.key === 'ArrowRight') qvSlide(1);
+    });
 
-  // ===== GALLERY SCROLL ARROWS =====
-  function scrollGallery(dir) {
-    const el = document.getElementById('galleryScroll');
-    const scrollAmount = el.offsetWidth * 0.75;
-    el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
-  }
-</script>
+    // ===== GALLERY SCROLL ARROWS =====
+    function scrollGallery(dir) {
+      const el = document.getElementById('galleryScroll');
+      const scrollAmount = el.offsetWidth * 0.75;
+      el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+    }
+  </script>
 
-<!-- ===== BOOKING MODAL ===== -->
-<div id="booking-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:10px;padding:2rem;max-width:480px;width:90%;max-height:90vh;overflow-y:auto;position:relative;">
-    <button onclick="closeBookingModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#666;">✕</button>
-    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#2c3e2d;margin-bottom:0.25rem;" id="bm-title">Book Room</h3>
-    <p style="font-size:0.85rem;color:#888;margin-bottom:1.5rem;" id="bm-price-info"></p>
-    
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-in Date *</label>
-        <input type="date" id="bm-checkin" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" onchange="calcAmount()" />
+  <!-- ===== BOOKING MODAL ===== -->
+  <div id="booking-modal"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
+    <div
+      style="background:#fff;border-radius:10px;padding:2rem;max-width:480px;width:90%;max-height:90vh;overflow-y:auto;position:relative;">
+      <button onclick="closeBookingModal()"
+        style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#666;">✕</button>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#2c3e2d;margin-bottom:0.25rem;"
+        id="bm-title">Book Room</h3>
+      <p style="font-size:0.85rem;color:#888;margin-bottom:1.5rem;" id="bm-price-info"></p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-in Date
+            *</label>
+          <input type="date" id="bm-checkin"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;"
+            onchange="calcAmount()" />
+        </div>
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-out Date
+            *</label>
+          <input type="date" id="bm-checkout"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;"
+            onchange="calcAmount()" />
+        </div>
       </div>
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Check-out Date *</label>
-        <input type="date" id="bm-checkout" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" onchange="calcAmount()" />
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Full Name
+            *</label>
+          <input type="text" id="bm-name" placeholder="Your name"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+        </div>
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Phone
+            *</label>
+          <input type="tel" id="bm-phone" placeholder="+91 XXXXX XXXXX"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+        </div>
       </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Email
+            *</label>
+          <input type="email" id="bm-email" placeholder="you@email.com"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+        </div>
+        <div>
+          <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">No. of
+            Guests</label>
+          <input type="number" id="bm-guests" min="1" max="6" value="1"
+            style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Special Requests
+          (Optional)</label>
+        <textarea id="bm-special" rows="2" placeholder="Any special requirements..."
+          style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;resize:none;"></textarea>
+      </div>
+
+      <div id="bm-summary"
+        style="display:none;background:#f7f3ec;border-left:4px solid #c9a84c;padding:1rem;border-radius:4px;margin-bottom:1.5rem;">
+        <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.4rem;">
+          <span style="color:#666;" id="bm-nights-text"></span>
+          <span style="font-weight:700;color:#2c3e2d;font-size:1.1rem;" id="bm-total"></span>
+        </div>
+      </div>
+
+      <button onclick="proceedToPayment()" id="bm-pay-btn"
+        style="width:100%;background:#c9a84c;color:#1a2218;border:none;padding:1rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+        Pay Now →
+      </button>
+      <p id="bm-error" style="color:red;font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
     </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Full Name *</label>
-        <input type="text" id="bm-name" placeholder="Your name" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
-      </div>
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Phone *</label>
-        <input type="tel" id="bm-phone" placeholder="+91 XXXXX XXXXX" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Email *</label>
-        <input type="email" id="bm-email" placeholder="you@email.com" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
-      </div>
-      <div>
-        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">No. of Guests</label>
-        <input type="number" id="bm-guests" min="1" max="6" value="1" style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
-      </div>
-    </div>
-
-    <div style="margin-bottom:1.5rem;">
-      <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Special Requests (Optional)</label>
-      <textarea id="bm-special" rows="2" placeholder="Any special requirements..." style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;resize:none;"></textarea>
-    </div>
-
-    <div id="bm-summary" style="display:none;background:#f7f3ec;border-left:4px solid #c9a84c;padding:1rem;border-radius:4px;margin-bottom:1.5rem;">
-      <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.4rem;">
-        <span style="color:#666;" id="bm-nights-text"></span>
-        <span style="font-weight:700;color:#2c3e2d;font-size:1.1rem;" id="bm-total"></span>
-      </div>
-    </div>
-
-    <button onclick="proceedToPayment()" id="bm-pay-btn" style="width:100%;background:#c9a84c;color:#1a2218;border:none;padding:1rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
-      Pay Now →
-    </button>
-    <p id="bm-error" style="color:red;font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
   </div>
-</div>
 
-<script>
-  const BACKEND_URL = 'https://hotel-demo-backend.vercel.app';
+  <script>
+    const BACKEND_URL = 'https://hotel-demo-backend.vercel.app';
 
-  const roomPrices = {
-    'Standard Room': 2500,
-    'Triple Semi Deluxe room': 3500,
-    'Triple Deluxe Room': 4600,
-    'Family Suite': 5550
-  };
+    const roomPrices = {
+      'Standard Room': 2500,
+      'Triple Semi Deluxe room': 3500,
+      'Triple Deluxe Room': 4600,
+      'Family Suite': 5550
+    };
 
-  function openBookingForm() {
-    const room = window.currentRoom;
-    if (!room) return;
-    document.getElementById('bm-title').textContent = 'Book ' + room.title;
-    document.getElementById('bm-price-info').textContent = room.price + ' per night';
-    document.getElementById('bm-summary').style.display = 'none';
-    document.getElementById('bm-checkin').value = '';
-    document.getElementById('bm-checkout').value = '';
-    document.getElementById('bm-name').value = '';
-    document.getElementById('bm-phone').value = '';
-    document.getElementById('bm-email').value = '';
-    document.getElementById('bm-guests').value = '1';
-    document.getElementById('bm-special').value = '';
-    document.getElementById('bm-error').style.display = 'none';
-    document.getElementById('booking-modal').style.display = 'flex';
-    
-    // Set min date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('bm-checkin').min = today;
-    document.getElementById('bm-checkout').min = today;
-  }
-
-  function closeBookingModal() {
-    document.getElementById('booking-modal').style.display = 'none';
-  }
-
-  function calcAmount() {
-    const checkin = document.getElementById('bm-checkin').value;
-    const checkout = document.getElementById('bm-checkout').value;
-    if (!checkin || !checkout) return;
-    
-    const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
-    if (nights <= 0) {
+    function openBookingForm() {
+      const room = window.currentRoom;
+      if (!room) return;
+      document.getElementById('bm-title').textContent = 'Book ' + room.title;
+      document.getElementById('bm-price-info').textContent = room.price + ' per night';
       document.getElementById('bm-summary').style.display = 'none';
-      return;
+      document.getElementById('bm-checkin').value = '';
+      document.getElementById('bm-checkout').value = '';
+      document.getElementById('bm-name').value = '';
+      document.getElementById('bm-phone').value = '';
+      document.getElementById('bm-email').value = '';
+      document.getElementById('bm-guests').value = '1';
+      document.getElementById('bm-special').value = '';
+      document.getElementById('bm-error').style.display = 'none';
+      document.getElementById('booking-modal').style.display = 'flex';
+
+      // Set min date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('bm-checkin').min = today;
+      document.getElementById('bm-checkout').min = today;
     }
 
-    const room = window.currentRoom;
-    const pricePerNight = roomPrices[room.title] || 0;
-    const total = pricePerNight * nights;
-
-    document.getElementById('bm-nights-text').textContent = nights + ' night' + (nights > 1 ? 's' : '') + ' × ₹' + pricePerNight.toLocaleString('en-IN');
-    document.getElementById('bm-total').textContent = '₹' + total.toLocaleString('en-IN');
-    document.getElementById('bm-summary').style.display = 'block';
-  }
-
-  async function proceedToPayment() {
-    const room = window.currentRoom;
-    const checkin = document.getElementById('bm-checkin').value;
-    const checkout = document.getElementById('bm-checkout').value;
-    const name = document.getElementById('bm-name').value.trim();
-    const phone = document.getElementById('bm-phone').value.trim();
-    const email = document.getElementById('bm-email').value.trim();
-    const guests = document.getElementById('bm-guests').value;
-    const special = document.getElementById('bm-special').value.trim();
-    const errEl = document.getElementById('bm-error');
-
-    // Validation
-    if (!checkin || !checkout || !name || !phone || !email) {
-      errEl.textContent = 'Please fill all required fields.';
-      errEl.style.display = 'block';
-      return;
+    function closeBookingModal() {
+      document.getElementById('booking-modal').style.display = 'none';
     }
-    const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000*60*60*24));
-    if (nights <= 0) {
-      errEl.textContent = 'Check-out must be after check-in.';
-      errEl.style.display = 'block';
-      return;
+
+    function calcAmount() {
+      const checkin = document.getElementById('bm-checkin').value;
+      const checkout = document.getElementById('bm-checkout').value;
+      if (!checkin || !checkout) return;
+
+      const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24));
+      if (nights <= 0) {
+        document.getElementById('bm-summary').style.display = 'none';
+        return;
+      }
+
+      const room = window.currentRoom;
+      const pricePerNight = roomPrices[room.title] || 0;
+      const total = pricePerNight * nights;
+
+      document.getElementById('bm-nights-text').textContent = nights + ' night' + (nights > 1 ? 's' : '') + ' × ₹' + pricePerNight.toLocaleString('en-IN');
+      document.getElementById('bm-total').textContent = '₹' + total.toLocaleString('en-IN');
+      document.getElementById('bm-summary').style.display = 'block';
     }
-    errEl.style.display = 'none';
 
-    const pricePerNight = roomPrices[room.title] || 0;
-    const amount = pricePerNight * nights;
+    async function proceedToPayment() {
+      const room = window.currentRoom;
+      const checkin = document.getElementById('bm-checkin').value;
+      const checkout = document.getElementById('bm-checkout').value;
+      const name = document.getElementById('bm-name').value.trim();
+      const phone = document.getElementById('bm-phone').value.trim();
+      const email = document.getElementById('bm-email').value.trim();
+      const guests = document.getElementById('bm-guests').value;
+      const special = document.getElementById('bm-special').value.trim();
+      const errEl = document.getElementById('bm-error');
 
-    const btn = document.getElementById('bm-pay-btn');
-    btn.textContent = 'Creating order...';
-    btn.disabled = true;
+      // Validation
+      if (!checkin || !checkout || !name || !phone || !email) {
+        errEl.textContent = 'Please fill all required fields.';
+        errEl.style.display = 'block';
+        return;
+      }
+      const nights = Math.round((new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24));
+      if (nights <= 0) {
+        errEl.textContent = 'Check-out must be after check-in.';
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
 
-    try {
-      // Format dates nicely
-      const fmt = (d) => new Date(d).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+      const pricePerNight = roomPrices[room.title] || 0;
+      const amount = pricePerNight * nights;
 
-      const res = await fetch(BACKEND_URL + '/create-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount,
-          roomType: room.title,
-          name, phone, email, guests,
-          checkIn: fmt(checkin),
-          checkOut: fmt(checkout),
-          specialRequests: special
-        })
-      });
+      const btn = document.getElementById('bm-pay-btn');
+      btn.textContent = 'Creating order...';
+      btn.disabled = true;
 
-      const data = await res.json();
-      if (!data.orderId) throw new Error('Order creation failed');
+      try {
+        // Format dates nicely
+        const fmt = (d) => new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
 
-      const options = {
-        key: data.keyId,
-        amount: amount * 100,
-        currency: 'INR',
-        name: 'Hotel Sudarshan Nainital',
-        description: room.title,
-        order_id: data.orderId,
-        prefill: { name, email, contact: phone },
-        notes: {
-          room_type: room.title,
-          check_in_date: fmt(checkin),
-          check_out_date: fmt(checkout),
-          number_of_guest: guests,
-          special_requests: special,
-          name, phone, email
-        },
-        theme: { color: '#2c3e2d' },
-        handler: function(response) {
-          closeBookingModal();
-          closeQuickView();
-          alert('✅ Booking Confirmed! Payment ID: ' + response.razorpay_payment_id + '\nConfirmation email sent to ' + email);
-        }
-      };
+        const res = await fetch(BACKEND_URL + '/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount,
+            roomType: room.title,
+            name, phone, email, guests,
+            checkIn: fmt(checkin),
+            checkOut: fmt(checkout),
+            specialRequests: special
+          })
+        });
 
-      const rzp = new Razorpay(options);
-      rzp.open();
-      btn.textContent = 'Pay Now →';
-      btn.disabled = false;
+        const data = await res.json();
+        if (!data.orderId) throw new Error('Order creation failed');
 
-    } catch(err) {
-      errEl.textContent = 'Something went wrong. Please try again.';
-      errEl.style.display = 'block';
-      btn.textContent = 'Pay Now →';
-      btn.disabled = false;
+        const options = {
+          key: data.keyId,
+          amount: amount * 100,
+          currency: 'INR',
+          name: 'Hotel Sudarshan Nainital',
+          description: room.title,
+          order_id: data.orderId,
+          prefill: { name, email, contact: phone },
+          notes: {
+            room_type: room.title,
+            check_in_date: fmt(checkin),
+            check_out_date: fmt(checkout),
+            number_of_guest: guests,
+            special_requests: special,
+            name, phone, email
+          },
+          theme: { color: '#2c3e2d' },
+          handler: function (response) {
+            closeBookingModal();
+            closeQuickView();
+            alert('✅ Booking Confirmed! Payment ID: ' + response.razorpay_payment_id + '\nConfirmation email sent to ' + email);
+          }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+        btn.textContent = 'Pay Now →';
+        btn.disabled = false;
+
+      } catch (err) {
+        errEl.textContent = 'Something went wrong. Please try again.';
+        errEl.style.display = 'block';
+        btn.textContent = 'Pay Now →';
+        btn.disabled = false;
+      }
     }
-  }
-</script>
+  </script>
 
 </body>
+
 </html>
