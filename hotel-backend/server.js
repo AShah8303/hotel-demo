@@ -270,4 +270,45 @@ app.post("/create-order", async (req, res) => {
   }
 });
 
+
+// ── Contact Form ─────────────────────────────────────────────
+app.post("/contact", async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, checkIn, checkOut, roomType, message } = req.body;
+
+    await transporter.sendMail({
+      from: `"Hotel Sudarshan Website" <${process.env.GMAIL_USER}>`,
+      to: process.env.HOTEL_EMAIL || process.env.GMAIL_USER,
+      subject: `📩 New Enquiry from ${firstName} ${lastName}`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:620px;margin:auto;border:1px solid #ddd;border-radius:8px;overflow:hidden;">
+          <div style="background:#2c3e2d;padding:24px;text-align:center;">
+            <h1 style="color:#c9a84c;margin:0;font-size:22px;">Hotel Sudarshan Nainital</h1>
+            <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;">📩 New Contact Form Enquiry</p>
+          </div>
+          <div style="padding:24px;">
+            <table style="width:100%;border-collapse:collapse;font-size:14px;">
+              <tr style="background:#f7f3ec;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Name</td><td style="padding:10px 12px;border:1px solid #e8dece;">${firstName} ${lastName}</td></tr>
+              <tr style="background:#ffffff;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Email</td><td style="padding:10px 12px;border:1px solid #e8dece;">${email || "—"}</td></tr>
+              <tr style="background:#f7f3ec;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Phone</td><td style="padding:10px 12px;border:1px solid #e8dece;">${phone || "—"}</td></tr>
+              <tr style="background:#ffffff;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Room Type</td><td style="padding:10px 12px;border:1px solid #e8dece;">${roomType || "—"}</td></tr>
+              <tr style="background:#f7f3ec;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Check-in</td><td style="padding:10px 12px;border:1px solid #e8dece;">${checkIn || "—"}</td></tr>
+              <tr style="background:#ffffff;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Check-out</td><td style="padding:10px 12px;border:1px solid #e8dece;">${checkOut || "—"}</td></tr>
+              <tr style="background:#f7f3ec;"><td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">Message</td><td style="padding:10px 12px;border:1px solid #e8dece;">${message || "—"}</td></tr>
+            </table>
+          </div>
+          <div style="background:#f7f3ec;padding:14px;text-align:center;font-size:12px;color:#6b6b5a;">
+            Hotel Sudarshan · Zoo Road, Tallital, Nainital · +91 78953 54272
+          </div>
+        </div>`,
+    });
+
+    console.log("✅ Contact email sent");
+    res.json({ success: true });
+  } catch (err) {
+    console.error("❌ Contact email error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = app;
