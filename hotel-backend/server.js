@@ -238,7 +238,7 @@ app.use(express.json());
 const pendingBookings = new Map();
 
 // ── Email: Owner Approval Request ────────────────────────────
-function ownerApprovalEmailHTML(b, approveUrl) {
+function ownerApprovalEmailHTML(b, approveUrl, disapproveUrl) {
   const row = (bg, label, value) => `
     <tr style="background:${bg};">
       <td style="padding:10px 12px;border:1px solid #e8dece;font-weight:bold;">${label}</td>
@@ -271,8 +271,14 @@ function ownerApprovalEmailHTML(b, approveUrl) {
             ✅ Approve &amp; Send Payment Link
           </a>
         </div>
+        <div style="text-align:center;margin-top:14px;">
+          <a href="${disapproveUrl}"
+             style="display:inline-block;background:#8b1a1a;color:#ffffff;padding:14px 36px;border-radius:6px;font-size:16px;font-weight:700;text-decoration:none;letter-spacing:0.05em;">
+            ❌ Disapprove &amp; Notify Guest
+          </a>
+        </div>
         <p style="font-size:12px;color:#999;margin-top:16px;text-align:center;">
-          This approval link is valid for 48 hours.
+          These links are valid for 48 hours.
         </p>
       </div>
       <div style="background:#f7f3ec;padding:14px;text-align:center;font-size:12px;color:#6b6b5a;">
@@ -360,6 +366,7 @@ app.post("/request-booking", async (req, res) => {
 
     const BACKEND_URL = process.env.BACKEND_URL || "https://hotel-demo-backend.vercel.app";
     const approveUrl = `${BACKEND_URL}/approve-booking/${token}`;
+    const disapproveUrl = `${BACKEND_URL}/disapprove-booking/${token}`;
 
     // Send approval email to owner
     await transporter.sendMail({
@@ -367,7 +374,7 @@ app.post("/request-booking", async (req, res) => {
       to: process.env.HOTEL_EMAIL || process.env.GMAIL_USER,
       replyTo: `"${name}" <${email}>`,
       subject: `🔔 Booking Request — ${roomType} — ${name} — ₹${amount}`,
-      html: ownerApprovalEmailHTML(booking, approveUrl),
+      html: ownerApprovalEmailHTML(booking, approveUrl, disapproveUrl),
     });
 
     console.log("✅ Booking request received, approval email sent for:", email);
@@ -490,6 +497,127 @@ app.get("/approve-booking/:token", async (req, res) => {
   }
 });
 
+
+// ── Email: Guest — Booking Rejected ──────────────────────────
+function guestRejectionEmailHTML(b) {
+  const row = (label, value) => `
+    <tr>
+      <td style="padding:6px 0;color:#6b6b5a;width:140px;">${label}</td>
+      <td style="padding:6px 0;font-weight:600;color:#2c3e2d;">${value}</td>
+    </tr>`;
+  return `
+    <div style="font-family:Arial,sans-serif;max-width:620px;margin:auto;border:1px solid #ddd;border-radius:8px;overflow:hidden;">
+      <div style="background:#2c3e2d;padding:28px;text-align:center;">
+        <h1 style="color:#c9a84c;margin:0;font-size:24px;">Hotel Sudarshan Nainital</h1>
+        <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:15px;">Booking Request Update</p>
+      </div>
+      <div style="padding:28px;">
+        <p style="font-size:15px;color:#3a3a2e;margin-bottom:20px;">
+          Dear <strong>${b.name || "Guest"}</strong>,<br><br>
+          Thank you for your interest in <strong>Hotel Sudarshan Nainital</strong>.<br><br>
+          Unfortunately, we are unable to accommodate your booking request for the selected dates. This may be due to unavailability or other operational reasons.
+        </p>
+        <div style="background:#f7f3ec;border-left:4px solid #c9a84c;padding:16px 20px;border-radius:4px;margin-bottom:24px;">
+          <p style="margin:0 0 10px;font-size:13px;color:#6b6b5a;text-transform:uppercase;letter-spacing:.06em;">Your Request Details</p>
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            ${row("Room Type", b.roomType || "—")}
+            ${row("Check-in", b.checkIn || "—")}
+            ${row("Check-out", b.checkOut || "—")}
+            ${row("No. of Guests", b.guests || "—")}
+            ${row("Amount", `₹${b.amount}`)}
+          </table>
+        </div>
+        <div style="background:#fff8e1;border-left:4px solid #f5c842;padding:12px 16px;border-radius:4px;margin-bottom:20px;font-size:13px;color:#6b4c00;">
+          We encourage you to try different dates or contact us directly — we'd love to host you!
+        </div>
+        <div style="background:#2c3e2d;border-radius:6px;padding:16px 20px;color:#fff;">
+          <p style="margin:0 0 8px;font-size:13px;color:#c9a84c;text-transform:uppercase;letter-spacing:.06em;">Contact Us</p>
+          <p style="margin:3px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
+          <p style="margin:3px 0;font-size:13px;">📞 +91 78953 54272 &nbsp;|&nbsp; +91 59422 35574</p>
+          <p style="margin:3px 0;font-size:13px;">✉️ hotelsudarshannainital@gmail.com</p>
+        </div>
+        <p style="font-size:14px;color:#2c3e2d;margin-top:20px;">
+          Warm regards,<br><strong>Hotel Sudarshan Nainital Team</strong>
+        </p>
+      </div>
+      <div style="background:#f7f3ec;padding:12px;text-align:center;font-size:11px;color:#6b6b5a;">
+        Hotel Sudarshan · Zoo Road, Tallital, Nainital · +91 78953 54272
+      </div>
+    </div>`;
+}
+
+// ── Disapprove Booking (owner clicks link in email) ───────────
+app.get("/disapprove-booking/:token", async (req, res) => {
+  try {
+    const { token } = req.params;
+    const booking = pendingBookings.get(token);
+
+    if (!booking) {
+      return res.status(404).send(`
+        <html><body style="font-family:Arial;text-align:center;padding:60px;">
+          <h2 style="color:#8b1a1a;">❌ Invalid or expired link.</h2>
+          <p>This booking request no longer exists or has already been processed.</p>
+        </body></html>`);
+    }
+
+    if (Date.now() > booking.expiresAt) {
+      pendingBookings.delete(token);
+      return res.status(410).send(`
+        <html><body style="font-family:Arial;text-align:center;padding:60px;">
+          <h2 style="color:#8b1a1a;">⏰ This link has expired (48 hours).</h2>
+          <p>The booking request is no longer active.</p>
+        </body></html>`);
+    }
+
+    // Send rejection email to guest
+    await transporter.sendMail({
+      from: `"Hotel Sudarshan Nainital" <${process.env.GMAIL_USER}>`,
+      to: booking.email,
+      subject: `Booking Request Update — Hotel Sudarshan Nainital`,
+      html: guestRejectionEmailHTML(booking),
+    });
+
+    // Remove from pending
+    pendingBookings.delete(token);
+
+    console.log("❌ Booking disapproved, notification sent to:", booking.email);
+
+    // Show confirmation page to owner
+    res.send(`
+      <html>
+      <head><title>Booking Disapproved</title></head>
+      <body style="font-family:Arial,sans-serif;text-align:center;padding:60px;background:#f7f3ec;">
+        <div style="max-width:480px;margin:auto;background:#fff;border-radius:10px;padding:40px;border:1px solid #e8dece;box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+          <div style="font-size:48px;margin-bottom:16px;">❌</div>
+          <h2 style="color:#8b1a1a;margin-bottom:8px;">Booking Disapproved</h2>
+          <p style="color:#6b6b5a;font-size:15px;margin-bottom:20px;">
+            A notification has been sent to<br>
+            <strong style="color:#2c3e2d;">${booking.email}</strong>
+          </p>
+          <div style="background:#f7f3ec;border-radius:6px;padding:16px;text-align:left;font-size:14px;">
+            <b>Guest:</b> ${booking.name}<br>
+            <b>Room:</b> ${booking.roomType}<br>
+            <b>Check-in:</b> ${booking.checkIn}<br>
+            <b>Check-out:</b> ${booking.checkOut}<br>
+            <b>Amount:</b> ₹${booking.amount}
+          </div>
+          <p style="margin-top:20px;font-size:13px;color:#999;">
+            The guest has been informed and the request has been removed.
+          </p>
+        </div>
+      </body>
+      </html>`);
+
+  } catch (err) {
+    console.error("❌ Disapprove booking error:", err.message);
+    res.status(500).send(`
+      <html><body style="font-family:Arial;text-align:center;padding:60px;">
+        <h2 style="color:#8b1a1a;">❌ Something went wrong.</h2>
+        <p>${err.message}</p>
+        <p>Please contact support or try again.</p>
+      </body></html>`);
+  }
+});
 
 // ── Contact Form ─────────────────────────────────────────────
 app.post("/contact", async (req, res) => {
