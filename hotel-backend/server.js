@@ -734,7 +734,7 @@ function ownerCancelEmailHTML(b) {
           ${row("#ffffff", "Check-in", b.checkIn || "—")}
           ${row("#f7f3ec", "Check-out", b.checkOut || "—")}
           ${row("#ffffff", "Amount Paid", "Rs." + b.amountPaid)}
-          ${row("#f7f3ec", "Cancellation Type", b.deduction > 0 ? "After 24 hrs of booking (50% charge applied)" : "Within 24 hrs of booking (Free)")}
+          ${row("#f7f3ec", "Cancellation Type", b.deduction > 0 ? "Within 24 hrs of check-in (50% charge applied)" : "More than 24 hrs before check-in (Free Cancellation)")}
           ${row("#ffffff", "Cancellation Charge", b.deduction > 0 ? "Rs." + b.deduction : "Rs. 0")}
           ${row("#ffe4e4", "Refund Processed", "<strong style='color:#8b1a1a;'>Rs." + b.refundAmount + "</strong>")}
         </table>
@@ -818,22 +818,31 @@ app.post("/cancel-booking", async (req, res) => {
       return res.status(400).json({ error: "A refund for this booking has already been processed." });
     }
 
-    // 4. Calculate refund based on 24hr window from booking time
+    // 4. Calculate refund based on 24hr window before check-in date
     const notes = payment.notes || {};
     const amountPaid = payment.amount / 100;
 
     let refundAmount = amountPaid;
     let deduction = 0;
 
-    // payment.created_at is Unix timestamp in seconds (from Razorpay)
-    const bookingTime = payment.created_at * 1000;
+    // Check-in date is stored in payment notes
+    const checkInRaw = notes["check_in_date"] || notes["Check In date"] || notes["Check-in Date"] || notes["checkin"] || "";
+    const checkInDate = checkInRaw ? new Date(checkInRaw) : null;
     const now = Date.now();
-    const hoursSinceBooking = (now - bookingTime) / (1000 * 60 * 60);
 
-    if (hoursSinceBooking > 24) {
-      // More than 24 hours since booking — 50% deduction
-      deduction = Math.round(amountPaid * 0.5);
-      refundAmount = amountPaid - deduction;
+    if (checkInDate && !isNaN(checkInDate.getTime())) {
+      checkInDate.setHours(0, 0, 0, 0);
+      const hoursUntilCheckIn = (checkInDate.getTime() - now) / (1000 * 60 * 60);
+
+      if (hoursUntilCheckIn < 24) {
+        // Within 24 hours of check-in — 50% deduction
+        deduction = Math.round(amountPaid * 0.5);
+        refundAmount = amountPaid - deduction;
+      }
+      // More than 24 hours before check-in — full refund (deduction stays 0)
+    } else {
+      // check-in date not found in notes — fallback: full refund
+      console.warn("check_in_date not found in payment notes, issuing full refund. paymentId:", paymentId);
     }
 
     // 5. Initiate refund via Razorpay
