@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Hotel Sudarshan Nainital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pine: #2c3e2d;
+      --pine-mid: #3d5c3f;
+      --gold: #c9a84c;
+      --gold-lt: #e8c97a;
+      --cream: #f7f3ec;
+      --sand: #e8dece;
+      --dark: #1a2218;
+      --text: #3a3a2e;
+      --text-lt: #6b6b5a;
+      --red: #8b1a1a;
+      --green: #1a6b2c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Login Page ── */
+    #login-page {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--dark);
+      padding: 2rem;
+    }
+
+    .login-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2.5rem 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .login-logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--pine);
+      margin-bottom: 0.25rem;
+    }
+
+    .login-logo p {
+      font-size: 0.8rem;
+      color: var(--text-lt);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .login-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.75rem auto 1.75rem;
+    }
+
+    .field {
+      margin-bottom: 1.1rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--sand);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--gold);
+    }
+
+    .btn-login {
+      width: 100%;
+      background: var(--pine);
+      color: #fff;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-login:hover { background: var(--pine-mid); }
+    .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    #login-error {
+      color: var(--red);
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      text-align: center;
+      display: none;
+    }
+
+    /* ── Dashboard ── */
+    #dashboard-page {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--cream);
+    }
+
+    .dash-header {
+      background: var(--pine);
+      padding: 1.1rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dash-header h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.25rem;
+    }
+
+    .dash-header p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.78rem;
+      margin-top: 0.1rem;
+    }
+
+    .btn-logout {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,0.2); }
+
+    .dash-body {
+      max-width: 680px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .dash-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--pine);
+      margin-bottom: 0.4rem;
+    }
+
+    .dash-section-sub {
+      font-size: 0.85rem;
+      color: var(--text-lt);
+      margin-bottom: 1.75rem;
+    }
+
+    /* Room Price Cards */
+    .room-cards {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .room-card {
+      background: #fff;
+      border: 1.5px solid var(--sand);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .room-card:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+
+    .room-card-info {
+      flex: 1;
+    }
+
+    .room-card-name {
+      font-weight: 600;
+      color: var(--pine);
+      font-size: 0.97rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .room-card-label {
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .room-price-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .rupee {
+      font-size: 1.1rem;
+      color: var(--text-lt);
+      font-weight: 500;
+    }
+
+    .price-input {
+      width: 110px;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--sand);
+      border-radius: 6px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--pine);
+      font-family: 'DM Sans', sans-serif;
+      text-align: right;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .price-input:focus { border-color: var(--gold); }
+
+    .per-night {
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      white-space: nowrap;
+    }
+
+    /* Save Button */
+    .save-row {
+      margin-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-save {
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      padding: 0.85rem 2.5rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-save:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-save:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    #save-msg {
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    #save-msg.success { color: var(--green); }
+    #save-msg.error   { color: var(--red); }
+
+    /* Footer note */
+    .dash-note {
+      margin-top: 2rem;
+      background: #fff;
+      border: 1px solid var(--sand);
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text-lt);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 480px) {
+      .room-card { flex-direction: column; align-items: flex-start; }
+      .price-input { width: 100%; }
+      .room-price-wrap { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<div id="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <h1>Hotel Sudarshan</h1>
+      <div class="login-divider"></div>
+      <p>Owner Admin Panel</p>
+    </div>
+
+    <div class="field">
+      <label for="admin-email">Gmail Address</label>
+      <input type="email" id="admin-email" placeholder="you@gmail.com" autocomplete="email" />
+    </div>
+
+    <div class="field">
+      <label for="admin-password">Password</label>
+      <input type="password" id="admin-password" placeholder="Enter admin password" autocomplete="current-password" />
+    </div>
+
+    <button class="btn-login" id="login-btn" onclick="doLogin()">Login →</button>
+    <p id="login-error"></p>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD PAGE ══════════════ -->
+<div id="dashboard-page">
+  <div class="dash-header">
+    <div>
+      <h2>Admin Dashboard</h2>
+      <p id="dash-email-display">Hotel Sudarshan Nainital</p>
+    </div>
+    <button class="btn-logout" onclick="doLogout()">Logout</button>
+  </div>
+
+  <div class="dash-body">
+    <p class="dash-section-title">Room Pricing</p>
+    <p class="dash-section-sub">Update per-night rates for each room type. Changes apply immediately.</p>
+
+    <div class="room-cards">
+      <div class="room-card">
+        <div class="room-card-info">
+          <div class="room-card-name">Standard Room</div>
+          <div class="room-card-label">Up to 2 guests · Garden View</div>
+        </div>
+        <div class="room-price-wrap">
+          <span class="rupee">₹</span>
+          <input type="number" class="price-input" id="price-standard" min="100" max="100000" />
+          <span class="per-night">/ night</span>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card-info">
+          <div class="room-card-name">Triple Semi Deluxe</div>
+          <div class="room-card-label">Up to 3 guests · Balcony / Terrace</div>
+        </div>
+        <div class="room-price-wrap">
+          <span class="rupee">₹</span>
+          <input type="number" class="price-input" id="price-semideluxe" min="100" max="100000" />
+          <span class="per-night">/ night</span>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card-info">
+          <div class="room-card-name">Triple Deluxe Room</div>
+          <div class="room-card-label">Up to 3 guests · Mountain View</div>
+        </div>
+        <div class="room-price-wrap">
+          <span class="rupee">₹</span>
+          <input type="number" class="price-input" id="price-deluxe" min="100" max="100000" />
+          <span class="per-night">/ night</span>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card-info">
+          <div class="room-card-name">Family Suite</div>
+          <div class="room-card-label">Up to 5 guests · Lake Facing</div>
+        </div>
+        <div class="room-price-wrap">
+          <span class="rupee">₹</span>
+          <input type="number" class="price-input" id="price-suite" min="100" max="100000" />
+          <span class="per-night">/ night</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="save-row">
+      <button class="btn-save" id="save-btn" onclick="savePrices()">Save Changes</button>
+      <span id="save-msg"></span>
+    </div>
+
+    <div class="dash-note">
+      ⚠️ <strong>Note:</strong> Price changes are live immediately on the booking form. However, since prices are stored in server memory, they will reset to default values if the server restarts. To make prices permanent across restarts, update the <code>PRICE_STANDARD</code>, <code>PRICE_SEMI_DELUXE</code>, <code>PRICE_DELUXE</code>, and <code>PRICE_SUITE</code> environment variables in your Vercel dashboard.
+    </div>
+  </div>
+</div>
+
+<script>
+  const BACKEND_URL = 'https://hotel-demo-backend.vercel.app';
+
+  // ── Session: keep login across page refresh ──
+  function getSession() {
+    try { return JSON.parse(sessionStorage.getItem('admin_session')); } catch { return null; }
+  }
+  function setSession(data) { sessionStorage.setItem('admin_session', JSON.stringify(data)); }
+  function clearSession() { sessionStorage.removeItem('admin_session'); }
+
+  // ── On load: check if already logged in ──
+  window.addEventListener('DOMContentLoaded', async () => {
+    const session = getSession();
+    if (session) {
+      showDashboard(session.email, session.password);
+    }
+    // Allow Enter key on login fields
+    ['admin-email', 'admin-password'].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', e => {
+        if (e.key === 'Enter') doLogin();
+      });
+    });
+  });
+
+  // ── Login ──
+  async function doLogin() {
+    const email    = document.getElementById('admin-email').value.trim();
+    const password = document.getElementById('admin-password').value;
+    const errEl    = document.getElementById('login-error');
+    const btn      = document.getElementById('login-btn');
+
+    errEl.style.display = 'none';
+
+    if (!email || !password) {
+      errEl.textContent = 'Please enter your Gmail and password.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Verifying...';
+    btn.disabled = true;
+
+    try {
+      // Verify credentials by calling the protected endpoint with dummy prices
+      const res = await fetch(BACKEND_URL + '/admin/update-prices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, prices: {} })
+      });
+      const data = await res.json();
+
+      if (res.ok || data.success) {
+        setSession({ email, password });
+        showDashboard(email, password);
+      } else {
+        errEl.textContent = data.error || 'Invalid credentials. Please try again.';
+        errEl.style.display = 'block';
+      }
+    } catch (err) {
+      errEl.textContent = 'Could not connect to server. Please try again.';
+      errEl.style.display = 'block';
+    }
+
+    btn.textContent = 'Login →';
+    btn.disabled = false;
+  }
+
+  // ── Show Dashboard + load prices ──
+  async function showDashboard(email, password) {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('dashboard-page').style.display = 'block';
+    document.getElementById('dash-email-display').textContent = email;
+    document.body.style.alignItems = 'flex-start';
+
+    // Load current prices from server
+    try {
+      const res = await fetch(BACKEND_URL + '/admin/prices');
+      const prices = await res.json();
+      document.getElementById('price-standard').value   = prices['Standard Room'] || 2500;
+      document.getElementById('price-semideluxe').value = prices['Triple Semi Deluxe room'] || 3500;
+      document.getElementById('price-deluxe').value     = prices['Triple Deluxe Room'] || 4600;
+      document.getElementById('price-suite').value      = prices['Family Suite'] || 5550;
+    } catch {
+      // fallback defaults
+      document.getElementById('price-standard').value   = 2500;
+      document.getElementById('price-semideluxe').value = 3500;
+      document.getElementById('price-deluxe').value     = 4600;
+      document.getElementById('price-suite').value      = 5550;
+    }
+  }
+
+  // ── Save Prices ──
+  async function savePrices() {
+    const session = getSession();
+    if (!session) { doLogout(); return; }
+
+    const msgEl = document.getElementById('save-msg');
+    const btn   = document.getElementById('save-btn');
+
+    msgEl.style.display = 'none';
+    btn.textContent = 'Saving...';
+    btn.disabled = true;
+
+    const prices = {
+      'Standard Room':          parseInt(document.getElementById('price-standard').value),
+      'Triple Semi Deluxe room': parseInt(document.getElementById('price-semideluxe').value),
+      'Triple Deluxe Room':     parseInt(document.getElementById('price-deluxe').value),
+      'Family Suite':           parseInt(document.getElementById('price-suite').value),
+    };
+
+    // Basic validation
+    for (const [room, val] of Object.entries(prices)) {
+      if (!val || val < 100 || val > 100000) {
+        msgEl.textContent = `Invalid price for ${room}. Must be between ₹100 and ₹1,00,000.`;
+        msgEl.className = 'error';
+        msgEl.style.display = 'inline';
+        btn.textContent = 'Save Changes';
+        btn.disabled = false;
+        return;
+      }
+    }
+
+    try {
+      const res = await fetch(BACKEND_URL + '/admin/update-prices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: session.email, password: session.password, prices })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        msgEl.textContent = '✅ Prices updated successfully!';
+        msgEl.className = 'success';
+      } else if (res.status === 403) {
+        msgEl.textContent = '❌ Session expired. Please login again.';
+        msgEl.className = 'error';
+        setTimeout(doLogout, 2000);
+      } else {
+        msgEl.textContent = '❌ ' + (data.error || 'Something went wrong.');
+        msgEl.className = 'error';
+      }
+    } catch {
+      msgEl.textContent = '❌ Could not connect to server.';
+      msgEl.className = 'error';
+    }
+
+    msgEl.style.display = 'inline';
+    btn.textContent = 'Save Changes';
+    btn.disabled = false;
+
+    // Auto-hide success message
+    setTimeout(() => { msgEl.style.display = 'none'; }, 4000);
+  }
+
+  // ── Logout ──
+  function doLogout() {
+    clearSession();
+    document.getElementById('dashboard-page').style.display = 'none';
+    document.getElementById('login-page').style.display = 'flex';
+    document.body.style.alignItems = 'center';
+    document.getElementById('admin-email').value = '';
+    document.getElementById('admin-password').value = '';
+    document.getElementById('login-error').style.display = 'none';
+  }
+</script>
+</body>
+</html>
