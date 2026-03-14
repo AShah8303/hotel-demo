@@ -2334,6 +2334,11 @@
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
       <a href="#rooms" class="btn btn-gold">Book Now</a>
+      <a href="admin.html"
+        style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:rgba(255,255,255,0.55);font-size:0.7rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;"
+        onmouseover="this.style.color='#c9a84c';this.style.borderColor='#c9a84c';"
+        onmouseout="this.style.color='rgba(255,255,255,0.55)';this.style.borderColor='rgba(255,255,255,0.25)';">⚙
+        Admin</a>
     </div>
     <div class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -2498,10 +2503,10 @@
             </div>
           </div>
           <div class="about-feat">
-            <div class="feat-icon">🏨</div>
+            <div class="feat-icon">🏔️</div>
             <div class="feat-text">
-              <h4>Round-the-clock Front Desk</h4>
-              <p>Our team is always on hand to assist you</p>
+              <h4>Scenic Lake &amp; Mountain Views</h4>
+              <p>Wake up to breathtaking views of Naini Lake and the surrounding Himalayan hills</p>
             </div>
           </div>
           <div class="about-feat">
@@ -2609,8 +2614,8 @@
         <div class="p-7 flex flex-col" style="flex:1;height:calc(100% - 14rem);">
           <h3 class="font-playfair text-xl text-pine font-semibold mb-2 -tracking-tight">Triple Semi Deluxe Room</h3>
           <p class="text-sm text-stone-500 leading-relaxed mb-5">A spacious triple bed room with warm décor and all
-            essential amenities. Please note: this is an interior room with no window and no outside view — a quiet,
-            cosy stay at great value. </p>
+            essential amenities. Enjoy your stay with a beautiful balcony or terrace view — perfect for soaking in the
+            fresh mountain air. </p>
           <p class="text-xs text-stone-400 mb-6 italic" style="flex-grow:1;">✦ Open the room to see all included
             amenities & details</p>
           <div class="flex items-center justify-between border-t border-sand pt-5">
@@ -2972,8 +2977,8 @@
           <div class="contact-ico">✉️</div>
           <div>
             <h4>Email</h4>
-            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-              data-cfemail="3a52554e5f56494f5e5b4849525b5414545b5354534e5b567a5d575b535614595557">[email&#160;protected]</a>
+            <a><span class="__cf_email__"
+                data-cfemail="224a4d56474e5157464350514a434c0c4c434b4c4b56434e62454f434b4e0c414d4f">[email&#160;protected]</span></a>
           </div>
         </div>
         <div class="contact-item">
@@ -3130,6 +3135,7 @@
     </div>
   </div>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     function closeCancelModal() {
@@ -3463,7 +3469,7 @@
           { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
           { icon: '🏔️', label: 'View', value: 'Garden View' },
         ],
-        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🛎️ 24hr Room Service', '🚗 Free Parking'],
+        amenities: [],
         link: 'https://rzp.io/rzp/STDNTEST'
       },
       deluxe: {
@@ -3486,7 +3492,7 @@
           { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
           { icon: '🌅', label: 'View', value: 'Balcony / Terrace' },
         ],
-        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries & Towels', '🌅 Balcony', '🪟 Blackout Curtains'],
+        amenities: [],
         link: 'https://rzp.io/rzp/STDNTEST'
       },
       familydeluxe: {
@@ -3509,7 +3515,7 @@
           { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
           { icon: '🏔️', label: 'View', value: 'Mountain View' },
         ],
-        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Attached Bath', '🧴 Toiletries', '🌅 Private Balcony', '🛏️ Extra Bed on Request'],
+        amenities: [],
         link: 'https://rzp.io/rzp/DnAxWA3'
       },
       familysuite: {
@@ -3535,7 +3541,7 @@
           { icon: '🕙', label: 'Check-out', value: '11:00 AM' },
           { icon: '🏔️', label: 'View', value: 'Lake Facing' },
         ],
-        amenities: ['📶 Free Wi-Fi', '📺 Cable TV', '🛁 Premium Bath', '🧴 Full Toiletries', '🌅 Lake Balcony', '👨‍👩‍👧 Up to 4 Guests'],
+        amenities: [],
         link: 'https://rzp.io/rzp/DnAxWA3'
       }
     };
@@ -3709,6 +3715,13 @@
         </div>
       </div>
 
+      <div style="margin-bottom:1rem;">
+        <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Vehicle Parking
+          Required?</label>
+        <input type="text" id="bm-parking" placeholder="e.g. Yes – 1 car / No"
+          style="width:100%;padding:0.6rem;border:1.5px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+      </div>
+
       <div style="margin-bottom:1.5rem;">
         <label style="font-size:0.78rem;font-weight:600;color:#444;display:block;margin-bottom:0.4rem;">Special Requests
           (Optional)</label>
@@ -3753,6 +3766,7 @@
       document.getElementById('bm-name').value = '';
       document.getElementById('bm-phone').value = '';
       document.getElementById('bm-email').value = '';
+      document.getElementById('bm-parking').value = '';
       document.getElementById('bm-special').value = '';
       document.getElementById('bm-error').style.display = 'none';
       document.getElementById('booking-modal').style.display = 'flex';
@@ -3827,6 +3841,7 @@
       const kids = document.getElementById('bm-kids').value;
       const guests = adults + ' Adult' + (parseInt(adults) > 1 ? 's' : '') + (parseInt(kids) > 0 ? ', ' + kids + ' Child' + (parseInt(kids) > 1 ? 'ren' : '') + ' (under 7)' : '');
       const special = document.getElementById('bm-special').value.trim();
+      const parking = document.getElementById('bm-parking').value.trim();
       const errEl = document.getElementById('bm-error');
 
       if (!checkin || !checkout || !name || !phone || !email) {
@@ -3861,7 +3876,8 @@
             name, phone, email, guests,
             checkIn: fmt(checkin),
             checkOut: fmt(checkout),
-            specialRequests: special
+            specialRequests: special,
+            parking: parking || 'Not specified'
           })
         });
 
