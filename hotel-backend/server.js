@@ -263,7 +263,8 @@ function ownerApprovalEmailHTML(b, approveUrl, disapproveUrl) {
           ${row("#ffffff", "Check-out", b.checkOut || "—")}
           ${row("#f7f3ec", "No. of Guests", b.guests || "—")}
           ${row("#ffffff", "Special Requests", b.specialRequests || "None")}
-          ${row("#f7f3ec", "Total Amount", `<strong style="color:#2c3e2d;font-size:16px;">₹${b.amount}</strong>`)}
+          ${row("#f7f3ec", "Vehicle Parking", b.parking || "Not specified")}
+          ${row("#ffffff", "Total Amount", `<strong style="color:#2c3e2d;font-size:16px;">₹${b.amount}</strong>`)}
         </table>
         <div style="text-align:center;margin-top:28px;">
           <a href="${approveUrl}"
@@ -345,7 +346,7 @@ function guestPaymentEmailHTML(b, paymentUrl) {
 // ── Request Booking (replaces create-order) ───────────────────
 app.post("/request-booking", async (req, res) => {
   try {
-    const { amount, roomType, name, phone, email, guests, checkIn, checkOut, specialRequests } = req.body;
+    const { amount, roomType, name, phone, email, guests, checkIn, checkOut, specialRequests, parking } = req.body;
 
     if (!name || !email || !phone || !checkIn || !checkOut || !roomType) {
       return res.status(400).json({ error: "Missing required fields." });
@@ -357,7 +358,7 @@ app.post("/request-booking", async (req, res) => {
 
     const booking = {
       token, name, phone, email, roomType,
-      checkIn, checkOut, guests, specialRequests, amount,
+      checkIn, checkOut, guests, specialRequests, parking: parking || 'Not specified', amount,
       requestedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       expiresAt,
     };
@@ -440,6 +441,7 @@ app.get("/approve-booking/:token", async (req, res) => {
           check_out_date: booking.checkOut,
           number_of_guest: booking.guests,
           special_requests: booking.specialRequests || "",
+          parking: booking.parking || "Not specified",
         },
       }),
     });
@@ -658,6 +660,54 @@ app.post("/contact", async (req, res) => {
     console.error("❌ Contact email error:", err.message);
     res.status(500).json({ error: err.message });
   }
+});
+
+
+// ── In-Memory Price Store (resets on server restart) ─────────
+// For persistence across restarts, move these to a DB or env vars
+let roomPrices = {
+  "Standard Room": parseInt(process.env.PRICE_STANDARD) || 2500,
+  "Triple Semi Deluxe room": parseInt(process.env.PRICE_SEMI_DELUXE) || 3500,
+  "Triple Deluxe Room": parseInt(process.env.PRICE_DELUXE) || 4600,
+  "Family Suite": parseInt(process.env.PRICE_SUITE) || 5550,
+};
+
+// ── Admin: Get current prices (public — used by frontend) ────
+app.get("/admin/prices", (req, res) => {
+  res.json(roomPrices);
+});
+
+// ── Admin: Update prices (protected by email + password) ─────
+app.post("/admin/update-prices", (req, res) => {
+  const { email, password, prices } = req.body;
+
+  const allowedEmail = (process.env.ADMIN_EMAIL || "").toLowerCase().trim();
+  const allowedPassword = process.env.ADMIN_PASSWORD || "";
+
+  if (!email || !password || !prices) {
+    return res.status(400).json({ error: "Missing fields." });
+  }
+  if (email.toLowerCase().trim() !== allowedEmail) {
+    return res.status(403).json({ error: "Unauthorized email." });
+  }
+  if (password !== allowedPassword) {
+    return res.status(403).json({ error: "Incorrect password." });
+  }
+
+  // Validate and update only known rooms
+  const allowed = ["Standard Room", "Triple Semi Deluxe room", "Triple Deluxe Room", "Family Suite"];
+  for (const room of allowed) {
+    if (prices[room] !== undefined) {
+      const val = parseInt(prices[room]);
+      if (isNaN(val) || val < 100 || val > 100000) {
+        return res.status(400).json({ error: `Invalid price for ${room}` });
+      }
+      roomPrices[room] = val;
+    }
+  }
+
+  console.log("✅ Room prices updated by admin:", roomPrices);
+  res.json({ success: true, prices: roomPrices });
 });
 
 module.exports = app;
