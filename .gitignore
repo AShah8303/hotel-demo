@@ -1,0 +1,9 @@
+# Dependencies and local build output
+node_modules/
+hotel-backend/node_modules/
+.vercel/
+
+# Local secrets and environment files
+.env
+.env.*
+keys.txt
