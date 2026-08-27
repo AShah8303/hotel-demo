@@ -616,8 +616,8 @@
     }
 
     .nainital-img-wrap img {
-      width: 75%;
-      height: 420px;
+      width: 68%;
+      height: 520px;
       object-fit: cover;
       border-radius: var(--radius);
       position: absolute;
@@ -635,12 +635,24 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 62% !important;
-      height: 280px !important;
+      width: 30% !important;
+      height: 245px !important;
       object-fit: cover;
       border-radius: var(--radius);
       border: 4px solid var(--gold) !important;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+      z-index: 2;
+    }
+
+    .nainital-img-detail {
+      top: 0;
+      right: 0;
+      width: 30% !important;
+      height: 245px !important;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 4px solid var(--gold) !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
       z-index: 2;
     }
 
@@ -1300,6 +1312,11 @@
       .nainital-img-accent {
         width: 58% !important;
         height: 200px !important;
+      }
+
+      .nainital-img-detail {
+        width: 38% !important;
+        height: 150px !important;
       }
 
       .rooms-grid {
@@ -2593,11 +2610,12 @@
   <section id="nainital" class="section">
     <div class="nainital-grid">
       <div class="nainital-img-wrap">
-        <img src="https://www.swantour.com/blogs/wp-content/uploads/2018/12/Nainital-Lake.jpg" alt="Naini Lake Nainital"
+        <img src="MISC/nainital-lake-panorama.jpg" alt="Nainital lake panorama"
           loading="lazy" />
+        <img class="nainital-img-detail"
+          src="MISC/nainital-hills.webp" alt="Nainital hills and lake" loading="lazy" />
         <img class="nainital-img-accent"
-          src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerd02LSq3uePa0fylwjBLl29KDpWYlSEwqsPeq3ZLii5s6A73x59R5Z2wj3vXnHMjc_51TrB2MB-M7kEbwwzSJ2SeBTy9ot8uexacgtPd3EHM9CJbYEan4nXrvNRoSvobBLELatXWmiIQjD=s1360-w1360-h1020-rw"
-          alt="view from hotel" loading="lazy" />
+          src="MISC/nainital-boats.jpg" alt="Boats on Naini Lake" loading="lazy" />
       </div>
       <div class="nainital-text">
         <p class="section-label">Discover</p>
