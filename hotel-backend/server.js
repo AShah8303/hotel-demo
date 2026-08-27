@@ -168,7 +168,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// ── Webhook Route (express.json se PEHLE) ───────────────────
+// ── Webhook route (defined before the JSON parser) ──────────
 app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (req, res) => {
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
   const signature = req.headers["x-razorpay-signature"];
@@ -254,7 +254,7 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
   res.json({ status: "ok" });
 });
 
-// ── JSON Middleware (webhook ke BAAD) ────────────────────────
+// ── JSON middleware (defined after the webhook) ─────────────
 app.use(express.json());
 
 // ── In-Memory Pending Bookings Store ─────────────────────────
