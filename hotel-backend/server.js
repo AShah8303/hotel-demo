@@ -3,6 +3,7 @@ const express = require("express");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const { kv } = require("@vercel/kv");
 
 const app = express();
 
@@ -257,10 +258,9 @@ app.post("/razorpay-webhook", express.raw({ type: "application/json" }), async (
 // ── JSON middleware (defined after the webhook) ─────────────
 app.use(express.json());
 
-// ── In-Memory Pending Bookings Store ─────────────────────────
-// (Use a DB like MongoDB/Redis in production)
+// ── Vercel KV Pending Bookings Store ─────────────────────────
+// Replaced in-memory Map with @vercel/kv
 // IMPORTANT: Add BACKEND_URL=https://your-backend-url.com to your .env file
-const pendingBookings = new Map();
 
 // ── Email: Owner Approval Request ────────────────────────────
 function ownerApprovalEmailHTML(b, approveUrl, disapproveUrl) {
@@ -400,7 +400,7 @@ app.post("/request-booking", async (req, res) => {
       expiresAt,
     };
 
-    pendingBookings.set(token, booking);
+    await kv.set(token, booking, { ex: 172800 });
 
     const BACKEND_URL = process.env.BACKEND_URL || "https://hotel-demo-backend.vercel.app";
     const approveUrl = `${BACKEND_URL}/approve-booking/${token}`;
@@ -428,7 +428,7 @@ app.post("/request-booking", async (req, res) => {
 app.get("/approve-booking/:token", async (req, res) => {
   try {
     const { token } = req.params;
-    const booking = pendingBookings.get(token);
+    const booking = await kv.get(token);
 
     if (!booking) {
       return res.status(404).send(`
@@ -439,7 +439,7 @@ app.get("/approve-booking/:token", async (req, res) => {
     }
 
     if (Date.now() > booking.expiresAt) {
-      pendingBookings.delete(token);
+      await kv.del(token);
       return res.status(410).send(`
         <html><body style="font-family:Arial;text-align:center;padding:60px;">
           <h2 style="color:#8b1a1a;">⏰ This approval link has expired (48 hours).</h2>
@@ -495,7 +495,7 @@ app.get("/approve-booking/:token", async (req, res) => {
     });
 
     // Remove from pending
-    pendingBookings.delete(token);
+    await kv.del(token);
 
     console.log("✅ Booking approved, payment link sent to:", booking.email);
 
@@ -589,7 +589,7 @@ function guestRejectionEmailHTML(b) {
 app.get("/disapprove-booking/:token", async (req, res) => {
   try {
     const { token } = req.params;
-    const booking = pendingBookings.get(token);
+    const booking = await kv.get(token);
 
     if (!booking) {
       return res.status(404).send(`
@@ -600,7 +600,7 @@ app.get("/disapprove-booking/:token", async (req, res) => {
     }
 
     if (Date.now() > booking.expiresAt) {
-      pendingBookings.delete(token);
+      await kv.del(token);
       return res.status(410).send(`
         <html><body style="font-family:Arial;text-align:center;padding:60px;">
           <h2 style="color:#8b1a1a;">⏰ This link has expired (48 hours).</h2>
@@ -617,7 +617,7 @@ app.get("/disapprove-booking/:token", async (req, res) => {
     });
 
     // Remove from pending
-    pendingBookings.delete(token);
+    await kv.del(token);
 
     console.log("❌ Booking disapproved, notification sent to:", booking.email);
 
