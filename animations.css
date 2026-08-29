@@ -87,9 +87,7 @@
 
 /* Elegant Title Text Animation */
 .split-word-container {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
+  display: inline;
 }
 .split-word {
   display: inline-block;

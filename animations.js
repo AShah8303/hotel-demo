@@ -41,14 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
     words.forEach((word, index) => {
       const container = document.createElement("span");
       container.className = "split-word-container";
-      
+
       const wordSpan = document.createElement("span");
       wordSpan.className = "split-word";
-      wordSpan.innerText = word + " ";
+      wordSpan.innerText = word;
       wordSpan.style.setProperty("--delay", `${index * 0.1}s`);
-      
+
       container.appendChild(wordSpan);
       title.appendChild(container);
+      // Add space between words outside the container so it's never clipped
+      if (index < words.length - 1) {
+        title.appendChild(document.createTextNode(" "));
+      }
     });
     // Add title itself to observer to trigger split animation
     revealObserver.observe(title);
