@@ -3,7 +3,8 @@ const express = require("express");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
-const { kv } = require("@vercel/kv");
+const Redis = require("ioredis");
+const kv = new Redis(process.env.REDIS_URL);
 
 const app = express();
 
@@ -400,7 +401,7 @@ app.post("/request-booking", async (req, res) => {
       expiresAt,
     };
 
-    await kv.set(token, booking, { ex: 172800 });
+    await kv.set(token, JSON.stringify(booking), "EX", 172800);
 
     const BACKEND_URL = process.env.BACKEND_URL || "https://hotel-demo-backend.vercel.app";
     const approveUrl = `${BACKEND_URL}/approve-booking/${token}`;
@@ -428,7 +429,8 @@ app.post("/request-booking", async (req, res) => {
 app.get("/approve-booking/:token", async (req, res) => {
   try {
     const { token } = req.params;
-    const booking = await kv.get(token);
+    const data = await kv.get(token);
+    const booking = data ? JSON.parse(data) : null;
 
     if (!booking) {
       return res.status(404).send(`
@@ -589,7 +591,8 @@ function guestRejectionEmailHTML(b) {
 app.get("/disapprove-booking/:token", async (req, res) => {
   try {
     const { token } = req.params;
-    const booking = await kv.get(token);
+    const data = await kv.get(token);
+    const booking = data ? JSON.parse(data) : null;
 
     if (!booking) {
       return res.status(404).send(`
