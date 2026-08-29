@@ -3106,8 +3106,7 @@
               check-in</strong>.
             If cancelled within 24 hours of check-in, a <strong>50% cancellation charge</strong> will apply.
             Refunds are processed within <strong>5–7 working days</strong> to the original payment method.
-            To cancel your booking, visit the <a href="#cancel-booking" style="color:#c9a84c;">Cancel My Booking</a>
-            section below.</p>
+            To cancel your booking, please contact us directly via WhatsApp or email.</p>
         </div>
       </div>
 
@@ -3276,151 +3275,7 @@
     </div>
   </section>
 
-  <!-- ===== CANCELLATION SECTION ===== -->
-  <section id="cancel-booking" style="background:#f7f3ec;padding:60px 20px;text-align:center;">
-    <div style="max-width:600px;margin:auto;">
-      <p
-        style="font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.75rem;">
-        Booking Management</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:#2c3e2d;margin-bottom:1rem;">Cancel Your
-        Booking</h2>
-      <p style="color:#6b6b5a;line-height:1.8;margin-bottom:0.75rem;font-size:0.95rem;">Need to cancel? You can do it
-        directly below — no calls needed.</p>
-      <div
-        style="background:#fff8e1;border:1px solid #f5c842;border-radius:8px;padding:14px 20px;margin-bottom:2rem;text-align:left;font-size:0.88rem;color:#6b4c00;">
-        <strong>Cancellation Policy:</strong><br><br>
-        &#10003; <strong>Free cancellation</strong> if cancelled more than 24 hours before check-in.<br>
-        &#9888; <strong>50% charge</strong> applies if cancelled within 24 hours of check-in.<br>
-        &#128336; Refund credited within <strong>5-7 working days</strong>.
-      </div>
-      <button onclick="document.getElementById('cancel-modal').style.display='flex'"
-        style="background:#2c3e2d;color:#c9a84c;border:none;padding:0.9rem 2.5rem;font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:4px;">
-        Cancel My Booking &rarr;
-      </button>
-    </div>
-  </section>
 
-  <!-- ===== CANCELLATION MODAL ===== -->
-  <div id="cancel-modal"
-    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px;">
-    <div
-      style="background:#fff;border-radius:12px;padding:2rem;max-width:460px;width:100%;position:relative;max-height:90vh;overflow-y:auto;">
-      <button onclick="closeCancelModal()"
-        style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b6b5a;">&times;</button>
-      <h3 style="font-family:'Playfair Display',serif;color:#2c3e2d;margin-bottom:0.4rem;font-size:1.4rem;">Cancel
-        Booking</h3>
-      <p style="color:#6b6b5a;font-size:0.85rem;margin-bottom:1.5rem;">Enter your Payment ID and registered email to
-        proceed.</p>
-
-      <div id="cancel-form-view">
-        <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:0.8rem;font-weight:600;color:#2c3e2d;margin-bottom:0.4rem;">Payment ID
-            <span style="color:red;">*</span></label>
-          <input id="cancel-payid" type="text" placeholder="e.g. pay_QxXXXXXXXXXX"
-            style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;outline:none;" />
-          <p style="font-size:0.75rem;color:#6b6b5a;margin-top:0.3rem;">You can find your Payment ID in the booking
-            confirmation email.</p>
-        </div>
-        <div style="margin-bottom:1.5rem;">
-          <label style="display:block;font-size:0.8rem;font-weight:600;color:#2c3e2d;margin-bottom:0.4rem;">Registered
-            Email <span style="color:red;">*</span></label>
-          <input id="cancel-email" type="email" placeholder="yourname@email.com"
-            style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;outline:none;" />
-        </div>
-        <p id="cancel-error" style="color:red;font-size:0.82rem;margin-bottom:1rem;display:none;"></p>
-        <button onclick="submitCancellation()" id="cancel-submit-btn"
-          style="width:100%;background:#8b1a1a;color:#fff;border:none;padding:0.9rem;border-radius:6px;font-size:0.95rem;font-weight:700;cursor:pointer;">
-          Proceed to Cancel &rarr;
-        </button>
-        <p style="font-size:0.78rem;color:#6b6b5a;text-align:center;margin-top:0.75rem;">This action cannot be undone.
-        </p>
-      </div>
-
-      <div id="cancel-success-view" style="display:none;text-align:center;padding:1rem 0;">
-        <div style="font-size:3rem;margin-bottom:1rem;">&#10004;</div>
-        <h4 style="font-family:'Playfair Display',serif;color:#2c3e2d;font-size:1.3rem;margin-bottom:0.5rem;">Booking
-          Cancelled</h4>
-        <p style="color:#6b6b5a;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;" id="cancel-success-msg"></p>
-        <div style="background:#f7f3ec;border-radius:8px;padding:1rem;font-size:0.85rem;color:#6b6b5a;">
-          Your refund will be processed within <strong>5-7 working days</strong>.<br>
-          A confirmation email has been sent to you.
-        </div>
-        <button onclick="closeCancelModal()"
-          style="margin-top:1.5rem;background:#2c3e2d;color:#c9a84c;border:none;padding:0.75rem 2rem;border-radius:6px;font-size:0.9rem;font-weight:600;cursor:pointer;">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script>
-    function closeCancelModal() {
-      document.getElementById("cancel-modal").style.display = "none";
-      document.getElementById("cancel-form-view").style.display = "block";
-      document.getElementById("cancel-success-view").style.display = "none";
-      document.getElementById("cancel-payid").value = "";
-      document.getElementById("cancel-email").value = "";
-      document.getElementById("cancel-error").style.display = "none";
-      var btn = document.getElementById("cancel-submit-btn");
-      btn.textContent = "Proceed to Cancel";
-      btn.disabled = false;
-    }
-
-    async function submitCancellation() {
-      var paymentId = document.getElementById("cancel-payid").value.trim();
-      var email = document.getElementById("cancel-email").value.trim();
-      var errEl = document.getElementById("cancel-error");
-      var btn = document.getElementById("cancel-submit-btn");
-
-      if (!paymentId || !email) {
-        errEl.textContent = "Please fill in both fields.";
-        errEl.style.display = "block";
-        return;
-      }
-      if (!paymentId.startsWith("pay_")) {
-        errEl.textContent = "Payment ID must start with pay_ (e.g. pay_QxXXXXXXXX).";
-        errEl.style.display = "block";
-        return;
-      }
-
-      errEl.style.display = "none";
-      btn.textContent = "Processing...";
-      btn.disabled = true;
-
-      try {
-        var res = await fetch(BACKEND_URL + "/cancel-booking", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ paymentId: paymentId, email: email }),
-        });
-        var data = await res.json();
-
-        if (!res.ok || !data.success) {
-          errEl.textContent = data.error || "Something went wrong. Please try again.";
-          errEl.style.display = "block";
-          btn.textContent = "Proceed to Cancel";
-          btn.disabled = false;
-          return;
-        }
-
-        var msg = data.deduction > 0
-          ? "Your refund of Rs." + data.refundAmount + " has been initiated. A 50% cancellation charge of Rs." + data.deduction + " was applied as the cancellation was within 24 hours of check-in."
-          : "Your full refund of Rs." + data.refundAmount + " has been initiated. No cancellation charges applied.";
-
-        document.getElementById("cancel-success-msg").textContent = msg;
-        document.getElementById("cancel-form-view").style.display = "none";
-        document.getElementById("cancel-success-view").style.display = "block";
-
-      } catch (err) {
-        errEl.textContent = "Network error. Please check your connection and try again.";
-        errEl.style.display = "block";
-        btn.textContent = "Proceed to Cancel";
-        btn.disabled = false;
-      }
-    }
-  </script>
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-grid">
@@ -3486,7 +3341,6 @@
       <div class="footer-col">
         <h4>Policies</h4>
         <ul>
-          <li><a href="#cancel-booking">Cancel My Booking</a></li>
           <li><a href="#faq">Cancellation Policy</a></li>
           <li><a href="#faq">Check-in / Check-out</a></li>
           <li><a href="#faq">Breakfast Info</a></li>
