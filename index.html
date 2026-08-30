@@ -3792,7 +3792,7 @@
           </select>
         </div>
         <div style="display:flex;align-items:flex-end;padding-bottom:0.3rem;">
-          <p style="font-size:0.72rem;color:#999;font-style:italic;margin:0;">* Children means under age of 7</p>
+          <p style="font-size:0.72rem;color:#999;font-style:italic;margin:0;">* Children means under age of 5</p>
         </div>
       </div>
 
@@ -3839,10 +3839,10 @@
     const BACKEND_URL = 'https://hotel-demo-backend.vercel.app';
 
     let roomPrices = {
-      'Double Bed': 3000,
-      'Triple Non View': 3800,
-      'Triple With View': 4800,
-      'Family (Lake/Mountain View)': 6500
+      'Double Bed (Deluxe Room)': 3000,
+      'Triple Bed (Delux Room)': 3800,
+      'Triple Bed Superior Room (Lake/Mountain View)': 4800,
+      'Five Bed Family Room (Junior Suite) (Lake/Mountain View)': 6500
     };
 
     function openBookingForm() {
@@ -3869,10 +3869,10 @@
       // Set adults/kids options based on room type
       const title = room.title;
       let maxAdults = 2, maxKids = 2;
-      if (title === 'Triple Non View' || title === 'Triple With View') {
-        maxAdults = 3; maxKids = 2;
-      } else if (title === 'Family (Lake/Mountain View)') {
-        maxAdults = 5; maxKids = 3;
+      if (title === 'Triple Bed (Delux Room)' || title === 'Triple Bed Superior Room (Lake/Mountain View)') {
+        maxAdults = 3;
+      } else if (title === 'Five Bed Family Room (Junior Suite) (Lake/Mountain View)') {
+        maxAdults = 5;
       }
 
       const adultsEl = document.getElementById('bm-adults');
@@ -3933,7 +3933,7 @@
       const email = document.getElementById('bm-email').value.trim();
       const adults = document.getElementById('bm-adults').value;
       const kids = document.getElementById('bm-kids').value;
-      const guests = adults + ' Adult' + (parseInt(adults) > 1 ? 's' : '') + (parseInt(kids) > 0 ? ', ' + kids + ' Child' + (parseInt(kids) > 1 ? 'ren' : '') + ' (under 7)' : '');
+      const guests = adults + ' Adult' + (parseInt(adults) > 1 ? 's' : '') + (parseInt(kids) > 0 ? ', ' + kids + ' Child' + (parseInt(kids) > 1 ? 'ren' : '') + ' (under 5)' : '');
       const special = document.getElementById('bm-special').value.trim();
       const parking = document.getElementById('bm-parking').value.trim();
       const errEl = document.getElementById('bm-error');
