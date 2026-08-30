@@ -4028,10 +4028,16 @@
         btn.disabled = false;
 
       } catch (err) {
-        errEl.textContent = 'Something went wrong. Please try again.';
-        errEl.style.display = 'block';
-        btn.textContent = 'Send Booking on WhatsApp →';
-        btn.disabled = false;
+        // WhatsApp remains available even if the optional backend notification is down.
+        const fallbackMessage = [
+          'New booking request — Hotel Sudarshan Nainital', '',
+          'Guest: ' + name, 'Phone: ' + phone, 'Email: ' + email,
+          'Room: ' + room.title, 'Check-in: ' + checkin, 'Check-out: ' + checkout,
+          'Guests: ' + guests, 'Final total: ₹' + amount.toLocaleString('en-IN'),
+          'Direct booking discount (10%) included',
+          'Parking: ' + (parking || 'Not specified'), 'Requests: ' + (special || 'None')
+        ].join('\\n');
+        window.location.href = 'https://wa.me/919286448739?text=' + encodeURIComponent(fallbackMessage);
       }
     }
   </script>

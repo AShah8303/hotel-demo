@@ -161,9 +161,9 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
+  // The booking page may be served from a custom domain or a Vercel preview.
+  // Reflect the requesting origin so browser booking requests are not blocked.
+  if (origin) res.header("Access-Control-Allow-Origin", origin);
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   if (req.method === "OPTIONS") return res.sendStatus(200);
