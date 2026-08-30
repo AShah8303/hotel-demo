@@ -4031,33 +4031,30 @@
         // WhatsApp requires the guest to tap Send; browsers cannot send silently.
         const ownerWhatsApp = '919286448739';
         const message = [
-          'New booking request — Hotel Sudarshan Nainital',
-          '',
-          'Guest: ' + name,
+          'Hello 👋, I would like to make a booking at Hotel Sudarshan, Nainital.', '',
+          'Name: ' + name,
           'Phone: ' + phone,
-          'Email: ' + email,
+          'Email: ' + email, '',
           'Room: ' + room.title,
           'Check-in: ' + fmt(checkin),
           'Check-out: ' + fmt(checkout),
           'Guests: ' + guests,
-          'Stay: ' + nights + ' night' + (nights > 1 ? 's' : ''),
-          'Room total: ₹' + grossAmount.toLocaleString('en-IN'),
-          'Direct booking discount (10%): −₹' + discount.toLocaleString('en-IN'),
-          'Final total: ₹' + amount.toLocaleString('en-IN'),
+          'Final Total: ₹' + amount.toLocaleString('en-IN'),
+          'Direct Booking Discount (10%) included',
           'Parking: ' + (parking || 'Not specified'),
-          'Requests: ' + (special || 'None')
+          'Requests: ' + (special || 'None'), '',
+          'Please confirm the availability and booking.'
         ].join('\n');
         const whatsappUrl = 'https://api.whatsapp.com/send?phone=' + ownerWhatsApp + '&text=' + encodeURIComponent(message);
         const receipt = await createBookingReceipt({ name, phone, email, room: room.title, checkin: fmt(checkin), checkinRaw: checkin, checkout: fmt(checkout), guests, nights, gross: grossAmount, discount, amount, parking: parking || 'Not specified', special: special || 'None' });
         const receiptFile = new File([receipt], 'hotel-sudarshan-booking-receipt.png', { type: 'image/png' });
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [receiptFile] })) {
-          await navigator.share({ title: 'Hotel Sudarshan booking receipt', files: [receiptFile] });
+          await navigator.share({ title: 'Hotel Sudarshan booking receipt', text: message, files: [receiptFile] });
         } else {
           const downloadUrl = URL.createObjectURL(receiptFile);
           const link = document.createElement('a'); link.href = downloadUrl; link.download = receiptFile.name; link.click();
           URL.revokeObjectURL(downloadUrl);
-          const shortWhatsAppUrl = 'https://api.whatsapp.com/send?phone=' + ownerWhatsApp + '&text=' + encodeURIComponent('Booking receipt image downloaded. I will attach and send it to you.');
-          window.location.href = shortWhatsAppUrl;
+          window.location.href = whatsappUrl;
         }
 
         closeBookingModal();
@@ -4086,7 +4083,15 @@
 
       } catch (err) {
         // WhatsApp remains available even if the optional backend notification is down.
-        window.location.href = 'https://api.whatsapp.com/send?phone=919286448739&text=' + encodeURIComponent('Booking receipt image is ready. Please ask the guest to attach it here.');
+        const fallbackMessage = [
+          'Hello 👋, I would like to make a booking at Hotel Sudarshan, Nainital.', '',
+          'Name: ' + name, 'Phone: ' + phone, 'Email: ' + email, '',
+          'Room: ' + room.title, 'Check-in: ' + checkin, 'Check-out: ' + checkout,
+          'Guests: ' + guests, 'Final Total: ₹' + amount.toLocaleString('en-IN'),
+          'Direct Booking Discount (10%) included', 'Parking: ' + (parking || 'Not specified'),
+          'Requests: ' + (special || 'None'), '', 'Please confirm the availability and booking.'
+        ].join('\n');
+        window.location.href = 'https://api.whatsapp.com/send?phone=919286448739&text=' + encodeURIComponent(fallbackMessage);
       }
     }
   </script>
