@@ -3829,7 +3829,7 @@
 
       <button onclick="requestBooking()" id="bm-pay-btn"
         style="width:100%;background:#c9a84c;color:#1a2218;border:none;padding:1rem;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
-        Request Booking →
+        Send Booking on WhatsApp →
       </button>
       <p id="bm-error" style="color:red;font-size:0.8rem;margin-top:0.5rem;display:none;"></p>
     </div>
@@ -3980,6 +3980,29 @@
         const data = await res.json();
         if (!data.success) throw new Error(data.error || 'Request failed');
 
+        // Open a complete, pre-filled WhatsApp message for the hotel owner.
+        // WhatsApp requires the guest to tap Send; browsers cannot send silently.
+        const ownerWhatsApp = '919286448739';
+        const message = [
+          'New booking request — Hotel Sudarshan Nainital',
+          '',
+          'Guest: ' + name,
+          'Phone: ' + phone,
+          'Email: ' + email,
+          'Room: ' + room.title,
+          'Check-in: ' + fmt(checkin),
+          'Check-out: ' + fmt(checkout),
+          'Guests: ' + guests,
+          'Stay: ' + nights + ' night' + (nights > 1 ? 's' : ''),
+          'Room total: ₹' + grossAmount.toLocaleString('en-IN'),
+          'Direct booking discount (10%): −₹' + discount.toLocaleString('en-IN'),
+          'Final total: ₹' + amount.toLocaleString('en-IN'),
+          'Parking: ' + (parking || 'Not specified'),
+          'Requests: ' + (special || 'None')
+        ].join('\\n');
+        const whatsappUrl = 'https://wa.me/' + ownerWhatsApp + '?text=' + encodeURIComponent(message);
+        window.location.href = whatsappUrl;
+
         closeBookingModal();
         closeQuickView();
 
@@ -3988,11 +4011,10 @@
         successMsg.innerHTML = `
       <div style="background:#fff;border-radius:12px;padding:40px;max-width:420px;text-align:center;margin:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
         <div style="font-size:28px;margin-bottom:12px;color:#c9a84c;">Booking received</div>
-        <h2 style="color:#2c3e2d;font-family:'Playfair Display',serif;margin-bottom:12px;">Booking Request Sent!</h2>
+        <h2 style="color:#2c3e2d;font-family:'Playfair Display',serif;margin-bottom:12px;">Booking Details Ready</h2>
         <p style="color:#6b6b5a;font-size:15px;line-height:1.7;margin-bottom:24px;">
           Thank you, <strong>${name}</strong>!<br><br>
-          Your booking request has been received. The hotel will review and approve it shortly.<br><br>
-          Once approved, you'll receive a <strong>payment link on your email</strong> to complete the booking.
+          Your booking details have been prepared in WhatsApp. Tap <strong>Send</strong> in the hotel chat to complete your request.
         </p>
         <p style="font-size:13px;color:#999;margin-bottom:20px;">📧 ${email}</p>
         <button onclick="this.closest('div').parentElement.remove()"
@@ -4002,13 +4024,13 @@
       </div>`;
         document.body.appendChild(successMsg);
 
-        btn.textContent = 'Request Booking →';
+        btn.textContent = 'Send Booking on WhatsApp →';
         btn.disabled = false;
 
       } catch (err) {
         errEl.textContent = 'Something went wrong. Please try again.';
         errEl.style.display = 'block';
-        btn.textContent = 'Request Booking →';
+        btn.textContent = 'Send Booking on WhatsApp →';
         btn.disabled = false;
       }
     }
