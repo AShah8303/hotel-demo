@@ -4051,12 +4051,13 @@
         const receipt = await createBookingReceipt({ name, phone, email, room: room.title, checkin: fmt(checkin), checkinRaw: checkin, checkout: fmt(checkout), guests, nights, gross: grossAmount, discount, amount, parking: parking || 'Not specified', special: special || 'None' });
         const receiptFile = new File([receipt], 'hotel-sudarshan-booking-receipt.png', { type: 'image/png' });
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [receiptFile] })) {
-          await navigator.share({ title: 'Hotel Sudarshan booking receipt', text: message, files: [receiptFile] });
+          await navigator.share({ title: 'Hotel Sudarshan booking receipt', files: [receiptFile] });
         } else {
           const downloadUrl = URL.createObjectURL(receiptFile);
           const link = document.createElement('a'); link.href = downloadUrl; link.download = receiptFile.name; link.click();
           URL.revokeObjectURL(downloadUrl);
-          window.location.href = whatsappUrl;
+          const shortWhatsAppUrl = 'https://api.whatsapp.com/send?phone=' + ownerWhatsApp + '&text=' + encodeURIComponent('Booking receipt image downloaded. I will attach and send it to you.');
+          window.location.href = shortWhatsAppUrl;
         }
 
         closeBookingModal();
@@ -4085,15 +4086,7 @@
 
       } catch (err) {
         // WhatsApp remains available even if the optional backend notification is down.
-        const fallbackMessage = [
-          'New booking request — Hotel Sudarshan Nainital', '',
-          'Guest: ' + name, 'Phone: ' + phone, 'Email: ' + email,
-          'Room: ' + room.title, 'Check-in: ' + checkin, 'Check-out: ' + checkout,
-          'Guests: ' + guests, 'Final total: ₹' + amount.toLocaleString('en-IN'),
-          'Direct booking discount (10%) included',
-          'Parking: ' + (parking || 'Not specified'), 'Requests: ' + (special || 'None')
-        ].join('\n');
-        window.location.href = 'https://api.whatsapp.com/send?phone=919286448739&text=' + encodeURIComponent(fallbackMessage);
+        window.location.href = 'https://api.whatsapp.com/send?phone=919286448739&text=' + encodeURIComponent('Booking receipt image is ready. Please ask the guest to attach it here.');
       }
     }
   </script>
