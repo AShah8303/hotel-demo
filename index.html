@@ -3924,6 +3924,53 @@
       document.getElementById('bm-summary').style.display = 'block';
     }
 
+    async function createBookingReceipt(details) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1200;
+      canvas.height = 1500;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#f7f3ec';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#243a29';
+      ctx.fillRect(0, 0, canvas.width, 250);
+      try {
+        const logo = new Image();
+        logo.src = 'logo.png';
+        await new Promise(resolve => { logo.onload = resolve; logo.onerror = resolve; });
+        if (logo.complete && logo.naturalWidth) ctx.drawImage(logo, 70, 45, 150, 150);
+      } catch (_) { /* receipt remains usable without the logo */ }
+      ctx.fillStyle = '#d2ad4b';
+      ctx.font = 'bold 42px Georgia';
+      ctx.fillText('HOTEL SUDARSHAN', 270, 105);
+      ctx.font = '24px Arial';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Nainital · Direct Booking Receipt', 275, 155);
+      ctx.fillStyle = '#243a29';
+      ctx.font = 'bold 34px Georgia';
+      ctx.fillText('Booking Request', 80, 340);
+      ctx.strokeStyle = '#d2ad4b'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(80, 370); ctx.lineTo(1120, 370); ctx.stroke();
+      const rows = [
+        ['Guest', details.name], ['Phone', details.phone], ['Email', details.email],
+        ['Room', details.room], ['Check-in', details.checkin], ['Check-out', details.checkout],
+        ['Guests', details.guests], ['Stay', details.nights + ' night' + (details.nights > 1 ? 's' : '')],
+        ['Room total', '₹' + details.gross.toLocaleString('en-IN')],
+        ['Direct discount (10%)', '−₹' + details.discount.toLocaleString('en-IN')],
+        ['Final total', '₹' + details.amount.toLocaleString('en-IN')],
+        ['Parking', details.parking], ['Requests', details.special]
+      ];
+      let y = 435;
+      rows.forEach(([label, value], index) => {
+        if (index % 2 === 0) { ctx.fillStyle = '#eee7d9'; ctx.fillRect(70, y - 32, 1060, 58); }
+        ctx.fillStyle = '#65705f'; ctx.font = '22px Arial'; ctx.fillText(label, 95, y);
+        ctx.fillStyle = '#243a29'; ctx.font = (label === 'Final total' ? 'bold 30px Arial' : '24px Arial');
+        ctx.fillText(String(value), 470, y); y += 66;
+      });
+      ctx.fillStyle = '#65705f'; ctx.font = '20px Arial';
+      ctx.fillText('Please share this receipt with Hotel Sudarshan on WhatsApp.', 80, 1400);
+      return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    }
+
     async function requestBooking() {
       const room = window.currentRoom;
       const checkin = document.getElementById('bm-checkin').value;
@@ -4001,7 +4048,16 @@
           'Requests: ' + (special || 'None')
         ].join('\n');
         const whatsappUrl = 'https://wa.me/' + ownerWhatsApp + '?text=' + encodeURIComponent(message);
-        window.location.href = whatsappUrl;
+        const receipt = await createBookingReceipt({ name, phone, email, room: room.title, checkin: fmt(checkin), checkinRaw: checkin, checkout: fmt(checkout), guests, nights, gross: grossAmount, discount, amount, parking: parking || 'Not specified', special: special || 'None' });
+        const receiptFile = new File([receipt], 'hotel-sudarshan-booking-receipt.png', { type: 'image/png' });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [receiptFile] })) {
+          await navigator.share({ title: 'Hotel Sudarshan booking receipt', text: message, files: [receiptFile] });
+        } else {
+          const downloadUrl = URL.createObjectURL(receiptFile);
+          const link = document.createElement('a'); link.href = downloadUrl; link.download = receiptFile.name; link.click();
+          URL.revokeObjectURL(downloadUrl);
+          window.location.href = whatsappUrl;
+        }
 
         closeBookingModal();
         closeQuickView();
