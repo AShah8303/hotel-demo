@@ -132,7 +132,7 @@ function guestEmailHTML(b) {
           <p style="margin:0 0 8px;font-size:13px;color:#c9a84c;text-transform:uppercase;letter-spacing:.06em;">Hotel Contact</p>
           <p style="margin:3px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
           <p style="margin:3px 0;font-size:13px;">💬 WhatsApp +91 92864 48739</p>
-          <p style="margin:3px 0;font-size:13px;">✉️ hotelsudarshannainital@gmail.com</p>
+          <p style="margin:3px 0;font-size:13px;">✉️ <!--email_off-->hotelsudarshan.nainital@gmail.com<!--/email_off--></p>
           <p style="margin:8px 0 0;font-size:13px;">🕐 Check-in from 12:00 PM &nbsp;|&nbsp; Check-out by 10:00 AM</p>
         </div>
         <p style="font-size:13px;color:#6b6b5a;margin-top:20px;line-height:1.6;">
@@ -356,7 +356,7 @@ function guestPaymentEmailHTML(b, paymentUrl) {
           <p style="margin:0 0 8px;font-size:13px;color:#c9a84c;text-transform:uppercase;letter-spacing:.06em;">Hotel Contact</p>
           <p style="margin:3px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
           <p style="margin:3px 0;font-size:13px;">💬 WhatsApp +91 92864 48739</p>
-          <p style="margin:3px 0;font-size:13px;">✉️ hotelsudarshannainital@gmail.com</p>
+          <p style="margin:3px 0;font-size:13px;">✉️ <!--email_off-->hotelsudarshan.nainital@gmail.com<!--/email_off--></p>
           <p style="margin:8px 0 0;font-size:13px;">🕐 Check-in from 12:00 PM &nbsp;|&nbsp; Check-out by 10:00 AM</p>
         </div>
         <p style="font-size:14px;color:#2c3e2d;margin-top:20px;">
@@ -575,7 +575,7 @@ function guestRejectionEmailHTML(b) {
           <p style="margin:0 0 8px;font-size:13px;color:#c9a84c;text-transform:uppercase;letter-spacing:.06em;">Contact Us</p>
           <p style="margin:3px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
           <p style="margin:3px 0;font-size:13px;">💬 WhatsApp +91 92864 48739</p>
-          <p style="margin:3px 0;font-size:13px;">✉️ hotelsudarshannainital@gmail.com</p>
+          <p style="margin:3px 0;font-size:13px;">✉️ <!--email_off-->hotelsudarshan.nainital@gmail.com<!--/email_off--></p>
         </div>
         <p style="font-size:14px;color:#2c3e2d;margin-top:20px;">
           Warm regards,<br><strong>Hotel Sudarshan Nainital Team</strong>
