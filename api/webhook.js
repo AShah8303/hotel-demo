@@ -141,7 +141,7 @@ function guestEmailHTML(b) {
       <p style="margin:0 0 8px;font-size:13px;color:#c9a84c;text-transform:uppercase;letter-spacing:.06em;">Hotel Contact</p>
       <p style="margin:2px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
       <p style="margin:2px 0;font-size:13px;">💬 WhatsApp +91 92864 48739</p>
-      <p style="margin:2px 0;font-size:13px;">✉️ <!--email_off-->hotelsudarshan.nainital@gmail.com<!--/email_off--></p>
+      <p style="margin:2px 0;font-size:13px;">✉️ <span>hotelsudarshan.nainital</span><span>@</span><span>gmail.com</span></p>
       <p style="margin:8px 0 0;font-size:13px;">🕐 Check-in from 12:00 PM &nbsp;|&nbsp; Check-out by 10:00 AM</p>
     </div>
 
