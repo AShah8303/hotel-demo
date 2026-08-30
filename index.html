@@ -3999,7 +3999,7 @@
           'Final total: ₹' + amount.toLocaleString('en-IN'),
           'Parking: ' + (parking || 'Not specified'),
           'Requests: ' + (special || 'None')
-        ].join('\\n');
+        ].join('\n');
         const whatsappUrl = 'https://wa.me/' + ownerWhatsApp + '?text=' + encodeURIComponent(message);
         window.location.href = whatsappUrl;
 
@@ -4036,7 +4036,7 @@
           'Guests: ' + guests, 'Final total: ₹' + amount.toLocaleString('en-IN'),
           'Direct booking discount (10%) included',
           'Parking: ' + (parking || 'Not specified'), 'Requests: ' + (special || 'None')
-        ].join('\\n');
+        ].join('\n');
         window.location.href = 'https://wa.me/919286448739?text=' + encodeURIComponent(fallbackMessage);
       }
     }
