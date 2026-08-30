@@ -4048,14 +4048,11 @@
         const whatsappUrl = 'https://api.whatsapp.com/send?phone=' + ownerWhatsApp + '&text=' + encodeURIComponent(message);
         const receipt = await createBookingReceipt({ name, phone, email, room: room.title, checkin: fmt(checkin), checkinRaw: checkin, checkout: fmt(checkout), guests, nights, gross: grossAmount, discount, amount, parking: parking || 'Not specified', special: special || 'None' });
         const receiptFile = new File([receipt], 'hotel-sudarshan-booking-receipt.png', { type: 'image/png' });
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [receiptFile] })) {
-          await navigator.share({ title: 'Hotel Sudarshan booking receipt', text: message, files: [receiptFile] });
-        } else {
-          const downloadUrl = URL.createObjectURL(receiptFile);
-          const link = document.createElement('a'); link.href = downloadUrl; link.download = receiptFile.name; link.click();
-          URL.revokeObjectURL(downloadUrl);
-          window.location.href = whatsappUrl;
-        }
+        const downloadUrl = URL.createObjectURL(receiptFile);
+        const link = document.createElement('a'); link.href = downloadUrl; link.download = receiptFile.name; link.click();
+        URL.revokeObjectURL(downloadUrl);
+        // Use one URL path on every device so the WhatsApp text is identical.
+        window.location.href = whatsappUrl;
 
         closeBookingModal();
         closeQuickView();
