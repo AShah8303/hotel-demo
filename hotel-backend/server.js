@@ -407,14 +407,18 @@ app.post("/request-booking", async (req, res) => {
     const approveUrl = `${BACKEND_URL}/approve-booking/${token}`;
     const disapproveUrl = `${BACKEND_URL}/disapprove-booking/${token}`;
 
-    // Send approval email to owner
-    await transporter.sendMail({
-      from: `"Hotel Sudarshan" <${process.env.GMAIL_USER}>`,
-      to: process.env.HOTEL_EMAIL || process.env.GMAIL_USER,
-      replyTo: `"${name}" <${email}>`,
-      subject: `🔔 Booking Request — ${roomType} — ${name} — ₹${amount}`,
-      html: ownerApprovalEmailHTML(booking, approveUrl, disapproveUrl),
-    });
+    // Email notification is useful, but it must not block the booking request.
+    try {
+      await transporter.sendMail({
+        from: `"Hotel Sudarshan" <${process.env.GMAIL_USER}>`,
+        to: process.env.HOTEL_EMAIL || process.env.GMAIL_USER,
+        replyTo: `"${name}" <${email}>`,
+        subject: `🔔 Booking Request — ${roomType} — ${name} — ₹${amount}`,
+        html: ownerApprovalEmailHTML(booking, approveUrl, disapproveUrl),
+      });
+    } catch (mailError) {
+      console.error("Booking email notification failed:", mailError.message);
+    }
 
     console.log("✅ Booking request received, approval email sent for:", email);
     res.json({ success: true, message: "Booking request sent. You'll receive a confirmation email once approved." });
