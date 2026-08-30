@@ -142,7 +142,7 @@ function guestEmailHTML(b) {
       <p style="margin:2px 0;font-size:13px;">📍 Zoo Road, Tallital, Nainital – 263001, Uttarakhand</p>
       <p style="margin:2px 0;font-size:13px;">💬 WhatsApp +91 92864 48739</p>
       <p style="margin:2px 0;font-size:13px;">✉️ hotelsudarshannainital@gmail.com</p>
-      <p style="margin:8px 0 0;font-size:13px;">🕐 Check-in from 10:00 AM &nbsp;|&nbsp; Check-out by 10:00 AM</p>
+      <p style="margin:8px 0 0;font-size:13px;">🕐 Check-in from 12:00 PM &nbsp;|&nbsp; Check-out by 10:00 AM</p>
     </div>
 
     <p style="font-size:13px;color:#6b6b5a;margin-top:20px;line-height:1.6;">
